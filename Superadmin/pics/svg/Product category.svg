@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="30" height="30" viewBox="0 0 30 30">
+  <defs>
+    <clipPath id="clip-Product_category">
+      <rect width="30" height="30"/>
+    </clipPath>
+  </defs>
+  <g id="Product_category" data-name="Product category" clip-path="url(#clip-Product_category)">
+    <g id="Group_300" data-name="Group 300">
+      <g id="Group_52" data-name="Group 52" transform="translate(-202 -490.987)">
+        <circle id="Ellipse_6" data-name="Ellipse 6" cx="13.585" cy="13.585" r="13.585" transform="translate(203 491.987)" fill="#ffc200"/>
+        <path id="Path_224" data-name="Path 224" d="M88.247,26.3q0-.378-.021-.75l-8.291-8.29-1.5-.07L74.662,13.43,71.4,23.461,73.238,25.3l-5.767.077-.151,3.343L64.5,34.611l3.573,3.573A13.588,13.588,0,0,0,88.247,26.3Z" transform="translate(141.923 479.27)" fill="#ff9500"/>
+        <path id="Path_225" data-name="Path 225" d="M114.723,133.488v-5.107H113.5v5.107h-7.341v6.942h1.221v-5.722h13.462v5.722h1.221v-6.942Z" transform="translate(102.473 370.419)" fill="#ff6838"/>
+        <path id="Path_226" data-name="Path 226" d="M256.61,133.488v-5.107H256v6.327h6.731v5.722h1.22v-6.942Z" transform="translate(-39.415 370.419)" fill="#ae4e32"/>
+        <rect id="Rectangle_14" data-name="Rectangle 14" width="5.642" height="5.642" transform="translate(206.423 508.239)" fill="#008cc3"/>
+        <g id="Group_51" data-name="Group 51" transform="translate(211.311 492.7)">
+          <rect id="Rectangle_15" data-name="Rectangle 15" width="5.642" height="5.642" transform="translate(9.794 15.539)" fill="#0074a3"/>
+          <path id="Path_227" data-name="Path 227" d="M161.9,13.43l1.63,3.3,3.644.529-2.637,2.57.622,3.629L161.9,21.748l-3.259,1.714.622-3.629-2.637-2.57,3.644-.529Z" transform="translate(-156.623 -13.43)" fill="#0074a3"/>
+        </g>
+        <path id="Path_228" data-name="Path 228" d="M261.274,17.262l-3.644-.529L256,13.43v8.318l3.259,1.714-.622-3.629Z" transform="translate(-39.415 479.27)" fill="#005c83"/>
+      </g>
+    </g>
+  </g>
+</svg>

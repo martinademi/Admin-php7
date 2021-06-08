@@ -1,0 +1,9 @@
+.left_col{background:transparent !important;}
+ul.nav.side-menu.leftSideMenu {
+    max-height: 100% !important;
+    padding-bottom: 100px !important;
+}
+.nav-md .container.body .col-md-3.left_col {
+    height: 100%  !important;
+    min-height: 100%  !important;
+}

@@ -1,0 +1,624 @@
+/*Vehicle Type edit city wise*/
+   #promotedTypeCheckboxDiv label{
+        display: block;
+    }
+    #promotedTypeCheckboxDiv {
+        display: none;
+        border: 1px #dadada solid;
+    }
+   #specialTypeCheckboxDiv label{
+        display: block;
+    }
+    #specialTypeCheckboxDiv {
+        display: none;
+        border: 1px #dadada solid;
+    }
+    
+      #selectPreferencesDiv label{
+        display: block;
+    }
+    #selectPreferencesDiv {
+        display: none;
+        border: 1px #dadada solid;
+    }
+    
+ span.abs_text1 {
+        position: absolute;
+        right: 0px;
+        top: 1px;
+        z-index: 9;
+        padding: 8px;
+        background: #f1f1f1;
+        border-right: 1px solid #d0d0d0;
+        border-left: 1px solid #d0d0d0;
+    }
+    label#bookingType-error {
+        position: absolute;
+        top: 18px;
+    }
+    .paging_full_numbers{
+        margin-right: 1%;
+    }
+    .dataTables_info {
+        margin-left: 1%;
+    }
+    .table-responsive{
+        overflow-x:hidden;
+        overflow-y:hidden;
+    }
+    .radio input[type=radio], .radio-inline input[type=radio] {
+        margin-left: 0px; 
+    }
+    .lastButton{
+        margin-right:1.8%;
+    }
+  
+    /*    .page-sidebar
+        {
+           display: none; 
+        }*/
+
+    .ui-menu-item{cursor: pointer;background: black;color:white;border-bottom: 1px solid white;width: 200px;}
+
+    #addZoneModal .modal-dialog,
+    #map_display .modal-dialog,
+    #editZoneModal .modal-dialog {
+        width: 90%;
+    }
+
+
+    #addmodalmap,
+    #mapPolygon,
+    #editmodalmap {
+        /*height: 600px;*/
+        height: 80vh;
+    }
+
+    #zoneform label {
+        margin-left: 12px;
+    }
+
+
+    .btncontrols {
+        margin: 10px;
+        border: 1px solid transparent;
+        border-radius: 2px 0 0 2px;
+        box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        height: 32px;
+        outline: none;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+        color: white;
+        background-color: cornflowerblue;
+    }
+
+    /*#cities,*/
+    #editnow {
+        border: 1px solid transparent;
+        border-radius: 2px;
+        box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        height: 32px;
+        outline: none;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+        color: white;
+        background-color: darkgray;
+    }
+
+    .success {
+        color: springgreen;
+    }
+
+    .error {
+        color: red;
+    }
+
+    .waitmsg {
+        display: inline;
+        margin-left: 50%;
+
+    }
+
+    .modal .modal-body p {
+        color: aliceblue;
+    }
+
+    .displayinline {
+        display: inline;
+    }
+
+
+    /*------------for auto complete search box---------------------*/
+
+    .controls {
+        margin: 10px 0;
+        border: 1px solid transparent;
+        border-radius: 2px 0 0 2px;
+        box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        height: 32px;
+        outline: none;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+    }
+
+    #pac-input {
+        background-color: #fff;
+        font-family: Roboto;
+        /*        font-size: 15px;*/
+        font-weight: 600;
+        /*margin-left: 12px;*/
+        padding: 0 11px 0 13px;
+        text-overflow: ellipsis;
+        /*width: 300px;*/
+        /*border-radius: 5px;*/
+    }
+
+    #pac-input:focus {
+        border-color: #4d90fe;
+    }
+
+    #pac-input1 {
+        background-color: #fff;
+        font-family: Roboto;
+        font-size: 15px;
+        font-weight: 300;
+        margin-left: 12px;
+        padding: 0 11px 0 13px;
+        text-overflow: ellipsis;
+        width: 300px;
+        border-radius: 5px;
+    }
+
+    #pac-input1:focus {
+        border-color: #4d90fe;
+    }
+
+
+    .pac-container,.select2-drop {
+        font-family: Roboto;
+        z-index: 99999 !important;
+    }
+
+    #type-selector {
+        color: #fff;
+        background-color: #4d90fe;
+        padding: 5px 11px 0px 11px;
+    }
+
+    #type-selector label {
+        font-family: Roboto;
+        font-size: 13px;
+        font-weight: 300;
+    }
+
+    #target {
+        width: 345px;
+    }
+    .header{
+        height:60px !important;
+    }
+    .header h3{
+        margin:10px 0 !important;
+    }
+    .rating>.rated {
+        color: #10cfbd;
+    }
+    .social-user-profile {
+        width: 83px;
+    }
+    td a:before{
+        color:transparent;
+    }
+
+    .input-group-addon {
+        font-size: inherit;
+    }
+    .input-group {
+        margin-bottom: 0px;
+    }
+    .input-group-addon {
+        border-radius: 0px !important;
+    }
+    input[type='file'] {
+        color: transparent;
+    }
+
+    .input-group[class*=col-] {
+        float: left; 
+        padding-right: 0;
+        padding-left: 11px;
+    }
+
+    .ui-autocomplete{
+        z-index: 5000;
+    }
+    #selectedcity,#companyid{
+        display: none;
+    }
+
+    .multiselect {
+        width: 200px;
+    }
+
+    .selectBox {
+        position: relative;
+    }
+    .selectBox select {
+        width: 100%;
+        font-weight: bold;
+    }
+
+    .overSelect {
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+    }
+
+    #checkboxes {
+        display: none;
+        border: 1px #dadada solid;
+    }
+
+    #checkboxes label {
+        display: block;
+    }
+    .selectedGood{
+        padding: 6px;
+        display: inline-flex;
+        margin: 0px 1px 1px;
+        font-weight: 600;
+    }
+    input[type=checkbox] {
+        margin: 4px 4px 0px 8px;
+    }
+    span.abs_text {
+        position: absolute;
+        right: 10px;
+        top: 1px;
+        z-index: 9;
+        padding: 8px;
+        background: #f1f1f1;
+        border-right: 1px solid #d0d0d0;
+        border-left: 1px solid #d0d0d0;
+    }
+    span.abs_textT {
+        position: absolute;
+        right: 18px;
+        top: 1px;
+        z-index: 9;
+        padding: 8px;
+        background: #f1f1f1;
+        border-right: 1px solid #d0d0d0;
+        border-left: 1px solid #d0d0d0;
+    }
+    span.abs_textLeft {
+        position: absolute;
+        left: 12px;
+        top: 1px;
+        z-index: 9;
+        padding: 8px;
+        background: #f1f1f1;
+        border-right: 1px solid #d0d0d0;
+    }
+
+    .pos_relative ,.pos_relative2{
+        position: relative;
+        padding-right:0px
+    }
+    .pos_relative2{
+        padding-right:10px
+    }
+    /*Ride*/
+    input#price_MinimumFee,#x_km_mileMinimumFee,#price_after_x_minutesTripDuration,#price_after_x_minWaiting,#price_after_x_minCancel,#price_after_x_minCancelScheduledBookings{
+        padding-left: 10px;
+    }
+
+
+    #vehicle_capacity{
+        padding-left: 10px;
+    }
+
+    span.abs_text2 {
+        position: absolute;
+        left: 1px;
+        top: 2px;
+        padding: 8px 5px;
+        background: #f1f1f1;
+        color: #555555;
+        border-right: 1px solid #c3c3c3;
+    }
+    /*Ride*/
+    input#x_minutesCancel,#x_minutesCancelScheduledBookings,#x_minutesWaiting,#x_minutesTripDuration,#mileage_after_x_km_mile,#x_km_mile_price {
+        padding-left: 74px;
+    } 
+    /*Delievery*/
+    input#x_minutesCancelDelivery,#x_minutesCancelScheduledBookingsDelivery,#x_minutesWaitingDelivery,#x_minutesTripDurationDelivery,#mileage_after_x_km_mileDelivery,#x_km_mile_priceDelivery {
+        padding-left: 74px;
+    }   
+    .cmn-toggle {
+        position: absolute;
+        margin-left: -9999px;
+
+    }
+    .cmn-toggle + label {
+        display: block;
+        position: relative;
+        cursor: pointer;
+        outline: none;
+        user-select: none;
+    }
+    input.cmn-toggle-round + label {
+        padding: 2px;
+        width: 44px;
+        height: 16px;
+        background-color: #dddddd;
+        border-radius: 60px;
+    }
+    input.cmn-toggle-round + label:before,
+    input.cmn-toggle-round + label:after {
+        display: block;
+        position: absolute;
+        top: 1px;
+        left: 1px;
+        bottom: 1px;
+        content: "";
+    }
+    input.cmn-toggle-round + label:before {
+        right: 1px;
+        background-color: #f1f1f1;
+        border-radius: 50px;
+        transition: background 0.4s;
+    }
+    input.cmn-toggle-round + label:after {
+        width: 16px;
+        background-color: #fff;
+        border-radius: 100%;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+        transition: margin 0.4s;
+    }
+    input.cmn-toggle-round:checked + label:before {
+        background-color: #8ce196;
+    }
+    input.cmn-toggle-round:checked + label:after {
+        margin-left:25px;
+    }
+/*End*/
+
+label#bookingType-error {
+    position: absolute;
+    top: 18px;
+}
+.error{
+    color:red;
+}
+.style_prevu_kit
+{
+    display:inline-block;
+    border:0;
+
+    position: relative;
+    -webkit-transition: all 200ms ease-in;
+    -webkit-transform: scale(1); 
+    -ms-transition: all 200ms ease-in;
+    -ms-transform: scale(1); 
+    -moz-transition: all 200ms ease-in;
+    -moz-transform: scale(1);
+    transition: all 200ms ease-in;
+    transform: scale(1);   
+
+}
+.style_prevu_kit:hover
+{
+
+    box-shadow: 0px 0px 150px #000000;
+    z-index: 2;
+    -webkit-transition: all 200ms ease-in;
+    -webkit-transform: scale(1.5);
+    -ms-transition: all 200ms ease-in;
+    -ms-transform: scale(1.5);   
+    -moz-transition: all 200ms ease-in;
+    -moz-transform: scale(1.5);
+    transition: all 200ms ease-in;
+    transform: scale(1.5);
+}
+.input-group-addon {
+    font-size: inherit;
+}
+.input-group {
+    margin-bottom: 0px;
+}
+.input-group-addon {
+    border-radius: 0px !important;
+}
+input[type='file'] {
+    color: transparent;
+}
+
+.input-group[class*=col-] {
+    float: left; 
+    padding-right: 0;
+    padding-left: 11px;
+}
+
+.ui-autocomplete{
+    z-index: 5000;
+}
+#selectedcity,#companyid{
+    display: none;
+}
+
+/*    .ui-menu-item{cursor: pointer;background: black;color:white;border-bottom: 1px solid white;width: 200px;}*/
+.multiselect {
+    width: 200px;
+}
+
+.selectBox {
+    position: relative;
+}
+.selectBox select {
+    width: 100%;
+    font-weight: bold;
+}
+
+.overSelect {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+}
+
+#checkboxes,#specialTypeCheckboxDiv {
+    display: none;
+    border: 1px #dadada solid;
+}
+
+#checkboxes label {
+    display: block;
+}
+#specialTypeCheckboxDiv label {
+    display: block;
+}
+.selectedGood{
+    height: 28px;
+    padding: 6px;
+    display: inline-flex;
+    margin: 0px 1px 1px;
+    font-weight: 600;
+    /*background: #5bc0de;*/
+    border: 1px solid;
+    border-radius: 4px;
+}
+.inputDesc {
+    min-width:15px!important;
+    max-width:99.99%!important;
+    border: none;
+}
+td span {
+    line-height:0px !important;
+}
+.RemoveMore  {
+    color: #6185b0;height: 18px;
+}
+input[type=checkbox] {
+    margin: 4px 4px 0px 8px;
+}
+input[type=radio] {
+    margin: 4px 4px 0px 8px;
+}
+span.abs_text {
+    position: absolute;
+    right: 10px;
+    top: 1px;
+    z-index: 9;
+    padding: 8px;
+    background: #f1f1f1;
+    border-right: 1px solid #d0d0d0;
+    border-left: 1px solid #d0d0d0;
+}
+span.abs_text1 {
+    position: absolute;
+    right: 0px;
+    top: 1px;
+    z-index: 9;
+    padding: 8px;
+    background: #f1f1f1;
+    border-right: 1px solid #d0d0d0;
+    border-left: 1px solid #d0d0d0;
+}
+span.abs_textT {
+    position: absolute;
+    right: 18px;
+    top: 1px;
+    z-index: 9;
+    padding: 8px;
+    background: #f1f1f1;
+    border-right: 1px solid #d0d0d0;
+    border-left: 1px solid #d0d0d0;
+}
+span.abs_textLeft {
+    position: absolute;
+    left: 12px;
+    top: 1px;
+    z-index: 9;
+    padding: 8px;
+    background: #f1f1f1;
+    border-right: 1px solid #d0d0d0;
+}
+
+.pos_relative ,.pos_relative2{
+    position: relative;
+    padding-right:0px
+}
+.pos_relative2{
+    padding-right:10px
+}
+input#price_MinimumFee,#x_km_mileMinimumFee,#price_after_x_minutesTripDuration,#price_after_x_minWaiting,#price_after_x_minCancel,#price_after_x_minCancelScheduledBookings{
+    padding-left: 10px;
+}
+#vehicle_capacity{
+    padding-left: 10px;
+}
+
+span.abs_text2 {
+    position: absolute;
+    left: 1px;
+    top: 2px;
+    padding: 8px 5px;
+    background: #f1f1f1;
+    color: #555555;
+    border-right: 1px solid #c3c3c3;
+}
+input#x_minutesCancel,#x_minutesCancelScheduledBookings,#x_minutesWaiting,#x_minutesTripDuration,#mileage_after_x_km_mile,#x_km_mile_price {
+    padding-left: 74px;
+}   
+.cmn-toggle {
+    position: absolute;
+    margin-left: -9999px;
+
+}
+.cmn-toggle + label {
+    display: block;
+    position: relative;
+    cursor: pointer;
+    outline: none;
+    user-select: none;
+}
+input.cmn-toggle-round + label {
+    padding: 2px;
+    width: 44px;
+    height: 16px;
+    background-color: #dddddd;
+    border-radius: 60px;
+}
+input.cmn-toggle-round + label:before,
+input.cmn-toggle-round + label:after {
+    display: block;
+    position: absolute;
+    top: 1px;
+    left: 1px;
+    bottom: 1px;
+    content: "";
+}
+input.cmn-toggle-round + label:before {
+    right: 1px;
+    background-color: #f1f1f1;
+    border-radius: 50px;
+    transition: background 0.4s;
+}
+input.cmn-toggle-round + label:after {
+    width: 16px;
+    background-color: #fff;
+    border-radius: 100%;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    transition: margin 0.4s;
+}
+input.cmn-toggle-round:checked + label:before {
+    background-color: #8ce196;
+}
+input.cmn-toggle-round:checked + label:after {
+    margin-left:25px;
+}
+

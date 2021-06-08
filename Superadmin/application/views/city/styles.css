@@ -1,0 +1,124 @@
+
+/*    .ui-menu-item{cursor: pointer;background: black;color:white;border-bottom: 1px solid white;width: 200px;}*/
+.multiselect {
+    width: 200px;
+}
+input[type=checkbox] {
+    margin: 4px 4px 0px 8px;
+}
+.alert {
+        width: 300px;
+    padding: 2px;
+    margin-bottom: 20px;
+    border: 1px solid transparent;
+     border-radius: 0px; 
+    margin-top: 4px;
+}
+
+.selectBox {
+    position: relative;
+}
+.selectBox select {
+    width: 100%;
+    font-weight: bold;
+}
+
+.overSelect {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+}
+
+#checkboxes{
+    display: none;
+    border: 1px #dadada solid;
+}
+#checkboxesTax{
+    display: none;
+    border: 1px #dadada solid;
+}
+
+#checkboxes label {
+    display: block;
+}
+#checkboxesTax label {
+    display: block;
+}
+.error{
+        color: red;
+    }
+    form-group.required span:after{
+        content: " *";
+        color: red;
+    }
+/*    .form-group input[type="checkbox"] {
+        display: none;
+    }*/
+
+    .form-group input[type="checkbox"] + .btn-group > label span {
+        width: 20px;
+    }
+
+    .form-group input[type="checkbox"] + .btn-group > label span:first-child {
+        display: none;
+    }
+    .form-group input[type="checkbox"] + .btn-group > label span:last-child {
+        display: inline-block;   
+    }
+
+    .form-group input[type="checkbox"]:checked + .btn-group > label span:first-child {
+        display: inline-block;
+    }
+    .form-group input[type="checkbox"]:checked + .btn-group > label span:last-child {
+        display: none;   
+    }
+      
+.cmn-toggle {
+    position: absolute;
+    margin-left: -9999px;
+
+}
+.cmn-toggle + label {
+    display: block;
+    position: relative;
+    cursor: pointer;
+    outline: none;
+    user-select: none;
+}
+input.cmn-toggle-round + label {
+    padding: 2px;
+    width: 44px;
+    height: 16px;
+    background-color: #dddddd;
+    border-radius: 60px;
+}
+input.cmn-toggle-round + label:before,
+input.cmn-toggle-round + label:after {
+    display: block;
+    position: absolute;
+    top: 1px;
+    left: 1px;
+    bottom: 1px;
+    content: "";
+}
+input.cmn-toggle-round + label:before {
+    right: 1px;
+    background-color: #f1f1f1;
+    border-radius: 50px;
+    transition: background 0.4s;
+}
+input.cmn-toggle-round + label:after {
+    width: 16px;
+    background-color: #fff;
+    border-radius: 100%;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    transition: margin 0.4s;
+}
+input.cmn-toggle-round:checked + label:before {
+    background-color: #8ce196;
+}
+input.cmn-toggle-round:checked + label:after {
+    margin-left:25px;
+}

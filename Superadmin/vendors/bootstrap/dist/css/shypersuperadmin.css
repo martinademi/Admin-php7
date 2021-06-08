@@ -1,0 +1,205 @@
+.table-responsive table {
+    margin-top: 0px !important;
+    margin-bottom: 2%;
+    text-align: center;
+    border: 1px solid #ddd !important;
+}
+.table-responsive table th {
+    text-align: center;
+    font-size: 11px !important;
+    text-transform: uppercase;
+    vertical-align: middle !important;
+    border: 1px solid #ddd !important;
+    color: #73879C !important;
+    font-family: "Helvetica Neue", Roboto, Arial, "Droid Sans", sans-serif !important;
+}
+.table tbody tr td {
+    border: 1px solid #ddd !important;
+    color: #73879C !important;
+    font-family: "Helvetica Neue", Roboto, Arial, "Droid Sans", sans-serif !important;
+    font-size: 11px !important;
+}
+ .table-responsive table td a {
+    text-decoration: underline;
+    /*color: #0090d9;*/
+}
+
+button#delete {
+    color: #fff;
+    background-color: #d9534f;
+    border-color: #d43f3a;
+   
+}
+button#editcompany {
+    color: #fff;
+    background-color: #5bc0de;
+       border-color: #46b8da;
+}
+button#deactivate {
+    color: #fff;
+    background-color: #f0ad4e;
+    border-color: #eea236;
+}
+button#activate {
+    /* background: green; */
+    background: #26B99A;
+    border: 1px solid #169F85;
+}
+.brand {
+    font-size: 12px;
+    color: #0090d9;
+    margin-left: 0% !important;
+}
+.bg-white {
+    background: #fff !important;
+    border: 1px solid #fff !important;
+    color: #73879C;
+    margin-bottom: 1%;
+}
+.container-fluid {
+     padding-right: 0px; 
+     padding-left: 0px; 
+    margin-right: auto;
+    margin-left: auto;
+}
+.DataTables_sort_wrapper {
+    text-align: left;
+}
+table#big_table {
+    text-align: left;
+}
+button#active {
+    background: #26B99A;
+    border: 1px solid #169F85;
+}
+button#reject {
+    color: #fff;
+    background-color: #f0ad4e;
+    border-color: #eea236;
+}
+button#edit {
+    color: #fff;
+    background-color: #5bc0de;
+    border-color: #46b8da;
+}
+button#chekdel {
+    color: #fff;
+    background-color: #d9534f;
+    border-color: #d43f3a;
+    margin-right: 11px;
+}
+button#inactive {
+    color: #fff;
+    background-color: #f0ad4e;
+    border-color: #eea236;
+}
+button#delete_passenger {
+    color: #fff;
+    background-color: #d9534f;
+    border-color: #d43f3a;
+}
+button#btnStickUpSizeToggler {
+    width: 100px;    
+   
+}
+button#reset_password {
+    width: 88%;
+}
+input#search-table {
+    margin-right: 0px ;
+}
+/*button.btn.btn-success.btn-cons {
+    color: #333;
+    background-color: #fff;
+    border-color: #ccc;
+    width: 150px !important;
+    margin-right: 0;
+}*/
+/*div#tableWithSearch_wrapper {
+    min-height: .01%;
+    overflow-x: hidden;
+    overflow-y: hidden;
+}*/
+.new_class {
+    margin: 1% 0.8% !important;
+    padding: 15px 4px 10px 9px !important;
+}
+/*.paging_full_numbers {
+    width: 400px;
+    height: 22px;
+    line-height: 22px;
+    display: none;
+}*/
+.searchbtn {
+    float: left;
+    margin-right: 0 !important;
+}
+.new_button {
+    padding-top: 7px;
+    padding-bottom: -17px;
+}
+button#delete_vehicletype {
+    color: #fff;
+    background-color: #d9534f;
+    border-color: #d43f3a;
+}
+button#edit_vehicletype {
+    color: #fff;
+    background-color: #5bc0de;
+    border-color: #46b8da;
+}
+button#accept {
+    background: #26B99A;
+    border: 1px solid #169F85;
+}
+button#editdriver {
+    color: #fff;
+    background-color: #5bc0de;
+    border-color: #46b8da;
+}
+.search_class_dispatch {
+    margin-right: 14px !important;
+}
+.resolve {
+    margin-top: 7px;
+    background: #26B99A !important;
+    border: 1px solid #169F85;
+    color: #fff !important;
+}
+.shypr_up {
+    width: 30px;
+}
+.shypr_down {
+    width: 30px;
+}
+button#back {
+    color: #333;
+    background-color: #fff;
+    border-color: #ccc;
+}
+/*button#next {
+    color: #fff;
+    background-color: #5cb85c;
+    border-color: #4cae4c;
+}*/
+.buttom_save {
+    width: 100px;
+    margin-top: 7px;
+}
+.checkbox input[type=checkbox], .checkbox-inline input[type=checkbox], .radio input[type=radio], .radio-inline input[type=radio] {
+    position: absolute;
+       margin-left: 0px;
+    
+}
+.dataTables_info {
+    width: 60%;
+    float: left;
+    margin-left: 1%;
+}
+h3.no-margin.p-b-5.text-white {
+    font-size: 14px;   
+   }
+/*   .container-fluid.container-fixed-lg.sm-p-l-20.sm-p-r-20 {
+    margin-left: 1%;
+    margin-right: 1%;*/
+/*}*/

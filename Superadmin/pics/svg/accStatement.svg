@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="30" height="30" viewBox="0 0 30 30">
+  <defs>
+    <clipPath id="clip-Acc_statement">
+      <rect width="30" height="30"/>
+    </clipPath>
+  </defs>
+  <g id="Acc_statement" data-name="Acc statement" clip-path="url(#clip-Acc_statement)">
+    <g id="Group_293" data-name="Group 293">
+      <path id="Path_398" data-name="Path 398" d="M27.3,13.651A13.651,13.651,0,1,1,13.651,0,13.651,13.651,0,0,1,27.3,13.651Zm0,0" transform="translate(1 1)" fill="#ffc200"/>
+      <path id="Path_399" data-name="Path 399" d="M142.78,152.285l-6.543-6.543L122,160.245l4.831,4.831a13.659,13.659,0,0,0,15.95-12.792Zm0,0" transform="translate(-114.494 -136.971)" fill="#ff9500"/>
+      <path id="Path_400" data-name="Path 400" d="M132.572,77H122V95.169h14.238v-14.5Zm0,0" transform="translate(-114.494 -71.894)" fill="#fff"/>
+      <path id="Path_401" data-name="Path 401" d="M263.092,80.666,259.427,77H256V95.169h7.092Zm0,0" transform="translate(-241.349 -71.894)" fill="#e9edf5"/>
+      <path id="Path_402" data-name="Path 402" d="M320.258,80.666h3.666L320.258,77Zm0,0" transform="translate(-302.18 -71.894)" fill="#afb4c8"/>
+      <path id="Path_403" data-name="Path 403" d="M212.213,284.074l.762,1.544,1.7.248-1.233,1.2.291,1.7-1.524-.8-1.524.8.291-1.7-1.233-1.2,1.7-.248Zm0,0" transform="translate(-197.561 -267.926)" fill="#ffd400"/>
+      <path id="Path_404" data-name="Path 404" d="M258.466,285.866l-1.7-.248L256,284.074v3.89l1.524.8-.291-1.7Zm0,0" transform="translate(-241.349 -267.926)" fill="#fdba12"/>
+      <path id="Path_405" data-name="Path 405" d="M194.322,272.976A3.474,3.474,0,1,1,197.8,269.5,3.478,3.478,0,0,1,194.322,272.976Zm0-6.522a3.048,3.048,0,1,0,3.048,3.048A3.051,3.051,0,0,0,194.322,266.454Zm0,0" transform="translate(-179.671 -250.842)" fill="#ffd400"/>
+      <path id="Path_406" data-name="Path 406" d="M256,266.027v.427a3.048,3.048,0,0,1,0,6.1v.427a3.474,3.474,0,0,0,0-6.948Zm0,0" transform="translate(-241.349 -250.842)" fill="#fdba12"/>
+      <path id="Path_407" data-name="Path 407" d="M145,145.742h5.892v1.28H145Zm0,0" transform="translate(-136.268 -136.971)" fill="#bec3d2"/>
+      <path id="Path_408" data-name="Path 408" d="M145,189h11.481v1.28H145Zm0,0" transform="translate(-136.268 -177.922)" fill="#bec3d2"/>
+      <path id="Path_409" data-name="Path 409" d="M256,189h5.562v1.28H256Zm0,0" transform="translate(-241.349 -177.922)" fill="#afb4c8"/>
+      <path id="Path_410" data-name="Path 410" d="M145,229.516h11.481v1.28H145Zm0,0" transform="translate(-136.268 -216.277)" fill="#bec3d2"/>
+      <path id="Path_411" data-name="Path 411" d="M256,229.516h5.562v1.28H256Zm0,0" transform="translate(-241.349 -216.277)" fill="#afb4c8"/>
+    </g>
+  </g>
+</svg>

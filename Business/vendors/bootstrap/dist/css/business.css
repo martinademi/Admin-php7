@@ -1,0 +1,233 @@
+/** product css**/
+
+.page-content-wrapper .jumbotron.bg-white {
+    padding: 4% 0px 0px 0px;
+    background: transparent !important;
+    border: 0px !important;
+}
+.nav-tabs li.active a {
+    border: 0px !important;
+    border-bottom: 4px solid red !important;    
+}
+table.driver input.checkbox {
+    display: inline-block;
+}
+.nav-tabs li a {
+    font-weight: bold;
+    font-size: 12px;
+}
+.error-box {
+    color: tomato !important;
+}
+.nav-tabs li.tapp {
+    cursor: pointer;
+}
+ul.nav.nav-tabs.nav-tabs-linetriangle.nav-tabs-separator.nav-stack-sm {
+    margin-bottom: 2%;
+    font-size: 12px;
+    background: white;
+    border-bottom: 0px;
+}
+.page-content-wrapper .breadcrumb {
+    background: white;
+    font-size: 12px;
+    font-weight: bold;
+}
+.row.row-same-height label.control-label {
+    font-size: 11px;
+    /*margin-bottom: 1%;*/
+    font-weight: 500 !important;
+    letter-spacing: 0.3px;
+}
+li#nextbutton button.btn.btn-primary.btn-cons.pull-right {
+    background-color: #2e6da4!important;
+    border-color: #2e6da4 !important;
+    margin-right: 0%;
+}
+.btn-primary {
+    color: #fff;
+    background-color: #1abb9c !important;
+    border-color: #1abb9c !important;    
+    padding: 5px 28px;
+}
+.btn-primary:hover {
+    color: #fff;
+    background-color: #17ad90 !important;
+    border-color: #17ad90 !important;
+}
+.page-content-wrapper .buttonGreen {
+    background: #1abb9c !important;
+    border-color: #1abb9c !important;
+    min-width: 0;
+    padding: 4px 12px;
+    color: white !important;
+    font-family: inherit !important;
+}
+.page-content-wrapper .buttonAdd {
+    background: rgb(51, 122, 183) !important;
+    border-color: rgb(51, 122, 183) !important;
+    min-width: 0;
+    color: white !important;
+    padding: 4px 12px;
+    font-family: inherit !important;
+}
+.page-content-wrapper .buttonEdit {
+    background: #5bc0de !important;
+    border-color: #5bc0de !important;
+    min-width: 0;
+    padding: 4px 12px;
+    color: white !important;
+    font-family: inherit !important;
+}
+.page-content-wrapper .buttonActive {
+    background-color: #1abb9c !important;
+    border-color: #1abb9c !important;
+    min-width: 0;
+    padding: 4px 12px;
+    color: white !important;
+    font-family: inherit !important;
+}
+.page-content-wrapper .buttonInActive {
+    background: rgb(240, 173, 78) !important;
+    border-color: rgb(240, 173, 78) !important;
+    min-width: 0;
+    padding: 4px 12px;
+    color: white !important;
+    font-family: inherit !important;
+}
+.page-content-wrapper .buttonDeletee {
+    background: #d9534f !important;
+    border-color: #d9534f !important;
+    min-width: 0;
+    padding: 4px 12px;
+    color: white !important;
+    font-family: inherit !important;
+}
+.page-content-wrapper .buttonPrevious {
+    background: #fafafa !important;
+    border-color: rgba(98, 98, 98, 0.27) !important;    
+    min-width: 0;
+    padding: 4px 12px;
+    color: #1a1a1a !important;
+    font-family: inherit !important;
+}
+.page-content-wrapper .buttonResetPassword {
+    background-color: #2196f3 !important;
+    border-color: #2196f3 !important;
+    min-width: 0;
+    padding: 4px 12px;
+    color: white !important;
+    font-family: inherit !important;
+}
+.page-content-wrapper .buttonDocument {
+    background-color: #0090d9 !important;
+    border-color: #0090d9 !important;
+    min-width: 0;
+    padding: 4px 12px;
+    color: white !important;
+    font-family: inherit !important;
+}
+
+button.btn.btn-default, button.btn.btn-danger {  
+    padding: 5px 15px;
+}
+
+.table-responsive table th {
+    font-size: 11px;
+    text-transform: uppercase;
+    text-align: center;
+    font-weight: 500;
+    letter-spacing: 0.6px;
+}
+.table-responsive tr td {
+    text-align: center;
+    font-size: 11px;
+}
+.form-control {
+    font-size: 11px !important;
+}
+.btn-group .btn-padding .btn{
+    padding: 5px 6px;
+}
+.page-content-wrapper .add_new {
+    text-align: right;
+    background: white;
+    margin-bottom: 20px;
+    padding: 10px;
+    padding-right: 1.2%;
+    display: inline-block;
+    width: 100%;
+}
+.panel.panel-transparent .panel-heading, .panel.panel-transparent .panel-body {
+    padding: 5px;
+}
+.dataTables_wrapper .table-responsive {
+    overflow-x: initial;
+    overflow-y: initial;
+}
+.dataTables_paginate li {
+    list-style: none;
+    float: left;
+}
+.ms-options ul {
+    list-style: none;
+    padding: 0px 15px;
+}
+.nav.child_menu>li>a{
+    font-size:10px !important;
+}
+.error-border.form-control.active, .error-border1.form-control.active {
+    border-color: tomato;
+}
+.row.row-same-height .col-sm-1.text-center {
+    margin-top: 10px;
+}
+em{
+    color: red;
+     font-size: 15px
+}
+.dataTables_wrapper .table-responsive div#tableWithSearch_info {
+    margin-left: 1%;
+    margin-top: 1.5%;
+    width: auto !important;
+}
+/*.dataTables_wrapper .table-responsive div#tableWithSearch_paginate {
+    margin: 0px 1% 0px 0px;
+}*/
+/** modal popup **/
+/**add popup**/
+.modal-dialog .form-group {
+    display: inline-block;
+    width: 100%;
+    margin-bottom: 0;
+}
+.modal-dialog .modal-content {
+    padding: 0% 5%;
+}
+div#NewCat .modal-dialog.modal-md {
+    padding: 0% 5%;
+}
+div#NewCat .modal-dialog.modal-md .modal-content{
+    padding: 0% 4%;
+}
+
+div#NewCat .modal-dialog.modal-md .modal-header{
+    padding-top: 18px;
+}
+div#NewCat .modal-dialog.modal-md .modal-header button {
+    opacity: initial;
+}
+div#NewCat .modal-dialog.modal-md .modal-header .modal-title {
+    text-transform: uppercase;
+}
+
+/**delete popup**/
+div#deletemodal .modal-dialog.modal-sm .modal-content {
+    padding: 0% 5%;
+}
+div#deletemodal .modal-dialog.modal-sm .modal-header, div#deletemodal .modal-content.modal-sm .modal-footer{
+    padding: 10px 5px 5px 0px;
+}
+div#deletemodal .modal-dialog.modal-sm .modal-header .delTiltle, .page-content-wrapper .breadcrumb a.active {
+    text-transform: uppercase;
+}

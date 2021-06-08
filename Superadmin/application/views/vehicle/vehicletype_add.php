@@ -1,0 +1,1582 @@
+<?php
+//$this->load->database();
+$activetab1 = $activetab2 = '';
+?>
+
+<style>
+   .style_prevu_kit
+{
+    display:inline-block;
+    border:0;
+    
+    position: relative;
+    -webkit-transition: all 200ms ease-in;
+    -webkit-transform: scale(1); 
+    -ms-transition: all 200ms ease-in;
+    -ms-transform: scale(1); 
+    -moz-transition: all 200ms ease-in;
+    -moz-transform: scale(1);
+    transition: all 200ms ease-in;
+    transform: scale(1);   
+
+}
+.style_prevu_kit:hover
+{
+    
+    box-shadow: 0px 0px 150px #000000;
+    z-index: 2;
+    -webkit-transition: all 200ms ease-in;
+    -webkit-transform: scale(1.5);
+    -ms-transition: all 200ms ease-in;
+    -ms-transform: scale(1.5);   
+    -moz-transition: all 200ms ease-in;
+    -moz-transform: scale(1.5);
+    transition: all 200ms ease-in;
+    transform: scale(1.5);
+}
+    .input-group-addon {
+        font-size: inherit;
+    }
+    .input-group {
+        margin-bottom: 0px;
+    }
+    .input-group-addon {
+        border-radius: 0px !important;
+    }
+    input[type='file'] {
+        color: transparent;
+    }
+
+    .input-group[class*=col-] {
+        float: left; 
+        padding-right: 0;
+        padding-left: 11px;
+    }
+
+    .ui-autocomplete{
+        z-index: 5000;
+    }
+    #selectedcity,#companyid{
+        display: none;
+    }
+
+    /*    .ui-menu-item{cursor: pointer;background: black;color:white;border-bottom: 1px solid white;width: 200px;}*/
+    .multiselect {
+        width: 200px;
+    }
+
+    .selectBox {
+        position: relative;
+    }
+    .selectBox select {
+        width: 100%;
+        font-weight: bold;
+    }
+
+    .overSelect {
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+    }
+
+    #checkboxes {
+        display: none;
+        border: 1px #dadada solid;
+    }
+
+    #checkboxes label {
+        display: block;
+    }
+    .selectedGood{
+           height: 28px;
+   padding: 6px;
+    display: inline-flex;
+    margin: 0px 1px 1px;
+    font-weight: 600;
+    /*background: #5bc0de;*/
+    border: 1px solid;
+    border-radius: 4px;
+    }
+    .inputDesc {
+  min-width:15px!important;
+  max-width:99.99%!important;
+ border: none;
+}
+td span {
+    line-height:0px !important;
+}
+.RemoveMore  {
+    color: #6185b0;height: 18px;
+}
+    input[type=checkbox] {
+        margin: 4px 4px 0px 8px;
+    }
+    span.abs_text {
+        position: absolute;
+        right: 10px;
+        top: 1px;
+        z-index: 9;
+        padding: 8px;
+        background: #f1f1f1;
+        border-right: 1px solid #d0d0d0;
+        border-left: 1px solid #d0d0d0;
+    }
+    span.abs_textT {
+        position: absolute;
+        right: 18px;
+        top: 1px;
+        z-index: 9;
+        padding: 8px;
+        background: #f1f1f1;
+        border-right: 1px solid #d0d0d0;
+        border-left: 1px solid #d0d0d0;
+    }
+    span.abs_textLeft {
+        position: absolute;
+        left: 12px;
+        top: 1px;
+        z-index: 9;
+        padding: 8px;
+        background: #f1f1f1;
+        border-right: 1px solid #d0d0d0;
+    }
+
+    .pos_relative ,.pos_relative2{
+        position: relative;
+        padding-right:0px
+    }
+    .pos_relative2{
+        padding-right:10px
+    }
+    input#price_MinimumFee,#x_km_mileMinimumFee,#price_after_x_minutesTripDuration,#price_after_x_minWaiting,#price_after_x_minCancel,#price_after_x_minCancelScheduledBookings{
+        padding-left: 10px;
+    }
+    #vehicle_capacity{
+        padding-left: 10px;
+    }
+
+    span.abs_text2 {
+        position: absolute;
+        left: 1px;
+        top: 2px;
+        padding: 8px 5px;
+        background: #f1f1f1;
+        color: #555555;
+        border-right: 1px solid #c3c3c3;
+    }
+    input#x_minutesCancel,#x_minutesCancelScheduledBookings,#x_minutesWaiting,#x_minutesTripDuration,#mileage_after_x_km_mile,#x_km_mile_price {
+        padding-left: 74px;
+    }   
+
+
+    .cmn-toggle {
+        position: absolute;
+        margin-left: -9999px;
+
+    }
+    .cmn-toggle + label {
+        display: block;
+        position: relative;
+        cursor: pointer;
+        outline: none;
+        user-select: none;
+    }
+    input.cmn-toggle-round + label {
+        padding: 2px;
+        width: 94px;
+        height: 30px;
+        background-color: #dddddd;
+        border-radius: 60px;
+    }
+    input.cmn-toggle-round + label:before,
+    input.cmn-toggle-round + label:after {
+        display: block;
+        position: absolute;
+        top: 1px;
+        left: 1px;
+        bottom: 1px;
+        content: "";
+    }
+    input.cmn-toggle-round + label:before {
+        right: 1px;
+        background-color: #f1f1f1;
+        border-radius: 60px;
+        transition: background 0.4s;
+    }
+    input.cmn-toggle-round + label:after {
+        width: 38px;
+        background-color: #fff;
+        border-radius: 100%;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+        transition: margin 0.4s;
+    }
+    input.cmn-toggle-round:checked + label:before {
+        background-color: #8ce196;
+    }
+    input.cmn-toggle-round:checked + label:after {
+        margin-left: 60px;
+    }
+</style>
+
+
+<script>
+    var idNum = 0;
+    var expanded = false;
+
+    function showCheckboxes() {
+        var checkboxes = document.getElementById("checkboxes");
+        if (!expanded) {
+            checkboxes.style.display = "block";
+            expanded = true;
+        } else {
+            checkboxes.style.display = "none";
+            expanded = false;
+        }
+    }
+
+    function RemoveMore(Id)
+    {
+        $('#RemoveControl' + Id).remove();
+    }
+
+    $(document).ready(function () {
+
+        $(".clear").click(function () {
+            $('.selectedGoodType').empty();
+            $('#addVehicleTypeForm')[0].reset();
+        });
+
+        $('.checkbox1').click(function ()
+        {
+            if ($(this).is(":checked"))
+            {
+                $('.selectedGoodType').append('<span class="selectedGood" id="RemoveControl' + $(this).attr('id') + '"><input readonly  class="inputDesc" type="text"  value="' + $(this).attr('goodType') + '"><input type="button" value="&#10008" data-id="' + $(this).attr('id') + '" class="RemoveMore">')
+                $('#goodType').val($(this).attr('id'));
+            } else {
+
+                RemoveMore($(this).attr('id'));
+
+            }
+        });
+
+
+        $('#mileage,#price_after_x_minWaiting,#price_after_x_minCancel,#price_MinimumFee').keypress(function (event) {
+            if (event.which < 44
+                    || event.which > 59) {
+                event.preventDefault();
+            } // prevent if not number/dot
+
+            if ((event.which == 45 && $(this).val().indexOf('-') != -1) || (event.which == 46 && $(this).val().indexOf('.') != -1)) {
+                event.preventDefault();
+            } // prevent if already dot
+        });
+
+        $(document).on('click', '.RemoveMore', function ()
+        {
+            $('#' + $(this).attr('data-id')).attr('checked', false);
+            $('#RemoveControl' + $(this).attr('data-id')).remove();
+        });
+
+
+        $('.tabs_active').click(function () {
+
+            $('.error-box').text('');
+            if ($('#vehicletypename').val() == '')
+            {
+                $("#vehicletype").text(<?php echo json_encode(POPUP_VEHICLETYPE_ENTER); ?>);
+                return  false;
+            } else if ($('#type_on_image').val() == '')
+            {
+                $("#type_on_imageErr").text(<?php echo json_encode(POPUP_VEHICLETYPE_ON_IMAGE); ?>);
+                return  false;
+            } else if ($('#type_off_image').val() == '')
+            {
+                $("#type_off_imageErr").text(<?php echo json_encode(POPUP_VEHICLETYPE_OFF_IMAGE); ?>);
+                return  false;
+            }
+        });
+
+        $('#mileage_metric').change(function ()
+        {
+            if ($('#mileage_metric').val() == 1)
+            {
+                $('.Mileagemetric').text("Mile, Charge <?php echo $currency; ?>");
+                $('#x_km_mileMinimumFee,#x_zonal_km_miles').attr('placeholder', 'Enter Mile');
+
+            } else
+            {
+                $('.Mileagemetric').text("Km, Charge <?php echo $currency; ?>");
+                $('#x_km_mileMinimumFee,#x_zonal_km_miles').attr('placeholder', 'Enter Km');
+            }
+
+        });
+
+
+
+        $("#cancel").click(function () {
+
+            //        if (confirm("Cancel the data you have entered?")) {
+
+            var size = $('input[name=stickup_toggler]:checked').val()
+            var modalElem = $('#confirmmodels');
+            if (size == "mini")
+            {
+                $('#modalStickUpSmall').modal('show')
+            } else
+            {
+                $('#confirmmodels').modal('show')
+                if (size == "default") {
+                    modalElem.children('.modal-dialog').removeClass('modal-lg');
+                } else if (size == "full") {
+                    modalElem.children('.modal-dialog').addClass('modal-lg');
+                }
+            }
+            $("#errorboxdatas").text(<?php echo json_encode(POPUP_CANCEL); ?>);
+
+            $("#confirmeds").click(function () {
+                $(".close").trigger("click");
+                $("#vehicletypename").val('');
+                $("#seating").val('');
+                $("#minimumfare").val('');
+                $("#basefare").val('');
+                $("#priceperminute").val('');
+                $("#priceperkm").val('');
+                $("#discrption").val('');
+                $("#citys").val('');
+
+            });
+        });
+
+        $("#addVehicleType").click(function (e) {
+
+            $(".error-box").text("");
+            var number = /^\d+$/;
+            var validation = /^-?\d*\.?\d*$/;
+
+            var mileage = $("#mileage").val();
+            var baseFare = $("#baseFare").val();
+            var mileage_after_x_km_mile = $("#mileage_after_x_km_mile").val();
+
+            var x_minutesTripDuration = $("#x_minutesTripDuration").val();
+            var price_after_x_minutesTripDuration = $("#price_after_x_minutesTripDuration").val();
+
+            var x_minutesWaiting = $("#x_minutesWaiting").val();
+            var price_after_x_minWaiting = $("#price_after_x_minWaiting").val();
+
+            //On demand bookings
+            var x_minutesCancel = $("#x_minutesCancel").val();
+            var price_after_x_minCancel = $("#price_after_x_minCancel").val();
+
+            //scheduled bookings
+            var x_minutesCancelScheduledBookings = $("#x_minutesCancelScheduledBookings").val();
+            var price_after_x_minCancelScheduledBookings = $("#price_after_x_minCancelScheduledBookings").val();
+
+            var x_km_mileMinimumFee = $("#x_km_mileMinimumFee").val();
+            var price_MinimumFee = $("#price_MinimumFee").val();
+
+            if (baseFare == "" || baseFare == null)
+            {
+                $('#baseFareErr').text('Please enter base price');
+            } else if (!validation.test(baseFare))
+            {
+                $('#baseFareErr').text('Invalid price');
+            } else if (mileage == "" || mileage == null)
+            {
+                $('#mileageErr').text('Please enter mileage price');
+            } else if (!validation.test(mileage))
+            {
+                $('#mileageErr').text('Invalid price');
+            } else if (mileage_after_x_km_mile == "" || mileage_after_x_km_mile == null)
+            {
+                $('#mileageErr').text('Please enter km/mile');
+            } else if (!validation.test(mileage_after_x_km_mile))
+            {
+                $('#mileageErr').text('Invalid price');
+            } else if (x_minutesTripDuration == "" || x_minutesTripDuration == null)
+            {
+                $('#price_after_x_minutesTripDurationErr').text('Please enter trip duration');
+            } else if (!number.test(x_minutesTripDuration))
+            {
+                $('#price_after_x_minutesTripDurationErr').text('Invaild');
+            } else if (price_after_x_minutesTripDuration == "" || price_after_x_minutesTripDuration == null)
+            {
+                $('#price_after_x_minutesTripDurationErr').text('Please enter trip duration fee');
+            } else if (!validation.test(price_after_x_minutesTripDuration))
+            {
+                $('#price_after_x_minutesTripDurationErr').text('Invaild');
+            } else if (x_minutesWaiting == "" || x_minutesWaiting == null)
+            {
+                $('#price_after_x_minWaitingErr').text('Please enter waiting minutes');
+            } else if (!number.test(x_minutesWaiting))
+            {
+                $('#price_after_x_minWaitingErr').text('Invaild');
+            } else if (price_after_x_minWaiting == "" || price_after_x_minWaiting == null)
+            {
+                $('#price_after_x_minWaitingErr').text('Please enter waiting fee');
+            } else if (!validation.test(price_after_x_minWaiting))
+            {
+                $('#price_after_x_minWaitingErr').text('Invaild');
+            }
+
+            //On demand booking
+            else if (x_minutesCancel == "" || x_minutesCancel == null)
+            {
+                $('#price_after_x_minCancelErr').text('Please enter cancellation minutes');
+            } else if (!number.test(x_minutesCancel))
+            {
+                $('#price_after_x_minCancelErr').text('Invaild');
+            } else if (price_after_x_minCancel == "" || price_after_x_minCancel == null)
+            {
+                $('#price_after_x_minCancelErr').text('Please enter cancellation fee');
+            } else if (!validation.test(price_after_x_minCancel))
+            {
+                $('#price_after_x_minCancelErr').text('Invaild');
+            }
+
+            //scheduled booking 
+            else if (x_minutesCancelScheduledBookings == "" || x_minutesCancelScheduledBookings == null)
+            {
+                $('#price_after_x_minCancelScheduledBookingsErr').text('Please enter cancellation minutes');
+            } else if (!number.test(x_minutesCancelScheduledBookings))
+            {
+                $('#price_after_x_minCancelScheduledBookingsErr').text('Invaild');
+            } else if (price_after_x_minCancelScheduledBookings == "" || price_after_x_minCancelScheduledBookings == null)
+            {
+                $('#price_after_x_minCancelScheduledBookingsErr').text('Please enter cancellation fee');
+            } else if (!validation.test(price_after_x_minCancelScheduledBookings))
+            {
+                $('#price_after_x_minCancelScheduledBookingsErr').text('Invaild');
+            }
+
+
+//            else if (x_km_mileMinimumFee == "" || x_km_mileMinimumFee == null)
+//            {
+//                $('#price_MinimumFeeErr').text('Please enter km/miles');
+//            }
+//            else if (!number.test(x_km_mileMinimumFee))
+//            {
+//                $('#price_MinimumFeeErr').text('Invaild');
+//            }
+            else if (price_MinimumFee == "" || price_MinimumFee == null)
+            {
+                $('#price_MinimumFeeErr').text('Please enter minimum fee');
+            } else if (!validation.test(price_MinimumFee))
+            {
+                $('#price_MinimumFeeErr').text('Invaild');
+            } else {
+
+                $('#addVehicleTypeForm').submit();
+
+            }
+
+        });
+
+        $("#cancel_s").click(function () {
+
+            window.location = "<?php echo base_url('index.php?/vehicle') ?>/vehicle_type";
+        });
+
+
+        $(":file").on("change", function (e) {
+            var fieldID = $(this).attr('id');
+            var ext = $(this).val().split('.').pop().toLowerCase();
+            if ($.inArray(ext, ['gif', 'png', 'jpg', 'jpeg']) == -1) {
+                $(this).val('');
+                alert('invalid extension..!   Please choose file type in (gif,png,jpg,jpeg)');
+            } else
+            {
+                var type;
+                var folderName;
+                switch ($(this).attr('id'))
+                {
+                    case "type_on_image":
+                        type = 1;
+                        folderName = 'vehicleOnImages';
+                        break;
+                    case "type_off_image":
+                        type = 2;
+                        folderName = 'vehicleOffImages';
+                        break;
+                    default :
+                        type = 3;
+                        folderName = 'vehicleMapImages';
+
+                }
+
+                var formElement = $(this).prop('files')[0];
+                var form_data = new FormData();
+
+                form_data.append('OtherPhoto', formElement);
+                form_data.append('type', 'VehicleTypes');
+                form_data.append('folder', folderName);
+                $.ajax({
+                    url: "<?php echo base_url('index.php?/Common') ?>/uploadImagesToAws",
+                    type: "POST",
+                    data: form_data,
+                    dataType: "JSON",
+                    async: false,
+                    beforeSend: function () {
+                        //                    $("#ImageLoading").show();
+                    },
+                    success: function (result) {
+
+                        switch (type)
+                        {
+                            case 1:
+                                $('#onImageAWS').val(result.fileName);
+                                $('.onImageAWS').show();
+                                $('.onImageAWS').attr('src',result.fileName);
+                                break;
+                            case 2:
+                                $('#offImageAWS').val(result.fileName);
+                                 $('.offImageAWS').show();
+                                        $('.offImageAWS').attr('src',result.fileName);
+                                break;
+                            case 3:
+                                $('#mapImageAWS').val(result.fileName);
+                                $('.mapImageAWS').show();
+                                $('.mapImageAWS').attr('src',result.fileName);
+                                break;
+                            default :
+                                '';
+
+                        }
+
+                    },
+                    error: function () {
+
+                    },
+                    cache: false,
+                    contentType: false,
+                    processData: false
+                });
+            }
+        });
+
+
+
+        $("#addvehicle").click(function () {
+
+            $(".error-box").text("");
+
+            $("#vehicletype").text("");
+            $("#seat").text("");
+            $("#minimum").text("");
+            $("#base").text("");
+            $("#pricepermin").text("");
+            $("#pricekm").text("");
+            $("#disc").text("");
+            $("#cities").text("");
+            $("#cancilationf").text("");
+            $("#waiting_chargeErr").text("");
+
+
+
+            var vtype = $("#vehicletypename").val();
+            var seating = $("#seating").val();
+            var mfare = $("#minimumfare").val();
+            var bfare = $("#basefare").val();
+            var ppmnt = $("#priceperminute").val();
+            var ppkm = $("#priceperkm").val();
+            var cancilationfee = $("#cancilationfee").val();
+            var discription_s = $("#discrption").val();
+
+            var mileage = $("#mileage").val();
+            var x_minutes = $("#x_minutes").val();
+            var price_after_x_min = $("#price_after_x_min").val();
+            var vehicle_length = $("#vehicle_length").val();
+            var vehicle_width = $("#vehicle_width").val();
+            var vehicle_height = $("#vehicle_height").val();
+            var vehicle_capacity = $("#vehicle_capacity").val();
+
+            var type_on_image = $("#onImageAWS").val();
+            var type_off_image = $("#offImageAWS").val();
+            var type_map_image = $("#mapImageAWS").val();
+            var waiting_charge_per_min = $("#waiting_charge").val();
+
+            var mileage_after = $("#mileage_after").val();
+
+            var number = /^[0-9-+]+$/;
+            var num = /^[0-9]+(\.[0-9][0-9]?)?$/;
+            var alphanumeric = /[a-zA-Z0-9\-\_]$/;
+
+
+            var text = /^[a-zA-Z ]*$/;
+
+            if (vtype == "" || vtype == null)
+            {
+                $("#vehicletype").text(<?php echo json_encode(POPUP_VEHICLETYPE_ENTER); ?>);
+            } else if (mileage == "" || mileage == null)
+            {
+                $("#mileageErr").text('Please enter the mileage for km/miles');
+            } else if (!num.test(mileage))
+            {
+                $("#mileageErr").text('Please enter mileage as numeric');
+            } else if (mileage_after == "" || mileage_after == null)
+            {
+//               
+                $("#mileageErr").text('Please enter mileage price after x km/miles');
+            } else if (!num.test(mileage_after))
+            {
+//               
+                $("#mileageErr").text('Please enter mileage price as numeric');
+            } else if (x_minutes == "" || x_minutes == null)
+            {
+//               
+                $("#price_after_x_minErr").text('Please enter minutes');
+            } else if (!num.test(x_minutes))
+            {
+//             
+                $("#price_after_x_minErr").text('Please enter minutes in numeric');
+            } else if (price_after_x_min == "" || price_after_x_min == null)
+            {
+//               
+                $("#price_after_x_minErr").text('Please enter price after x minutes');
+            } else if (!num.test(price_after_x_min))
+            {
+//             
+                $("#price_after_x_minErr").text('Please enter price as numeric');
+            } else if (mfare == "" || mfare == null)
+            {
+                $("#minimum").text(<?php echo json_encode(POPUP_VEHICLETYPE_MINMUM); ?>);
+            } else if (!num.test(mfare))
+            {
+                $("#minimum").text(<?php echo json_encode(POPUP_VEHICLETYPE_MINMUM_NUMBER); ?>);
+            } else if (type_on_image == "" || type_on_image == null)
+            {
+
+                $("#type_on_imageErr").text(<?php echo json_encode(POPUP_VEHICLETYPE_ON_IMAGE); ?>);
+            } else if (type_off_image == "" || type_off_image == null)
+            {
+                $("#type_off_imageErr").text(<?php echo json_encode(POPUP_VEHICLETYPE_OFF_IMAGE); ?>);
+            } else
+            {
+                $('#addentity').submit();
+
+            }
+        });
+
+        $("#exx").click(function () {
+
+
+            $("#vehicle_type_name").text("");
+            $("#vehicle_seating").text("");
+            $("#vehicle_minimumfare").text("");
+            $("#vehicletype_basefare").text("");
+            $("#vehicletype_pricepermin").text("");
+            $("#vehicletype_priceperkm").text("");
+            $("#vehicletype_description").text("");
+            $("#vehicletype_cities").text("");
+            $("#waiting_charge_editErr").text("");
+
+
+            var mileage_after = $("#edit_mileage_after").val();
+
+            var x_minutes = $("#x_minutesEdit").val();
+            var price_after_x_min = $("#price_after_x_minEdit").val();
+
+            var vtype = $("#vehicletypename_s").val();
+            var mileage = $("#edit_mileage").val();
+            var mfare = $("#minimumfare_s").val();
+            var bfare = $("#basefare_s").val();
+            var ppmnt = $("#priceperminute_s").val();
+            var ppkm = $("#priceperkm_s").val();
+            var discription_s = $("#discrption_s").val();
+            var city = $("#city_s").val();
+
+            var waiting_charge_edit = $("#waiting_charge_edit").val();
+            var type_on_image_edit = $("#type_on_image_edit").val();
+            var type_off_image_edit = $("#type_off_image_edit").val();
+            var type_map_image_edit = $("#type_map_image_edit").val();
+
+            var number = /^[0-9-+]+$/;
+            var num = /^[0-9]+(\.[0-9][0-9]?)?$/;
+            var alphanumeric = /[a-zA-Z0-9\-\_]$/;
+            var text = /^[a-zA-Z ]*$/;
+
+
+            if (vtype == "" || vtype == null)
+            {
+                $("#vehicle_type_name").text(<?php echo json_encode(POPUP_VEHICLETYPE_ENTER); ?>);
+            } else if (mileage == "" || mileage == null)
+            {
+//                
+                $("#edit_mileageErr").text('Please enter the mileage price');
+            } else if (!num.test(mileage))
+            {
+//               
+                $("#edit_mileageErr").text('Please enter mileage price as numeric value');
+            } else if (mileage_after == "" || mileage_after == null)
+            {
+//                
+                $("#edit_mileageErr").text('Please enter mileage after x km/miles');
+            } else if (!num.test(mileage_after))
+            {
+//               
+                $("#edit_mileageErr").text('Please enter mileage price as numeric');
+            } else if (x_minutes == "" || x_minutes == null)
+            {
+//               
+                $("#price_after_x_minEditErr").text('Please enter minutes');
+            } else if (!num.test(x_minutes))
+            {
+//             
+                $("#price_after_x_minEditErr").text('Please enter minutes in numeric');
+            } else if (price_after_x_min == "" || price_after_x_min == null)
+            {
+//               
+                $("#price_after_x_minEditErr").text('Please enter price after x minutes');
+            } else if (!num.test(price_after_x_min))
+            {
+//             
+                $("#price_after_x_minEditErr").text('Please enter price as numeric');
+            } else if (mfare == "" || mfare == null)
+            {
+                $("#vehicle_minimumfare").text(<?php echo json_encode(POPUP_VEHICLETYPE_MINMUM); ?>);
+
+            } else if (!num.test(mfare))
+            {
+                $("#vehicle_minimumfare").text(<?php echo json_encode(POPUP_VEHICLETYPE_MINMUM_VALIDATION); ?>);
+
+            } else
+            {
+                $('#updateentity').submit();
+
+            }
+        });
+        
+         $('.bookingType').click(function ()
+        {
+           
+            if($('input:checkbox.bookingType:checked').length > 1)
+                $('#bookingTypeSelected').val('0');
+            else
+                $('#bookingTypeSelected').val($('input:checkbox.bookingType:checked').val());
+        });
+
+        $('#discrption_s').keypress(function (e) {
+            var key = e.which;
+            if (key == 13)  // the enter key code
+            {
+                $("#exx").trigger('click');
+            }
+        });
+
+        $('.number').keypress(function (event) {
+            if (event.which < 46
+                    || event.which > 59) {
+                event.preventDefault();
+            } // prevent if not number/dot
+
+            if (event.which == 46
+                    && $(this).val().indexOf('.') != -1) {
+                event.preventDefault();
+            } // prevent if already dot
+        });
+
+    });
+
+    function movetonext() {
+
+        var currenttabstatus = $("#mytabs li.active").attr('id');
+        if (currenttabstatus === "firstlitab")
+        {
+            firsttab('secondlitab', 'tab2');
+
+        }
+        if (currenttabstatus === "secondlitab")
+        {
+            secondtab('thirdlitab', 'tab3');
+
+        }
+
+
+    }
+
+    function proceed(litabtoremove, divtabtoremove, litabtoadd, divtabtoadd)
+    {
+        $("#" + litabtoremove).removeClass("active");
+        $("#" + divtabtoremove).removeClass("active");
+
+        $("#" + litabtoadd).addClass("active");
+        $("#" + divtabtoadd).addClass("active");
+    }
+//                                
+//                                  
+////
+    function firsttab(litabtoremove, divtabtoremove)
+    {
+        var pstatus = true;
+        $('.error-box').text('');
+
+        var vtype = $("#vehicletypename").val();
+        var discription_s = $("#discrption").val();
+
+        var vehicle_length = $("#vehicle_length").val();
+        var vehicle_width = $("#vehicle_width").val();
+        var vehicle_height = $("#vehicle_height").val();
+        var vehicle_capacity = $("#vehicle_capacity").val();
+
+        var type_on_image = $("#type_on_image").val();
+        var type_off_image = $("#type_off_image").val();
+        var type_map_image = $("#type_map_image").val();
+        var mapImageAWS = $("#mapImageAWS").val();
+
+
+        var number = /^[0-9-+]+$/;
+        var num = /^[0-9]+(\.[0-9][0-9]?)?$/;
+        var alphanumeric = /[a-zA-Z0-9\-\_]$/;
+
+
+        var text = /^[a-zA-Z ]*$/;
+
+        if (vtype == "" || vtype == null)
+        {
+            $("#vehicletype").text(<?php echo json_encode(POPUP_VEHICLETYPE_ENTER); ?>);
+            pstatus = false;
+        } else if (vehicle_length == "")
+        {
+            $("#vehicle_lengthErr").text('Please enter length');
+            pstatus = false;
+        } else if (vehicle_width == "")
+        {
+            $("#vehicle_widthErr").text('Please enter width');
+            pstatus = false;
+        } else if (vehicle_height == "")
+        {
+            $("#vehicle_heightErr").text('Please enter height');
+            pstatus = false;
+        } else if (vehicle_capacity == "")
+        {
+            $("#vehicle_capacityErr").text('Please enter capacity');
+            pstatus = false;
+        }
+         else if (!$('.bookingType').is(':checked'))
+        {
+            $("#bookingTypeErr").text('Please select booking type');
+             pstatus = false;
+        } 
+        else if (type_on_image == "" || type_on_image == null)
+        {
+            $("#type_on_imageErr").text(<?php echo json_encode(POPUP_VEHICLETYPE_ON_IMAGE); ?>);
+            pstatus = false;
+        } else if (type_off_image == "" || type_off_image == null)
+        {
+            $("#type_off_imageErr").text(<?php echo json_encode(POPUP_VEHICLETYPE_OFF_IMAGE); ?>);
+            pstatus = false;
+        } else if (mapImageAWS == "" || mapImageAWS == null)
+        {
+            $("#type_map_imageErr").text(<?php echo json_encode(POPUP_VEHICLETYPE_MAP_IMAGE); ?>);
+            pstatus = false;
+        }
+
+        if (pstatus === false)
+        {
+            $("#tab1icon").removeClass("fs-14 fa fa-check");
+            return false;
+        }
+        $("#tab1icon").addClass("fs-14 fa fa-check");
+        $("#prevbutton").removeClass("hidden");
+        $("#finishbutton").removeClass("hidden");
+        proceed('firstlitab', 'tab1', 'secondlitab', 'tab2');
+        return true;
+    }
+    function secondtab(litabtoremove, divtabtoremove)
+    {
+        var pstatus = true;
+        $('.error-box').text('');
+
+        var vtype = $("#vehicletypename").val();
+        var discription_s = $("#discrption").val();
+
+        var vehicle_length = $("#vehicle_length").val();
+        var vehicle_width = $("#vehicle_width").val();
+        var vehicle_height = $("#vehicle_height").val();
+        var vehicle_capacity = $("#vehicle_capacity").val();
+
+        var type_on_image = $("#type_on_image").val();
+        var type_off_image = $("#type_off_image").val();
+        var type_map_image = $("#type_map_image").val();
+        var mapImageAWS = $("#mapImageAWS").val();
+
+
+        var number = /^[0-9-+]+$/;
+        var num = /^[0-9]+(\.[0-9][0-9]?)?$/;
+        var alphanumeric = /[a-zA-Z0-9\-\_]$/;
+
+
+        var text = /^[a-zA-Z ]*$/;
+
+        if (vtype == "" || vtype == null)
+        {
+            $("#vehicletype").text(<?php echo json_encode(POPUP_VEHICLETYPE_ENTER); ?>);
+            pstatus = false;
+        } else if (vehicle_length == "")
+        {
+            $("#vehicle_lengthErr").text('Please enter length');
+            pstatus = false;
+        } else if (vehicle_width == "")
+        {
+            $("#vehicle_widthErr").text('Please enter width');
+            pstatus = false;
+        } else if (vehicle_height == "")
+        {
+            $("#vehicle_heightErr").text('Please enter height');
+            pstatus = false;
+        } 
+        else if (vehicle_capacity == "")
+        {
+            $("#vehicle_capacityErr").text('Please enter capacity');
+            pstatus = false;
+        } 
+        else if (type_on_image == "" || type_on_image == null)
+        {
+            $("#type_on_imageErr").text(<?php echo json_encode(POPUP_VEHICLETYPE_ON_IMAGE); ?>);
+            pstatus = false;
+        } else if (type_off_image == "" || type_off_image == null)
+        {
+            $("#type_off_imageErr").text(<?php echo json_encode(POPUP_VEHICLETYPE_OFF_IMAGE); ?>);
+            pstatus = false;
+        } else if (mapImageAWS == "" || mapImageAWS == null)
+        {
+            $("#type_map_imageErr").text(<?php echo json_encode(POPUP_VEHICLETYPE_MAP_IMAGE); ?>);
+            pstatus = false;
+        }
+
+        if (pstatus === false)
+        {
+            $("#tab1icon").removeClass("fs-14 fa fa-check");
+            return false;
+        }
+        $("#tab1icon").addClass("fs-14 fa fa-check");
+        $("#prevbutton").removeClass("hidden");
+        $("#finishbutton").removeClass("hidden");
+        proceed('secondlitab', 'tab2', 'thirdlitab', 'tab3');
+        return true;
+    }
+
+
+
+    function movetoprevious()
+    {
+        var currenttabstatus = $("#mytabs li.active").attr('id');
+        if (currenttabstatus === "secondlitab")
+        {
+
+            proceed('secondlitab', 'tab2', 'firstlitab', 'tab1');
+//            $("#prevbutton").addClass("hidden");
+            $("#prevbutton").removeClass("hidden");
+            return true;
+        }
+        if (currenttabstatus === "thidrlitab")
+        {
+
+            proceed('thirdlitab', 'tab3', 'secondlitab', 'tab2');
+//            $("#prevbutton").addClass("hidden");
+            $("#prevbutton").removeClass("hidden");
+            return true;
+        }
+
+    }
+
+    function profiletab(litabtoremove, divtabtoremove)
+    {
+
+        var pstatus = true;
+
+        if (isBlank($("#cname").val()) || isBlank($("#pass").val()) || isBlank($("#email").val()) || isBlank($("#addr").val()) || isBlank($("#city").val()) || isBlank($("#vnumber").val()))
+        {
+            pstatus = false;
+
+
+        }
+
+        if (pstatus === false)
+        {
+            setTimeout(function ()
+            {
+                proceed(litabtoremove, divtabtoremove, 'firstlitab', 'tab1');
+            }, 300);
+
+            alert("complete Company details tab properly");
+            $("#tab1icon").removeClass("fs-14 fa fa-check");
+            return false;
+
+        }
+        $("#tab1icon").addClass("fs-14 fa fa-check");
+        $("#prevbutton").removeClass("hidden");
+        $("#nextbutton").removeClass("hidden");
+        $("#finishbutton").addClass("hidden");
+        return true;
+    }
+    function managebuttonstate()
+    {
+        $("#prevbutton").addClass("hidden");
+    }
+
+    function isNumber(evt) {
+        evt = (evt) ? evt : window.event;
+        var charCode = (evt.which) ? evt.which : evt.keyCode;
+        if (charCode > 31 && (charCode < 48 || charCode > 57)) {
+            return false;
+        }
+        return true;
+    }
+
+    function cancel() {
+
+        window.location = "<?php echo base_url('index.php?/vehicle') ?>/vehicle_type";
+    }
+</script>
+<style>
+
+</style>
+
+
+<?php
+foreach ($appConfigData as $config) {
+
+    $currency = $config['currencySymbol'];
+    $mileageMetric = $config['mileage_metric'];
+    $weightMetric = $config['weight_metric'];
+    if ($mileageMetric == 0)
+        $mileageMetric = 'Km';
+    else
+        $mileageMetric = 'Mile';
+
+    if ($weightMetric == 0)
+        $weightMetric = 'Kg';
+    else
+        $weightMetric = 'Pound';
+}
+?>
+
+<div class="page-content-wrapper">
+    <!-- START PAGE CONTENT -->
+    <ul class="breadcrumb" style="margin-left: 0px;margin-top: 5%; ">
+        <li><a href="<?php echo base_url('index.php?/vehicle') ?>/vehicle_type" class=""><?PHP ECHO LIST_VEHICLETYPE; ?></a>
+        </li>
+
+        <li ><a href="#" class="active"><?php echo strtoupper($operation); ?></a>
+        </li>
+
+    </ul>
+    <div class="content">
+        <!-- START JUMBOTRON -->
+        <div class="bg-white" data-pages="parallax">
+
+
+            <div class="container-fluid container-fixed-lg bg-white">
+
+                <div id="rootwizard" class="m-t-50">
+                    <ul class="nav nav-tabs nav-tabs-linetriangle nav-tabs-separator nav-stack-sm" id="mytabs">
+                        <?php
+                        if ($param == '') {
+                            $activetab1 = "active";
+                            ?>
+
+                            <li class="active tabs_active" id="firstlitab" onclick="managebuttonstate()">
+                                <a data-toggle="tab" href="#tab1" id="tb1" style="width:102%"><i id="tab1icon" class=""></i> <span>VEHICLE TYPE DETAILS</span></a>
+                            </li>
+                            <li class="tabs_active" id="secondlitab" onclick="managebuttonstate()" ><!--profiletab('secondlitab', 'tab2')-->
+                                <a data-toggle="tab" href="#tab2" id="tb2"><i id="tab2icon" class=""></i> <span  > VEHICLE DELEVIRY PRICING</span></a>
+                            </li>
+                            <li class="tabs_active" id="thirdlitab" onclick="managebuttonstate()" ><!--profiletab('thirdlitab', 'tab3')-->
+                                <a data-toggle="tab" href="#tab3" id="tb3"><i id="tab3icon" class=""></i> <span  > VEHICLE RIDE PRICING</span></a>
+                            </li>
+
+
+                            <?php
+                        } else {
+                            $activetab2 = "active";
+                            ?>
+                            <li class="" id="thirdlitab">
+                                <a data-toggle="tab" href="#tab3"  id="mtab2"><i id="tab3icon" class=""></i> <span><?php echo LIST_EDIT_COMPANY_DETAILS; ?></span></a>
+                            </li>
+                        <?php } ?>
+
+                    </ul>
+                    <form id="addVehicleTypeForm" method="post" class="form-horizontal" role="form" action="<?php echo base_url(); ?>index.php?/vehicle/insert_vehicletype"  enctype="multipart/form-data">
+                        <div class="tab-content">
+
+                            <div class="tab-pane padding-20 slide-left active" id="tab1">
+                                <div class="row row-same-height">
+                                    <div class="form-group" class="formexx">
+                                        <label for="address" class="col-sm-2 control-label"><?PHP ECHO FIELD_VEHICLETYPE_NAME; ?><span style="" class="MandatoryMarker"> *</span></label>
+                                        <div class="col-sm-6">
+                                            <input type="text" id="vehicletypename" name="vehicletypename" class="form-control">
+                                        </div>
+                                        <div class="col-sm-3 error-box" id="vehicletype"></div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="address" class="col-sm-2 control-label">Length of Vehicle<span style="" class="MandatoryMarker"> *</span></label>
+                                        <div class="col-sm-6">
+                                            <div class="col-sm-6">
+                                                <input type="text" id="vehicle_length" name="vehicle_length" class="form-control number" style="margin-left: -9px;">
+                                            </div>
+                                            <div class="col-sm-2">
+                                                <select class="form-control" style="height: 34px; font-size: 11px; display: block;min-width: 85px;" name="vehicle_length_metric">
+                                                    <option value="M">Meter</option>
+                                                    <option value="F">Feet</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-3 error-box" id="vehicle_lengthErr"></div>
+                                    </div>
+
+
+                                    <div class="form-group">
+                                        <label for="address" class="col-sm-2 control-label">Width of Vehicle<span style="" class="MandatoryMarker"> *</span></label>
+                                        <div class="col-sm-6">
+                                            <div class="col-sm-6">
+                                                <input type="text" id="vehicle_width" name="vehicle_width" class="form-control number" style="margin-left: -9px" >
+                                            </div>
+                                            <div class="col-sm-2">
+                                                <select class="form-control" style="height: 34px; font-size: 11px; display: block;min-width: 85px;" name="vehicle_width_metric">
+                                                    <option value="M">Meter</option>
+                                                    <option value="F">Feet</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-3 error-box" id="vehicle_widthErr"></div>
+
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="address" class="col-sm-2 control-label">Height of Vehicle<span style="" class="MandatoryMarker"> *</span></label>
+                                        <div class="col-sm-6">
+                                            <div class="col-sm-6">
+                                                <input type="text" id="vehicle_height" name="vehicle_height" class="form-control number" style="margin-left: -9px;">
+                                            </div>
+                                            <div class="col-sm-2">
+                                                <select class="form-control" style="height: 34px; font-size: 11px; display: block;  min-width: 85px;" name="vehicle_height_metric">
+                                                    <option value="M">Meter</option>
+                                                    <option value="F">Feet</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-3 error-box" id="vehicle_heightErr"></div>
+
+                                    </div>
+
+
+
+                                    <div class="form-group">
+                                        <label for="address" class="col-sm-2 control-label">Load Bearing Capacity<span style="" class="MandatoryMarker"> *</span></label>
+                                        <div class="col-sm-6 pos_relative">
+
+                                            <div class="col-sm-6">
+                                                <input type="text" id="vehicle_capacity" name="vehicle_capacity" class="form-control number" style="margin-left:-9px" value="800">
+                                                <span class="abs_textT">Pound</span>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-3 error-box" id="vehicle_capacityErr"></div>
+
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="address" class="col-sm-2 control-label">Booking Type<span style="" class="MandatoryMarker"> *</span></label>
+                                        <div class="col-sm-6 row">
+                                                <label for="bookNow">
+                                                        <input type="checkbox" class="bookingType" name="bookingType" id="bookNow"  value="1"/><span>Book Now</span>
+                                               </label>
+                                                
+                                                    <label for="bookALater">
+                                                        <input type="checkbox" class="bookingType" name="bookingType" id="bookALater" value="2"/><span>Book Later</span>
+                                               </label>
+                                                
+                                        </div>
+                                        <input type="hidden" name="bookingTypeSelected" id="bookingTypeSelected">
+                                        <div class="col-sm-3 error-box" id="bookingTypeErr"></div>
+
+                                    </div>
+
+                                    
+                                    
+
+                                    <div class="form-group">
+                                        <label for="address" class="col-sm-2 control-label"><?PHP ECHO FIELD_VEHICLETYPE_ONIMAGE; ?><span style="" class="MandatoryMarker"> *</span></label>
+                                        <div class="col-sm-6">
+
+                                            <input type="file" id="type_on_image" name="type_on_image" class="form-control" accept="image/*">
+                                            <input type="hidden" id="onImageAWS" name="onImageAWS" class="form-control">
+
+                                        </div>
+                                         <div class="col-sm-1"><img src="" style="width: 35px;height:35px;display:none;" class="onImageAWS style_prevu_kit"></div>
+                                        <div class="col-sm-3 error-box" id="type_on_imageErr"></div>
+
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="address" class="col-sm-2 control-label"><?PHP ECHO FIELD_VEHICLETYPE_OFFIMAGE; ?><span style="" class="MandatoryMarker"> *</span></label>
+                                        <div class="col-sm-6">
+                                            <input type="file" id="type_off_image" name="type_off_image" class="form-control" accept="image/*">
+                                            <input type="hidden" id="offImageAWS" name="offImageAWS" class="form-control">
+                                        </div>
+                                         <div class="col-sm-1"><img src="" style="width: 35px;height:35px;display:none;" class="offImageAWS style_prevu_kit"></div>
+                                        <div class="col-sm-3 error-box" id="type_off_imageErr"></div>
+
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="address" class="col-sm-2 control-label"><?PHP ECHO FIELD_VEHICLETYPE_MAPIMAGE; ?><span style="" class="MandatoryMarker"> *</span></label>
+                                        <div class="col-sm-6">
+                                            <input type="file" id="type_map_image" name="type_map_image" class="form-control" accept="image/*">
+                                            <input type="hidden" id="mapImageAWS" name="mapImageAWS" class="form-control">
+                                        </div>
+                                        <div class="col-sm-1"><img src="" style="width: 35px;height:35px;display:none;" class="mapImageAWS style_prevu_kit" ></div>
+                                        <div class="col-sm-3 error-box" id="type_map_imageErr"></div>
+
+                                    </div>
+
+
+                                    <div class="form-group">
+                                        <label for="address" class="col-sm-2 control-label"><?PHP ECHO FIELD_VEHICLETYPE_DESCRIPTION; ?></label>
+                                        <div class="col-sm-6">
+                                            <input type="text" id="discrption" name="descrption" class="form-control" >
+
+                                        </div>
+                                        <div class="col-sm-3 error-box" id="disc"></div>
+
+                                    </div>
+
+                                    <div class="form-group"> 
+                                        <div class="col-sm-9">
+                                            <div class="pull-right m-t-10"> <button type="button"  id="next" class="btn btn-success btn-cons" onclick="movetonext()" style="margin-right: 0px;"><?php echo BUTTON_NEXT ?></button></div>
+
+                                            <div class="pull-right m-t-10"> <button  type="button" class="btn btn-primary btn-cons clear"><?php echo BUTTON_CLEAR; ?></button></div>
+                                            <div class="pull-right m-t-10"> <button  type="button" class="btn btn-primary btn-cons" onclick="cancel()" id="back"><?php echo BUTTON_CANCEL; ?></button></div>
+                                        </div>
+
+                                    </div> 
+                                </div> 
+                            </div>
+                            <div class="tab-pane padding-20 slide-left" id="tab2">
+                                <div class="row row-same-height">
+
+                                    <div class="form-group">
+                                        <label for="address" class="col-sm-2 control-label">Base Fare<span style="" class="MandatoryMarker"> *</span></label>
+
+                                        <div class="col-sm-3 input-group pos_relative">
+                                            <input type="text" id="baseFare" name="baseFare" onkeypress="return isNumber(event)" class="form-control" value="<?php echo $baseFare; ?>">
+                                            <div class="input-group-addon">
+                                                <span style="color: #73879C;"> <?php echo $currency; ?></span>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-3 pos_relative2">
+
+                                        </div>
+                                        <div class="col-sm-3 error-box" id="baseFareErr"></div>
+
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="address" class="col-sm-2 control-label">Mileage Price<span style="" class="MandatoryMarker"> *</span></label>
+
+
+                                        <div class="input-group col-sm-3">
+                                            <input type="text" id="mileage" name="mileage" class="form-control" placeholder="Enter mileage price" value="<?php echo $mileage_price_per_km_miles ?>">
+                                            <div class="input-group-addon">
+                                                <span style="color: #73879C;"><?php echo $currency; ?> / <?php echo $mileageMetric; ?></span>
+                                            </div>
+                                        </div>
+
+                                        <div <div="" class="col-sm-3 pos_relative2">
+                                                <span class="abs_textLeft">After</span>
+                                                <input type="text" id="mileage_after_x_km_mile" name="mileage_after_x_km_mile" class="form-control number" value="20">                                                     <span class="abs_text Mileagemetric">Mile</span>
+                                            </div>
+
+
+                                            <div class="col-sm-3 error-box" id="mileageErr"></div>
+
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="address" class="col-sm-2 control-label">Time Fee<span style="" class="MandatoryMarker"> *</span></label>
+
+                                            <div class="col-sm-3 input-group pos_relative">
+                                                <input type="text" id="price_after_x_minutesTripDuration" name="price_after_x_minutesTripDuration" class="form-control number" placeholder="Enter Price per Minute" value="<?php echo $xmilage; ?>">
+
+                                                <div class="input-group-addon">
+                                                    <span style="color: #73879C;"> <?php echo $currency; ?> / Min</span>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-3 pos_relative2"> 
+
+                                                <span  class="abs_textLeft">After</span>
+                                                <input type="text" id="x_minutesTripDuration" name="x_minutesTripDuration" class="form-control"  onkeypress="return isNumber(event)" placeholder="Enter Minutes" value="<?php echo $xminuts ?>">
+                                                <span  class="abs_text">Minutes</span>
+                                            </div>
+                                            <div class="col-sm-3 error-box" id="price_after_x_minutesTripDurationErr"></div>
+
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="address" class="col-sm-2 control-label">Waiting Fee<span style="" class="MandatoryMarker"> *</span></label>
+
+                                            <div class="col-sm-3 input-group pos_relative">
+                                                <input type="text" id="price_after_x_minWaiting" name="price_after_x_minWaiting" class="form-control number" placeholder="Enter Price per Minute" value="<?php echo $waiting_charge_per_min ?>">
+
+                                                <div class="input-group-addon">
+                                                    <span style="color: #73879C;"> <?php echo $currency; ?> / Min</span>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-3 pos_relative2"> 
+
+                                                <span  class="abs_textLeft">After</span>
+                                                <input type="text" id="x_minutesWaiting" name="x_minutesWaiting" class="form-control"  onkeypress="return isNumber(event)" placeholder="Enter Minutes" value="<?php echo $waiting_minutes ?>">
+                                                <span  class="abs_text">Minutes</span>
+                                            </div>
+                                            <div class="col-sm-3 error-box" id="price_after_x_minWaitingErr"></div>
+
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="address" class="col-sm-2 control-label"><?PHP ECHO FIELD_VEHICLETYPE_MINIMUMFARE; ?><span style="" class="MandatoryMarker"> *</span></label>
+
+                                            <div class="col-sm-3 input-group pos_relative">
+                                                <input type="text" id="price_MinimumFee" name="price_MinimumFee" class="form-control"  onkeypress="return isNumber(event)" placeholder="Enter Km" value="<?php echo $min_fare ?>">
+                                                <div class="input-group-addon">
+                                                    <span style="color: #73879C;"> <?php echo $currency; ?></span>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-3"> 
+
+                                            </div>
+                                            <div class="col-sm-3 error-box" id="price_MinimumFeeErr"></div>
+
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="address" class="col-sm-2 control-label"><?PHP ECHO FIELD_ON_DEMAND_VEHICLETYPE_CANCILATIONFEE; ?><span style="" class="MandatoryMarker"> *</span></label>
+
+                                            <div class="col-sm-3 input-group pos_relative">
+                                                <input type="text" id="price_after_x_minCancel" name="price_after_x_minCancel" class="form-control number" placeholder="Enter Price" value="<?php echo $cancilation_fee ?>">
+
+                                                <div class="input-group-addon">
+                                                    <span style="color: #73879C;"> <?php echo $currency; ?></span>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-3 pos_relative2"> 
+                                                <span  class="abs_textLeft">After</span>
+                                                <input type="text" id="x_minutesCancel" name="x_minutesCancel" class="form-control"  onkeypress="return isNumber(event)" placeholder="Enter Minutes" value="<?php echo $cancellation_minutes ?>">
+                                                <span  class="abs_text">Minutes</span>
+                                            </div>
+                                            <div class="col-sm-3 error-box" id="price_after_x_minCancelErr"></div>
+
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="address" class="col-sm-2 control-label"><?PHP ECHO FIELD_SCHEDULED_VEHICLETYPE_CANCILATIONFEE; ?><span style="" class="MandatoryMarker"> *</span></label>
+
+                                            <div class="col-sm-3 input-group pos_relative">
+                                                <input type="text" id="price_after_x_minCancelScheduledBookings" name="price_after_x_minCancelScheduledBookings" class="form-control number" placeholder="Enter Price" value="<?php echo $scheduledBookingCancellationFee; ?>">
+                                                <div class="input-group-addon">
+                                                    <span style="color: #73879C;"> <?php echo $currency; ?></span>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-3 pos_relative2"> 
+                                                <input style="padding-left : 12px" type="text" id="x_minutesCancelScheduledBookings" name="x_minutesCancelScheduledBookings" class="form-control"  onkeypress="return isNumber(event)" placeholder="Enter Minutes" value="<?php echo $scheduledBookingCancellationMin; ?>">
+
+                                                <span  class="abs_text">Minutes Before Pickup Time</span>
+                                            </div>
+                                            <div class="col-sm-3 error-box" id="price_after_x_minCancelScheduledBookingsErr"></div>
+
+                                        </div>
+
+<!--                                        <div class="form-group">
+                                            <label for="address" class="col-sm-2 control-label">Long Haul Enable/Disable</label>
+                                            <div class="col-sm-2">
+
+                                                <div class="switch">
+                                                    <input id="longHaulEnDis" name="longHaulEnDis" class="cmn-toggle cmn-toggle-round" type="checkbox" style="display: none;">
+                                                    <label for="longHaulEnDis"></label>
+                                                </div>
+                                            </div>
+                                        </div>-->
+
+
+                                        <!--                                        <div class="form-group">
+                                                                                    <div class="col-sm-9">
+                                                                                        <div class="pull-right m-t-10"> <button type="button"  id="addVehicleType" class="btn  btn-primary btn-cons" style="margin-right: 0px;"><?php echo BUTTON_ADD_COMPANY; ?></button></div>
+                                                                                        <div class="pull-right m-t-10"> <button type="button"  id="prevbutton" class="btn btn-default btn-cons" onclick="movetoprevious()"><?php echo BUTTON_PREVIOUS; ?></button></div>
+                                                                                    </div>
+                                                                                </div>-->
+                                        <div class="form-group"> 
+                                            <div class="col-sm-9">
+                                                <div class="pull-right m-t-10"> <button type="button"  id="next" class="btn btn-success btn-cons" onclick="movetonext()" style="margin-right: 0px;"><?php echo BUTTON_NEXT ?></button></div>
+                                                <div class="pull-right m-t-10"> <button type="button"  id="prevbutton" class="btn btn-default btn-cons" onclick="movetoprevious()"><?php echo BUTTON_PREVIOUS; ?></button></div>
+                                            </div>
+                                        </div>
+
+
+                                    </div>
+                                </div>
+
+                                <!--  Start Third Tab -->
+                                <div class="tab-pane padding-20 slide-left" id="tab3">
+                                    <div class="row row-same-height">
+                                        <div class="form-group">
+                                            <label for="ride_baseFare" class="col-sm-2 control-label">Base Fare<span style="" class="MandatoryMarker"> *</span></label>
+                                            <div class="col-sm-3 input-group pos_relative">
+                                                <input type="text" id="ride_baseFare" name="ride_baseFare" class="form-control" onkeypress="return isNumber(event)"value="<?php echo $baseFare; ?>">
+                                                <div class="input-group-addon">
+                                                    <span style="color: #73879C;"> <?php echo $currency; ?></span>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-3 pos_relative2">
+                                            </div>
+                                            <div class="col-sm-3 error-box" id="ride_baseFareErr"></div>
+
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="ride_mileage" class="col-sm-2 control-label">Mileage Price<span style="" class="MandatoryMarker"> *</span></label>
+                                            <div class="input-group col-sm-3">
+                                                <input type="text" id="ride_mileage" name="ride_mileage" class="form-control" placeholder="Enter mileage price" value="<?php echo $mileage_price_per_km_miles ?>">
+                                                <div class="input-group-addon">
+                                                    <span style="color: #73879C;"><?php echo $currency; ?> / <?php echo $mileageMetric; ?></span>
+                                                </div>
+                                            </div>
+
+                                            <div <div="" class="col-sm-3 pos_relative2">
+                                                    <span class="abs_textLeft">After</span>
+                                                    <input style="padding-left : 50px" type="text" id="ride_mileage_after_x_km_mile" name="ride_mileage_after_x_km_mile" class="form-control number" value="20">                                                     
+                                                    <span class="abs_text Mileagemetric">Mile</span>
+
+                                                </div>
+
+                                                <div class="col-sm-3 error-box" id="ride_mileageErr"></div>
+
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label for="address" class="col-sm-2 control-label">Time Fee<span style="" class="MandatoryMarker"> *</span></label>
+
+                                                <div class="col-sm-3 input-group pos_relative">
+                                                    <input type="text" id="ride_price_after_x_minutesTripDuration" name="ride_price_after_x_minutesTripDuration" class="form-control number" placeholder="Enter Price per Minute" value="<?php echo $xmilage; ?>">
+
+                                                    <div class="input-group-addon">
+                                                        <span style="color: #73879C;"> <?php echo $currency; ?> / Min</span>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-3 pos_relative2"> 
+
+                                                    <span  class="abs_textLeft">After</span>
+                                                    <input type="text" style="padding-left : 50px" id="ride_x_minutesTripDuration" name="ride_x_minutesTripDuration" class="form-control"  onkeypress="return isNumber(event)" placeholder="Enter Minutes" value="<?php echo $xminuts ?>">
+                                                    <span  class="abs_text">Minutes</span>
+                                                </div>
+                                                <div class="col-sm-3 error-box" id="ride_price_after_x_minutesTripDurationErr"></div>
+
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label for="address" class="col-sm-2 control-label">Waiting Fee<span style="" class="MandatoryMarker"> *</span></label>
+
+                                                <div class="col-sm-3 input-group pos_relative">
+                                                    <input type="text" id="ride_price_after_x_minWaiting" name="price_after_x_minWaiting" class="form-control number" placeholder="Enter Price per Minute" value="<?php echo $waiting_charge_per_min ?>">
+
+                                                    <div class="input-group-addon">
+                                                        <span style="color: #73879C;"> <?php echo $currency; ?> / Min</span>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-3 pos_relative2"> 
+
+                                                    <span  class="abs_textLeft">After</span>
+                                                    <input style="padding-left : 50px" type="text" id="ride_x_minutesWaiting" name="ride_x_minutesWaiting" class="form-control"  onkeypress="return isNumber(event)" placeholder="Enter Minutes" value="<?php echo $waiting_minutes ?>">
+                                                    <span  class="abs_text">Minutes</span>
+                                                </div>
+                                                <div class="col-sm-3 error-box" id="ride_price_after_x_minWaitingErr"></div>
+
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="address" class="col-sm-2 control-label"><?PHP ECHO FIELD_VEHICLETYPE_MINIMUMFARE; ?><span style="" class="MandatoryMarker"> *</span></label>
+
+                                                <div class="col-sm-3 input-group pos_relative">
+                                                    <input type="text" id="ride_price_MinimumFee" name="ride_price_MinimumFee" class="form-control"  onkeypress="return isNumber(event)" placeholder="Enter Km" value="<?php echo $min_fare ?>">
+                                                    <div class="input-group-addon">
+                                                        <span style="color: #73879C;"> <?php echo $currency; ?></span>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-3"> 
+
+                                                </div>
+                                                <div class="col-sm-3 error-box" id="ride_price_MinimumFeeErr"></div>
+
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="address" class="col-sm-2 control-label"><?PHP ECHO FIELD_ON_DEMAND_VEHICLETYPE_CANCILATIONFEE; ?><span style="" class="MandatoryMarker"> *</span></label>
+
+                                                <div class="col-sm-3 input-group pos_relative">
+                                                    <input type="text" id="ride_price_after_x_minCancel" name="ride_price_after_x_minCancel" class="form-control number" placeholder="Enter Price" value="<?php echo $cancilation_fee ?>">
+
+                                                    <div class="input-group-addon">
+                                                        <span style="color: #73879C;"> <?php echo $currency; ?></span>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-3 pos_relative2"> 
+                                                    <span  class="abs_textLeft">After</span>
+                                                    <input style="padding-left : 50px" type="text" id="ride_x_minutesCancel" name="ride_x_minutesCancel" class="form-control"  onkeypress="return isNumber(event)" placeholder="Enter Minutes" value="<?php echo $cancellation_minutes ?>">
+                                                    <span  class="abs_text">Minutes</span>
+                                                </div>
+                                                <div class="col-sm-3 error-box" id="price_after_x_minCancelErr"></div>
+
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label for="address" class="col-sm-2 control-label"><?PHP ECHO FIELD_SCHEDULED_VEHICLETYPE_CANCILATIONFEE; ?><span style="" class="MandatoryMarker"> *</span></label>
+
+                                                <div class="col-sm-3 input-group pos_relative">
+                                                    <input type="text" id="ride_price_after_x_minCancelScheduledBookings" name="ride_price_after_x_minCancelScheduledBookings" class="form-control number" placeholder="Enter Price" value="<?php echo $scheduledBookingCancellationFee; ?>">
+                                                    <div class="input-group-addon">
+                                                        <span style="color: #73879C;"> <?php echo $currency; ?></span>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-3 pos_relative2"> 
+                                                    <input style="padding-left : 12px" type="text" id="ride_x_minutesCancelScheduledBookings" name="ride_x_minutesCancelScheduledBookings" class="form-control"  onkeypress="return isNumber(event)" placeholder="Enter Minutes" value="<?php echo $scheduledBookingCancellationMin; ?>">
+
+                                                    <span  class="abs_text">Minutes Before Pickup Time</span>
+                                                </div>
+                                                <div class="col-sm-3 error-box" id="ride_price_after_x_minCancelScheduledBookingsErr"></div>
+
+                                            </div>
+
+<!--                                            <div class="form-group">
+                                                <label for="address" class="col-sm-2 control-label">Long Haul Enable/Disable</label>
+                                                <div class="col-sm-2">
+
+                                                    <div class="switch">
+                                                        <input id="ride_longHaulEnDis" name="ride_longHaulEnDis" class="cmn-toggle cmn-toggle-round" type="checkbox" style="display: none;">
+                                                        <label for="ride_longHaulEnDis"></label>
+                                                    </div>
+                                                </div>
+                                            </div>-->
+
+                                            <div class="form-group">
+                                                <div class="col-sm-9">
+                                                    <div class="pull-right m-t-10"> <button type="button"  id="addVehicleType" class="btn  btn-primary btn-cons" style="margin-right: 0px;"><?php echo BUTTON_ADD_COMPANY; ?></button></div>
+                                                    <div class="pull-right m-t-10"> <button type="button"  id="prevbutton" class="btn btn-default btn-cons" onclick="movetoprevious()"><?php echo BUTTON_PREVIOUS; ?></button></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- End Third Tab -->
+
+
+                                </div>
+                                </form>
+
+                            </div>
+
+
+                        </div>
+
+
+                </div>
+
+
+
+            </div>
+
+
+        </div>
+

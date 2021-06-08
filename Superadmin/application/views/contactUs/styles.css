@@ -1,0 +1,14 @@
+
+.error{
+    color:red;
+}
+span.abs_text {
+    position: absolute;
+    right: 10px;
+    top: 1px;
+    z-index: 9;
+    padding: 8px;
+    background: #f1f1f1;
+    border-right: 1px solid #d0d0d0;
+    border-left: 1px solid #d0d0d0;
+}
