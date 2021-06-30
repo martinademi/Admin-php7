@@ -966,14 +966,14 @@ class Uflyproductsmodal extends CI_Model {
 
     public function getManufacturer() {
 
-        $res = $this->mongo_db->get('manufacturer');
+        $res = $this->mongo_db->where(array('status' => 1))->get('manufacturer');
 
         return $res;
     }
 
-    public function getBrands() {
+    public function getBrands($storeId) {
 
-        $res = $this->mongo_db->get('storeBrands');
+        $res = $this->mongo_db->where(array('status' => 1,'storeId'=>$storeId))->get('storeBrands');
         return $res;
     }
 

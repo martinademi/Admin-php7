@@ -248,7 +248,11 @@ class Businessmodal extends CI_Model {
     
      function validateEmail() {
         $this->load->library('mongo_db');
-        $res = $this->mongo_db->where(array('ownerEmail' => $this->input->post('email'),'status'=>array('$nin'=>[7])))->get('stores');
+        if(isset($_POST['id']) && $_POST['id'] != null && $_POST['id'] != ''){
+            $res = $this->mongo_db->where(array('ownerEmail' => $this->input->post('email'),'_id' => array('$nin'=>[new MongoDB\BSON\ObjectID( $_POST['id'] )]) ,'status'=>array('$nin'=>[7])))->get('stores');
+        }else{
+            $res = $this->mongo_db->where(array('ownerEmail' => $this->input->post('email'),'status'=>array('$nin'=>[7])))->get('stores');
+        }
         $cout = count($res);
        
 //        $cout = $this->mongo_db->count_all_results('stores', array('email' => $this->input->post('email')));
@@ -337,6 +341,14 @@ class Businessmodal extends CI_Model {
         } else {
             $data['autoApproval'] = 0; // disable
             $data['autoApprovalMsg'] = "Disable";
+        }
+
+        if ($data['popularStore'] == 'on') {
+            $data['popularStore'] = 1; // enable 
+                       
+        } else {
+            $data['popularStore'] = 0; // disable
+            
         }
 
         $lang = $this->mongo_db->get('lang_hlp');
@@ -693,10 +705,10 @@ class Businessmodal extends CI_Model {
                 'mileagePriceAfterMinutes' => (int) $data['mileagePriceAfterMinutes'], 'timeFee' =>  $data['timeFee'], 'timeFeeAfterMinutes' =>  $data['timeFeeAfterMinutes'], 'waitingFee' =>(int)  $data['waitingFee'],
                 'waitingFeeAfterMinutes' => (int) $data['waitingFeeAfterMinutes'], 'minimumFare' => $data['minimumFare'], 'onDemandBookingsCancellationFee' =>  $data['onDemandBookingsCancellationFee'],
                 'onDemandBookingsCancellationFeeAfterMinutes' =>  $data['onDemandBookingsCancellationFeeAfterMinutes'], 'scheduledBookingsCancellationFee' =>  $data['scheduledBookingsCancellationFee'],
-                'scheduledBookingsCancellationFeeAfterMinutes' => (float) $data['scheduledBookingsCancellationFeeAfterMinutes'], 'convenienceFee' => (float) $data['convenienceFee'],'convenienceType' =>(int)$data['convenienceType'],
+                'scheduledBookingsCancellationFeeAfterMinutes' => (float) $data['scheduledBookingsCancellationFeeAfterMinutes'], 'convenienceFee' => (float) $data['convenienceFee'],'convenienceType' =>(int)$data['convenienceType'],'conEnable' => (int)$data['conEnable'],
                 'commission' => $commission, 'commissionType' => 0, 'commissionTypeMsg' => 'Percentage',
                 'sName' => $data['storeName'], 'storedescription' => $data['storeDescription'],
-                'autoApproval' => (int) $data['autoApproval'], 'autoApprovalMsg' => $data['autoApprovalMsg'],
+                'autoApproval' => (int) $data['autoApproval'], 'popularStore'=>$data['popularStore'], 'autoApprovalMsg' => $data['autoApprovalMsg'],
                 'autoDispatch' => $data['autoDispatch'], 'autoDispatchMsg' => $data['autoDispatchMsg'],
                 'posID' => '', 'locationId' => '', 'urlData' => '', 'walletID' => '', 'paymentsEnabled' => '', 'locationName' => '', 'externalCreditCard' => '', 'internalCreditCard' => '', 'check' => '', 'quickCard' => '', 'giftCard' => '',
                 'storeCategory' => $data['storeCategory'], 'storeSubCategory' => $data['storeSubCategory'],
@@ -711,8 +723,9 @@ class Businessmodal extends CI_Model {
            
 
             $dispatchUrl = APILink . 'store';     
-            // echo '<pre>';print_r($resData);die;      
+            //echo '<pre>';print_r($resData);die;      
             $addToMongo = json_decode($this->callapi->CallAPI('POST', $dispatchUrl, $resData), true);
+            // print_r($addToMongo);die;
             $datEmail = array('name' => $data['OwnerName'], 'email' => $data['Email'], 'password' => $data['Password'], 'storeName' => $data['BusinessName'][0], 'mobile' => $data['bCountryCode'] . $data['businessNumber'], 'status' => 12);
             $urlEmail = APILink . 'admin/email';
             
@@ -776,6 +789,7 @@ class Businessmodal extends CI_Model {
 				
             );
 
+            
             $url1 = APILink . 'store';
             $response1 = json_decode($this->callapi->CallAPI('POST', $url1, $resData), true);
             $dat2 = array('name' => $data['OwnerName'], 'email' => $data['Email'], 'password' => $data['Password'], 'storeName' => $data['BusinessName'][0], 'mobile' => $data['bCountryCode'] . $data['businessNumber'], 'status' => 12);
@@ -788,8 +802,6 @@ class Businessmodal extends CI_Model {
     function edit() {
 
         $data = $_POST;
-   
-
           $data['addressCompo']=json_decode($data['addressCompo']);
 
           if($data['addressCompo']==""){
@@ -878,6 +890,14 @@ class Businessmodal extends CI_Model {
         } else {
             $data['autoApproval'] = 0; // disable
             $data['autoApprovalMsg'] = "Disable";
+        }
+
+        if ($data['popularStore'] == 'on') {
+            $data['popularStore'] = 1; // enable 
+                       
+        } else {
+            $data['popularStore'] = 0; // disable
+            
         }
 
         $lang = $this->mongo_db->get('lang_hlp');
@@ -1154,7 +1174,7 @@ class Businessmodal extends CI_Model {
             $currency = "";
             $currencySymbol = $data['currencySymbol'];
         }
-        if ($data['commissionType'] && $data['commission']) {
+        /* if ($data['commissionType'] && $data['commission']) {
             $commission = $data['commission'];
             $commissionType = (int) $data['commissionType'];
         } else {
@@ -1165,8 +1185,9 @@ class Businessmodal extends CI_Model {
             }
             $commission = $commarr['storeDefaultCommission'];
             $commissionType = 0;
-        }
-
+        } */
+        $commission = $data['commission'];
+        $commissionType = (int) $data['commissionType'];
         if ($commissionType == 0) {
             $commissionTypeMsg = 'Percentage';
         } else {
@@ -1221,8 +1242,8 @@ class Businessmodal extends CI_Model {
                 'mileagePriceAfterMinutes' => (int) $data['mileagePriceAfterMinutes'], 'timeFee' =>  $data['timeFee'], 'timeFeeAfterMinutes' =>  $data['timeFeeAfterMinutes'], 'waitingFee' => (int) $data['waitingFee'],
                 'waitingFeeAfterMinutes' => (int) $data['waitingFeeAfterMinutes'], 'minimumFare' => $data['minimumFare'], 'onDemandBookingsCancellationFee' =>  $data['onDemandBookingsCancellationFee'],
                 'onDemandBookingsCancellationFeeAfterMinutes' =>  $data['onDemandBookingsCancellationFeeAfterMinutes'], 'scheduledBookingsCancellationFee' =>  $data['scheduledBookingsCancellationFee'],
-                'scheduledBookingsCancellationFeeAfterMinutes' => (float) $data['scheduledBookingsCancellationFeeAfterMinutes'], 'convenienceFee' => (float) $data['convenienceFee'],'convenienceType' =>(int)$data['convenienceType'],
-                'autoApproval' => (int) $data['autoApproval'], 'autoApprovalMsg' => $data['autoApprovalMsg'],
+                'scheduledBookingsCancellationFeeAfterMinutes' => (float) $data['scheduledBookingsCancellationFeeAfterMinutes'], 'convenienceFee' => (float) $data['convenienceFee'],'convenienceType' =>(int)$data['convenienceType'],'conEnable' => (int)$data['conEnable'],
+                'autoApproval' => (int) $data['autoApproval'], 'autoApprovalMsg' => $data['autoApprovalMsg'], 'popularStore' => $data['popularStore'],
                 'autoDispatch' => $data['autoDispatch'], 'autoDispatchMsg' => $data['autoDispatchMsg'],
                 'commission' => $commission, 'commissionType' => $commissionType, 'commissionTypeMsg' => $commissionTypeMsg, 'sName' => $data['storeName'], 'storedescription' => $data['storeDescription'],
                 'storeCategory' => $data['storeCategory'], 'storeSubCategory' => $data['storeSubCategory'],
@@ -1231,11 +1252,11 @@ class Businessmodal extends CI_Model {
                 'foodType'=>$data['foodType'],'foodTypeName'=>$data['foodTypeMsg'],'cartsAllowed'=> (int)$data['cartsAllowed'],'cartsAllowedMsg'=> $data['cartsAllowedMsg'],
                 "franchiseId"=>"","franchiseName"=>"","costForTwo"=>$data['costForTwo'],'addressCompo'=>(object)$data['addressCompo'], 'streetName'=>$data['streetname'],'localityName'=>$data['localityname'],'areaName'=>$data['areaname'] );//
 
-       // echo '<pre>'; print_r($resData);die; 
+        //echo '<pre>'; print_r($resData);die; 
             $dispatchUrl = APILink . 'store';
          
             $addToMongo = json_decode($this->callapi->CallAPI('PATCH', $dispatchUrl, $resData), true);
-            // echo '<pre>'      ;print_r($addToMongo);die;
+             //echo '<pre>'      ;print_r($addToMongo);die;
           
             echo json_encode($addToMongo);
         }
@@ -1354,6 +1375,19 @@ class Businessmodal extends CI_Model {
 
         echo json_encode(array('data' => $data));
         
+    }
+    public function ConvenienceDataCityWise(){
+        $this->load->library('mongo_db');
+        $cityId=$this->input->post('val');
+        $data = $this->mongo_db->where(array("cities.cityId"=>new MongoDB\BSON\ObjectID($cityId)))->find_one('cities');
+        foreach ($data['cities'] as $city) {
+            if ($cityId == $city['cityId']['$oid']) {
+                $data1 = array();
+                $data1['convenienceFee'] = $city['convenienceFee'];
+                $data1['convenienceType'] = $city['convenienceType'];
+            }
+        }
+        echo json_encode(array('data' => $data1));
     }
 
 }

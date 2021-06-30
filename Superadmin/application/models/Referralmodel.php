@@ -83,4 +83,48 @@ class Referralmodel extends CI_Model {
        
         return  $response;
     }
+
+    /*function getCityData(){
+        $data1;
+        $reponse = $this->mongo_db->aggregate('cities',array(array('$unwind'=>'$cities')));
+        //echo "<pre>";
+        
+        foreach ($reponse as $r)
+                $data1[] = json_decode(json_encode ($r),true);
+
+        echo json_encode(array('data' => $data1));
+
+        /*$this->load->library('mongo_db');
+        $cityData = $this->mongo_db->get('cities');
+        echo json_encode(array('data' => $cityData));*/
+    //}
+
+    function getCityData(){
+        $data1;
+        $cursor1 = $this->mongo_db->get('cities');
+
+        $data = array();
+        $i=0;
+        foreach ($cursor1 as $cursor) {
+
+            //$data1[] = $dat['currency'];
+            //$data = array();
+            
+            foreach ($cursor['cities'] as $dat) {
+
+                //$entities .= '<option data-name="' . $dat['cityName'] . '" value="' . $dat['cityId']['$oid'] . '">' . $dat['cityName'] . ', ' . $dat['state'] . ', ' . $cursor['country'] . '</option>';
+                $data1[$i]['cityname'] = $dat['cityName'];
+                $data1[$i]['id'] = $dat['cityId']['$oid'];
+                $data1[$i]['currency'] = $dat['currency'];
+                $data1[$i]['currencySymbol'] = $dat['currencySymbol'];
+                $i++;
+            }
+            
+        }
+
+        echo json_encode(array('data' => $data1));
+    }
+
+    
+    
 }

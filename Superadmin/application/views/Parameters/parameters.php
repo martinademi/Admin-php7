@@ -1003,12 +1003,12 @@ $(document).on('click','.fg-button',function(){
                             <select  class="form-control" name="storeType" id="storeType">
                                 <option value="1" data-name="Food">Food</option>
                                 <option value="2" data-name="Grocery">Grocery</option>
-                                <option value="3" data-name="Fashion">Fashion</option>
+                                <!-- <option value="3" data-name="Fashion">Fashion</option>
                                 <option value="4" data-name="Order Anything">Order Anything</option>
                                 <option value="5" data-name="Laundry">Laundry</option>
                                 <option value="6" data-name="Pharmacy">Pharmacy</option>
                                 <option value="7" data-name="Send Anything">Send Anything</option>
-                                <option value="8" data-name="Liquor">Liquor</option>
+                                <option value="8" data-name="Liquor">Liquor</option> -->
                             </select>
                             </div>
                         </div>
@@ -1115,12 +1115,12 @@ $(document).on('click','.fg-button',function(){
                             <select  class="form-control" name="editstoreType" id="editstoreType">
                                 <option value="1" data-name="Food">Food</option>
                                 <option value="2" data-name="Grocery">Grocery</option>
-                                <option value="3" data-name="Fashion">Fashion</option>
+                                <!-- <option value="3" data-name="Fashion">Fashion</option>
                                 <option value="4" data-name="Order Anything">Order Anything</option>
                                 <option value="5" data-name="Laundry">Laundry</option>
                                 <option value="6" data-name="Pharmacy">Pharmacy</option>
                                 <option value="7" data-name="Send Anything">Send Anything</option>
-                                <option value="8" data-name="Liquor">Liquor</option>
+                                <option value="8" data-name="Liquor">Liquor</option> -->
                             </select>
                             </div>
                         </div>

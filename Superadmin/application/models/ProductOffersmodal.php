@@ -376,8 +376,8 @@ class productOffersmodal extends CI_Model {
                             $entitiesData = array();
                             $entityData = [];
                             foreach ($cursor as $dat) {
-                                $entityData['id'] = $dat['firstCategoryId'];
-                                $entityData['title'] = $dat['firstCategoryName'];
+                                $entityData['id'] = $dat['_id']['$oid'];
+                                $entityData['title'] = $dat['categoryName']['en'];
                                 array_push($entitiesData, $entityData);
                             }
 
@@ -408,8 +408,8 @@ class productOffersmodal extends CI_Model {
                                 $entitiesData = array();
                                 $entityData = [];
                                 foreach ($cursor as $dat) {
-                                    $entityData['id'] = $dat['secondCategoryId'];
-                                    $entityData['title'] = $dat['secondCategoryName'];
+                                    $entityData['id'] = $dat['categoryId']['$oid'];
+                                    $entityData['title'] = $dat['subCategoryName']['en'];
                                     array_push($entitiesData, $entityData);
                                 }
                 
@@ -440,8 +440,8 @@ class productOffersmodal extends CI_Model {
                 $entitiesData = array();
                 $entityData = [];
                 foreach ($cursor as $dat) {
-                    $entityData['id'] = $dat['thirdCategoryId'];
-                    $entityData['title'] = $dat['thirdCategoryName'];
+                    $entityData['id'] = $dat['subCategoryId']['$oid'];
+                    $entityData['title'] = $dat['subSubCategoryName']['en'];
                     array_push($entitiesData, $entityData);
                 }
 

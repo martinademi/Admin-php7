@@ -1424,7 +1424,7 @@ function citiesList(productoffer){
                                             <div class="col-sm-3 error-box text_err" id="text_serviceZones" style="color:red"></div>                                       
                                         </div>
                                     </div>
-                                    <div class="row">
+                                    <!-- <div class="row">
                                     
                                     <input type="hidden" name="franchiseId" id="franchiseHidden" class="form-control error-box-class" val ="">
 
@@ -1439,7 +1439,7 @@ function citiesList(productoffer){
                                             </div>
                                             <div class="col-sm-3 error-box" id="text_subCategory"></div>
                                         </div>
-                                    </div>
+                                    </div> -->
                                    
                                    
                                     <div class="row">

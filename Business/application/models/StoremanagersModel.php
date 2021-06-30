@@ -34,7 +34,7 @@ function datatable_storeManagers($for = '', $status = '') {
                        $respo = $this->datatables->datatable_mongodb('users', array('storeId' => $for,'status' => 1));
                        break;
                     case 2:
-                       $respo = $this->datatables->datatable_mongodb('users', array('storeId' => $for,"status" =>array('$in'=>[2])));        
+                       $respo = $this->datatables->datatable_mongodb('users', array('storeId' => $for,"status" =>array('$in'=>[2,3,4])));        
                        break;
                     case 3:
                        $respo = $this->datatables->datatable_mongodb('users', array('storeId' => $for,'status' => 3));   

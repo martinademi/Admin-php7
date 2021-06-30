@@ -6,7 +6,7 @@
         <title>Login</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
 
-        <link rel="shortcut icon" href="<?php echo base_url(); ?>theme/icon/delivxlogoflexy.png" />
+        <link rel="shortcut icon" href="<?php echo base_url(); ?>theme/icon/delivxlogin.png" />
 
         <link href="<?php echo base_url(); ?>theme/assets/plugins/pace/pace-theme-flash.css" rel="stylesheet" type="text/css" />
         <link href="<?php echo base_url(); ?>theme/assets/plugins/boostrapv3/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
@@ -215,7 +215,7 @@
 
             <div class="bg-pic">
                 <!--START Background Pic-->
-                <img src="<?php echo base_url() ?>theme/icon/delivx.png" data-src="<?php echo base_url() ?>theme/icon/delivx.png" data-src-retina="<?php echo base_url() ?>theme/icon/delivx.png" alt="">
+                <img src="<?php echo base_url() ?>theme/icon/delivx.png" data-src="<?php echo base_url() ?>theme/icon/delivx.png" data-src-retina="<?php echo base_url() ?>theme/icon/Banner.png" alt="">
 
 
                 <div class="bg-caption pull-bottom sm-pull-bottom text-white p-l-20 m-b-20">

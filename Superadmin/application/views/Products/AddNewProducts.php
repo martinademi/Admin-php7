@@ -866,10 +866,9 @@
                                         </div>
                                         <div class="col-sm-3 error-box redClass" id="text_brands"></div>
                                     </div>
-                                    <div class="form-group required" > 
+                                    <!-- <div class="form-group required" > 
                                         <label class="col-sm-2 control-label"><?php echo $this->lang->line('label_Size'); ?></label>
                                         <div class="col-sm-6">
-                                            <!--onclick="showCheckboxesSize()"--> 
                                             <div class="multiselect sizeMultiSelect">
                                                 <div class="selectBox" style="width: 102%;">
                                                     <select class="sizeName multiple form-control" id="sizeGroup" name="size[]" multiple="multiple" >
@@ -913,11 +912,11 @@
                                         </div>
                                         <div class="col-sm-3 error-box" id="sizeErr"></div>
 
-                                    </div>
+                                    </div> -->
 
                                     <script>
                                         
-                                        $('#sizeGroup').multiselect({
+                                        /*$('#sizeGroup').multiselect({
                                             selectAllValue: 'multiselect-all',
                                             includeSelectAllOption: true,
                                             enableFiltering: true,
@@ -976,10 +975,10 @@
                                                         maxHeight: 300});
                                                 }
                                             }
-                                        });
+                                        });*/
                                     </script>
 
-                                    <div class="form-group required" >
+                                    <!-- <div class="form-group required" >
                                         <label class="col-sm-2 control-label"><?php echo $this->lang->line('label_Colors'); ?></label>
                                         <div class="col-sm-6">
                                             <div class="multiselect">
@@ -1024,10 +1023,10 @@
                                         </div>
                                         <div class="col-sm-3 error-box" id="colorsErr"></div>
 
-                                    </div>
+                                    </div> -->
 
                                      <!-- weight -->
-                                     <div class="form-group required" >
+                                     <!-- <div class="form-group required" >
                                         <label class="col-sm-2 control-label"><?php echo 'Weight'; ?></label>
                                         <div class="col-sm-6" style="display: flex">
                                                      <div class="" style="padding-left:0px !important;">
@@ -1046,7 +1045,7 @@
                                         </div>
                                         <div class="col-sm-3 error-box" id="weightErr"></div>
 
-                                    </div>
+                                    </div> -->
                                     
                                     
                                    

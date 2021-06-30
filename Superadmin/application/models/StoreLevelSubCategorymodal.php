@@ -47,8 +47,9 @@ class StoreLevelSubCategorymodal extends CI_Model {
         $datatosend = array();
         $sl = $_POST['iDisplayStart'] + 1;
 
+        
         foreach ($aaData as $value) {
-            $count = $this->mongo_db->where(array('subCategoryId' => new MongoDB\BSON\ObjectID($value['_id']['$oid'])))->count('storethirdCategory');
+            $count = $this->mongo_db->where(array('subCategoryId' => new MongoDB\BSON\ObjectID($value['_id']['$oid']),'status'=>1))->count('storethirdCategory');
             $count1 = $this->mongo_db->where(array('categoryId' => $param,'subCategoryId' => $value['_id']['$oid']))->count('metaTags');
             $arr = array();
             $arr[] = $sl++;

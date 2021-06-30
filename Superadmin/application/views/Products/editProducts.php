@@ -1318,7 +1318,7 @@ foreach ($language as $val) {
                                         </div>
                                         <div class="col-sm-3 error-box redClass" id="text_brands"></div>
                                     </div>
-                                    <div class="form-group required" >
+                                    <!-- <div class="form-group required" >
                                         <label class="col-sm-2 control-label"><?php echo $this->lang->line('label_Size'); ?></label>
                                         <div class="col-sm-6">
                                             <div class="multiselect sizeMultiSelect">
@@ -1373,10 +1373,10 @@ foreach ($language as $val) {
                                         </div>
                                         <div class="col-sm-3 error-box" id="sizeErr"></div>
 
-                                    </div>
+                                    </div> -->
                                     <script>
 
-                                        $('#sizeGroup').multiselect({
+                                       /* $('#sizeGroup').multiselect({
                                             selectAllValue: 'multiselect-all',
                                             includeSelectAllOption: true,
                                             enableFiltering: true,
@@ -1436,17 +1436,15 @@ foreach ($language as $val) {
                                                         maxHeight: 300});
                                                 }
                                             }
-                                        });
+                                        });*/
                                     </script>
-                                    <div class="form-group required" >
+                                    <!-- <div class="form-group required" >
                                         <label class="col-sm-2 control-label"><?php echo $this->lang->line('label_Colors'); ?></label>
                                         <div class="col-sm-6">
-                                            <!--onclick="showCheckboxesColor()"-->
                                             <div class="multiselect">
                                                 <div class="selectBox"  style="width: 102%;">
                                                     <select class="multiple form-control" name="color[]" multiple="multiple">
-                                                        <?php
-														
+                                                        <?php							
 														
 														
 														
@@ -1504,10 +1502,10 @@ foreach ($language as $val) {
                                         </div>
                                         <div class="col-sm-3 error-box" id="colorsErr"></div>
 
-                                    </div>
+                                    </div> -->
 
                                      <!-- weight -->
-                                     <div class="form-group required" >
+                                     <!-- <div class="form-group required" >
                                         <label class="col-sm-2 control-label"><?php echo 'Weight'; ?></label>
                                         <div class="col-sm-6" style="display: flex">
                                                      <div class="" style="padding-left:0px !important;">
@@ -1526,7 +1524,7 @@ foreach ($language as $val) {
                                         </div>
                                         <div class="col-sm-3 error-box" id="weightErr"></div>
 
-                                    </div>
+                                    </div> -->
                                     
                                     <script>
                                         $(document).ready(function () {

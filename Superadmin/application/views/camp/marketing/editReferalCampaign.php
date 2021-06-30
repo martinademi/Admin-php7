@@ -177,6 +177,9 @@ $option = '<option value="01">01</option><option value="02">02</option><option v
         margin-left:25px;
     }
 
+    .multiselect-container>li>a>label.radio input[type=radio] {
+        display: none;
+    }
 
 </style>
 <script type="text/javascript">
@@ -402,7 +405,7 @@ $option = '<option value="01">01</option><option value="02">02</option><option v
 function citiesList(){
     console.log('citieslist');
         $.ajax({
-                url: "<?php echo APILink ?>" + "admin/city",
+            url: "<?php echo base_url() ?>" + "index.php?/ReferralController/getCityData",
                 type: 'GET',
                 dataType: 'json',
                 headers: {
@@ -415,8 +418,9 @@ function citiesList(){
                 $("#citiesList").html('');
                 
                  for (var i = 0; i< json.data.length; i++) {
-                
-                    var citiesList = "<option value="+ json.data[i].id + " currency="+ json.data[i].currency + ">"+  json.data[i].cityName +"</option>";
+                    
+                    //var citiesList = "<option currencySymbol = "+json.data[i].cities.currencySymbol +" value="+ json.data[i].cities.cityId.$oid + " currency="+ json.data[i].cities.currency + ">"+  json.data[i].cities.cityName +"</option>";
+                    var citiesList = "<option value="+ json.data[i].id + " currencySymbol = "+json.data[i].currencySymbol +" currency="+ json.data[i].currency + ">"+  json.data[i].cityname +"</option>";
                     $("#citiesList").append(citiesList);  
                 }
                  $('#citiesList').multiselect({
@@ -592,7 +596,7 @@ $(document).ready(function () {
     // Ajax to fill the form 
 
             $.ajax({
-                url: "<?php echo APILink ?>" + "admin/city",
+                url: "<?php echo base_url() ?>" + "index.php?/ReferralController/getCityData",
                 type: 'GET',
                 dataType: 'json',
                 headers: {
@@ -608,7 +612,8 @@ $(document).ready(function () {
                 
                  for (var i = 0; i< json.data.length; i++) {
                 
-                    var citiesList = "<option value="+ json.data[i].id + " currency="+ json.data[i].currency + ">"+  json.data[i].cityName +"</option>";
+                    //var citiesList = "<option currencySymbol = "+json.data[i].cities.currencySymbol+" value="+ json.data[i].cities.cityId.$oid + " currency="+ json.data[i].cities.currency + ">"+  json.data[i].cities.cityName +"</option>";
+                    var citiesList = "<option value="+ json.data[i].id + " currencySymbol = "+json.data[i].currencySymbol +" currency="+ json.data[i].currency + ">"+  json.data[i].cityname +"</option>";
                     $("#citiesList").append(citiesList);  
                 }
                   $('#citiesList').multiselect({
@@ -782,30 +787,30 @@ $(document).ready(function () {
                 }
 
 
-                if (promodata["newUserDiscount"]["discountType"] == 1) {
+                if (promodata["newUserDiscount"]['customer']["discountType"] == 1) {
 
                     $("input[name=newUserDiscountType][value='1']").prop("checked", true);
-                    $("#newUserDiscountAmount").val(promodata["newUserDiscount"]["discountAmt"]);
-                } else if (promodata["newUserDiscount"]["discountType"] == 2) {
+                    $("#newUserDiscountAmount").val(promodata["newUserDiscount"]['customer']["discountAmt"]);
+                } else if (promodata["newUserDiscount"]['customer']["discountType"] == 2) {
 
                     $("input[name=newUserDiscountType][value='2']").prop("checked", true);
-                    $("#newUserDiscountAmount").val(promodata["newUserDiscount"]["discountAmt"]);
+                    $("#newUserDiscountAmount").val(promodata["newUserDiscount"]['customer']["discountAmt"]);
                     $('.newUserAmountLable').html('PERCENTAGE');
                     $("#newUserCityCurrency").addClass('hide');
                     $('.newUserMaxDiscount').show();
-                    $('#newUserMaxDiscount').val(promodata["newUserDiscount"]["maximumDiscountValue"]);
+                    $('#newUserMaxDiscount').val(promodata["newUserDiscount"]['customer']["maximumDiscountValue"]);
                     $(".newUserForPercentage").removeClass('hide');
                 }
 
-                if (promodata["referrerDiscount"]["rewardType"] == 1) {
+                if (promodata["referrerDiscount"]['customer']["rewardType"] == 1) {
                     $("input[name=referrerRewardType][value='1']").prop("checked", true);
-                    $("#referralAmount").val(promodata["referrerDiscount"]["discountAmt"]);
+                    $("#referralAmount").val(promodata["referrerDiscount"]['customer']["discountAmt"]);
 
-                } else if (promodata["referrerDiscount"]["rewardType"] == 2) {
+                } else if (promodata["referrerDiscount"]['customer']["rewardType"] == 2) {
                     $(".catData").removeClass('hide');
                     $("input[name=referrerRewardType][value='2']").prop("checked", true);
-                    $("#referralAmount").val(promodata["referrerDiscount"]["discountAmt"]);
-                    $("#referrerMaxDiscount").val(promodata["referrerDiscount"]["discountAmt"]);
+                    $("#referralAmount").val(promodata["referrerDiscount"]['customer']["discountAmt"]);
+                    $("#referrerMaxDiscount").val(promodata["referrerDiscount"]['customer']["discountAmt"]);
                 }
 
                 //refer discount type
@@ -1084,8 +1089,8 @@ $(document).ready(function () {
                     var cityDetails = [];
                     var catDetails = [];
                     var catDetails2 = [];
-                    var cityIdd = $("#citiesList2").find("option:selected").text();
-                    var cityNamee = $("#citiesList2").find("option:selected").prop("value");
+                    var cityIdd = $("#citiesList").find("option:selected").text();
+                    var cityNamee = $("#citiesList").find("option:selected").prop("value");
                     console.log('cityid is', cityIdd);
                     console.log('cityname is', cityNamee);
                     var cityDetail = {
@@ -1132,8 +1137,8 @@ $(document).ready(function () {
                         "offerAvailImmediateRefUser": ($('#offerAvailImmediateRefUser').is(':checked')) ? true : false,
                         "offerAvailImmediateNewUser": ($('#offerAvailImmediateNewUser').is(':checked')) ? true : false,
                         "cities": cityDetails,
-                        'currencySymbol': $("#citiesList2").find(':selected').attr('currencySymbol'),
-                        'currency': $("#citiesList2").find(':selected').attr('currency'),
+                        'currencySymbol': $("#citiesList").find(':selected').attr('currency'),
+                        'currency': $("#citiesList").find(':selected').attr('currency'),
                         "newUserCategory": catDetails,
                         "referralCategory": catDetails2,
                         "zones": "string",
@@ -1163,6 +1168,10 @@ $(document).ready(function () {
                         "description": description,
                         "termsConditions": termsAndConditions,
                         "howITWorks": howItWorks,
+
+                        "campaignType" : "11",
+                        "referrerlDriverDiscountAmt" : 0,
+                        "newUserDriverDiscountAmt" :0
                     });
                     // update in database
                     console.log(dataToInsert);
@@ -1317,7 +1326,7 @@ $(document).ready(function () {
                                     <div class="col-sm-6 form-group">
                                             <label for="fname" class="col-sm-3 control-label aligntext">CITIES <span class="mandatoryField"> &nbsp *</span></label> 
                                             <div class="col-sm-7">
-                                                <select id="citiesList" name="company_select" class="form-control" style="width: 55% !important" multiple="multiple">
+                                                <select id="citiesList" name="company_select" class="form-control" style="width: 55% !important" >
                                                  
                                                 </select>
                                             </div>
@@ -1417,7 +1426,7 @@ $(document).ready(function () {
                                                 <div class="col-sm-6 removePadding">
                                                     <div class="radio radio-success">
                                                         <input class = "marginLeft" type="radio"  value="1" name="rewardTriggerType" id="newUserTripCountTrigger">
-                                                        <label onclick="calltrigger('newUserTripCountTrigger')">TRIP COUNT</label>
+                                                        <label onclick="calltrigger('newUserTripCountTrigger')">BOOOKING COUNT</label>
                                                         <input class= "marginLeft" type="radio"  value="2" name="rewardTriggerType" id="newUserTotalBusinessTrigger">
                                                         <label onclick="calltrigger('newUserTotalBusinessTrigger')">TOTAL BUSINESS</label>
                                                     </div>
@@ -1443,7 +1452,7 @@ $(document).ready(function () {
                                     <div class="col-md-12 b-b  b-l b-r b-grey p-b-10 p-t-10 tripCountTrigger" style="padding-bottom: 15px">
                                         <div class="col-sm-12 removePadding">
                                             <div class="form-group ">
-                                                <label class="col-sm-2 control-label aligntext1">TRIP COUNT<span class="mandatoryField"> &nbsp *</span></label>
+                                                <label class="col-sm-2 control-label aligntext1">BOOKING COUNT<span class="mandatoryField"> &nbsp *</span></label>
                                                 <div class="col-sm-3">
                                                     <input type="text" id='tripCount' required="" data-v-min="0" data-v-max="1000000" class="autonumeric form-control" onkeypress="return event.charCode >= 48 && event.charCode <= 57" style="width: 90%; float: left;" >
                                                 </div>
@@ -1482,8 +1491,8 @@ $(document).ready(function () {
                                                             <div class="radio radio-success">
                                                                 <input class = "marginLeft" type="radio" checked="checked" value="1" name="referrerRewardType" id="referrerWalletCredit">
                                                                 <label>Wallet Credit</label>
-                                                                <input type="radio" class ="marginLeft"  value="2" name="referrerRewardType" id="referrerCouponDelivery">
-                                                                <label>Coupon Delivery</label>
+                                                                <!-- <input type="radio" class ="marginLeft"  value="2" name="referrerRewardType" id="referrerCouponDelivery">
+                                                                <label>Coupon Delivery</label> -->
                                                             </div>
                                                         </div>
                                                     </div>
@@ -1569,8 +1578,8 @@ $(document).ready(function () {
                                                             <div class="radio radio-success">
                                                                 <input class = "marginLeft" type="radio" checked="checked" value="1" name="newUserRewardType" id="newUserWalletCredit">
                                                                 <label>Wallet Credit</label>
-                                                                <input type="radio" class ="marginLeft"  value="2" name="newUserRewardType" id="newUserCouponDelivery">
-                                                                <label>Coupon Delivery</label>
+                                                                <!-- <input type="radio" class ="marginLeft"  value="2" name="newUserRewardType" id="newUserCouponDelivery">
+                                                                <label>Coupon Delivery</label> -->
                                                             </div>
                                                         </div>
                                                     </div>

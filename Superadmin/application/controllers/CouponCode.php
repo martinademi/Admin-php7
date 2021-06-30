@@ -107,8 +107,6 @@ $this->Logoutmodal->logout();
         //$slNo = 1;
         $slNo=$_POST['start']+1;
         foreach ($offersData['data'] as $campaignData) {
-               
-           
             $cityIds = [];
             foreach ($campaignData['cities'] as $cityData) {
               // print_r($cityData['cityId']);
@@ -158,8 +156,8 @@ $this->Logoutmodal->logout();
            $sDate=strtotime($campaignData['startDate']);
            $eDate=strtotime($campaignData['endDate']);
 
-            $stDate= date('d-M-Y h:i:s', ($sDate) - ($this->session->userdata('timeOffset') * 60));
-            $sndDate= date('d-M-Y h:i:s', ($eDate) - ($this->session->userdata('timeOffset') * 60));
+            $stDate= date('d-M-Y h:i:s A', ($sDate));
+            $sndDate= date('d-M-Y h:i:s A', ($eDate));
 
                $data[] = [
                 $slNo,

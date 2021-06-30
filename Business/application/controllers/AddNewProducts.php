@@ -107,7 +107,7 @@ class AddNewProducts extends CI_Controller {
         $data['category'] = $this->Categorymodal->getCategoryForFranchise_and_BusinessId();            
         $data['color'] = $this->Uflyproductsmodal->getActiveColors();
         $data['manufacturer'] = $this->Uflyproductsmodal->getManufacturer();
-        $data['brands'] = $this->Uflyproductsmodal->getBrands();    
+        $data['brands'] = $this->Uflyproductsmodal->getBrands($data['storeID']);   
         $data['language'] = $this->Uflyproductsmodal->getlanguageText();
         $data['storeType'] = $this->session->userdata('badmin')['storeType'];
         $data['currencySymbol'] = $this->session->userdata('badmin')['currencySymbol'];
@@ -145,7 +145,7 @@ class AddNewProducts extends CI_Controller {
         $data['branded']=$this->Uflyproductsmodal->getBranded();
         $data['storeType'] = $this->session->userdata('badmin')['storeType'];
         $data['manufacturer'] = $this->Uflyproductsmodal->getManufacturer();
-        $data['brands'] = $this->Uflyproductsmodal->getBrands(); 
+        $data['brands'] = $this->Uflyproductsmodal->getBrands($data['storeID']); 
         $data['color'] = $this->Uflyproductsmodal->getActiveColors();
         // has some junk data stored comment if page loading inceases need to check
         $data['size'] = $this->Uflyproductsmodal->getActiveSize();

@@ -61,6 +61,7 @@ $lang['payroll']='PAYROLL';
 $lang['stripepayoutlogs']='STRIPE PAYOUT LOGS';
 $lang['stripetxnlogs']='STRIPE TXN LOGS';
 $lang['STRIPE_LOGS']='STRIPE LOGS';
+$lang['CASH_FREE_LOGS']='CASH FREE LOGS';
 $lang['PAYOFF']='PAYOFF';
 $lang['VOUCHERS']='VOUCHERS';
 $lang['MANAGE_ACCESS']='MANAGE ACCESS';

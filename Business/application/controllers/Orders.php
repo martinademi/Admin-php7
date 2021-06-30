@@ -41,6 +41,7 @@ class Orders extends CI_Controller {
        
         $this->load->library('Datatables');
         $this->load->library('table');
+        $this->load->model('Businessmodel');
 
         $tmpl = array('table_open' => '<table id="big_table" border="1" cellpadding="2" cellspacing="1" class="table table-striped table-bordered dataTable no-footer" id="tableWithSearch" role="grid" aria-describedby="tableWithSearch_info" style="margin-top: 30px;">',
             'heading_row_start' => '<tr style= "font-size:10px"role="row">',
@@ -60,8 +61,9 @@ class Orders extends CI_Controller {
         $this->table->set_template($tmpl);
         $this->table->set_heading($this->lang->line('col_slno'),$this->lang->line('col_orderId'),$this->lang->line('col_city'),$this->lang->line('col_customerName'),$this->lang->line('col_storeName'),$this->lang->line('col_driverName'),$this->lang->line('col_orderType'),$this->lang->line('col_orderDateTime'),$this->lang->line('col_requestDateTime'),$this->lang->line('col_deliveryAddress'),$this->lang->line('col_paymentType'),$this->lang->line('col_netValue'),$this->lang->line('col_deliveryFee'),$this->lang->line('col_acceptDateTime'),$this->lang->line('col_acceptedBy'),$this->lang->line('col_manage'),$this->lang->line('col_status'),$this->lang->line('col_action'));
         
-        $data['autodispatch']= $this->session->userdata('badmin')['autoDispatch'];
-        $data['forcedAccept']= $this->session->userdata('badmin')['forcedAccept'];
+        $data['ProfileData'] = $this->Businessmodel->GetProfileData($this->session->userdata('badmin')['BizId']);
+        $data['autodispatch']= $data['ProfileData']['autoDispatch'];
+        $data['forcedAccept']= $data['ProfileData']['forcedAccept'];
 
         if($data['forcedAccept']==1 && $data['autodispatch']==1 ){
             $data['status'] = 1;

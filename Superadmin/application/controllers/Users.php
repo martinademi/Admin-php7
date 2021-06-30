@@ -61,7 +61,7 @@ class Users extends CI_Controller {
         $checkbox=' <input type="checkbox" id="select_all" />';
         
 
-        $this->table->set_heading( $this->lang->line('SLNO'),$this->lang->line('City'),$this->lang->line('Name'),$this->lang->line('Franchise'),$this->lang->line('Store'),$this->lang->line('Email'),$this->lang->line('Phone'),$this->lang->line('option'),$this->lang->line('Select'));
+        $this->table->set_heading( $this->lang->line('SLNO'),$this->lang->line('City'),$this->lang->line('Name'),/*$this->lang->line('Franchise'),*/$this->lang->line('Store'),$this->lang->line('Email'),$this->lang->line('Phone'),$this->lang->line('option'),$this->lang->line('Select'));
 
 
         

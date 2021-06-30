@@ -116,16 +116,30 @@ class OrdersModel extends CI_Model {
 	
         foreach ($aaData as $value) {
             $arr = array();
-            // switch($value['paymentType']){
-			// 	case 1: $paymentType = "Card";
-			// 		break;
-			// 		case 2: $paymentType = "Cash";
-			// 		break;
-			// 		case 3: $paymentType = "Wallet";
-			// 		break;
-			// 		case 4: $paymentType = "Coin Payment";
-			// 		break;
-			// }
+            switch($value['paymentType']){
+				case 0: 
+					if($value['payByWallet'] == 1){
+					$paymentType = "Wallet";
+					}
+				break;
+				case 1: 
+					if($value['payByWallet'] == 1){
+					$paymentType = "Card + Wallet";
+					}else{
+					$paymentType = "Card";
+					}
+				break;
+				case 2: 
+					if($value['payByWallet'] == 1){
+					$paymentType = "Cash + Wallet";
+					}else{
+					$paymentType = "Cash";
+					}
+				break;
+				case 24 :
+					$paymentType = "Razorpay";
+				break;
+			}
 			if($value['bookingType'] == 1 && $value['serviceType'] == 1){
 				$bookingType = "ASAP Delivery";
 			}
@@ -162,7 +176,7 @@ class OrdersModel extends CI_Model {
 			// $arr[] = $value['bookingDate'];
 			// $arr[] = $value['dueDatetime'];
 			$arr[] = ($value['drop']['addressLine1'] == "" && $value['drop']['addressLine1']== null)?"N/A":$value['drop']['addressLine1'].$value['drop']['addressLine2'] ;
-			$arr[] = $value['paymentTypeMsg'];
+			$arr[] = $paymentType;
 			if($value['abbrevation'] == "1"){
 			$arr[] ='<a class="getBreakDownDetails" orderId="'.$value['orderId'].'"  value="'.$value['orderId'].'" style="cursor:pointer;" >'.$value["currencySymbol"].number_format($value['subTotalAmount'] , 2, '.', '').'</a>';
 			}else{
@@ -195,7 +209,7 @@ class OrdersModel extends CI_Model {
 		$this->load->library('mongo_db');
 		
 		$data['New'] = $this->mongo_db->where(array("storeId"=>$storeId))->count('newOrder');
-		$data['Assigned'] = $this->mongo_db->where(array("storeId"=>$storeId,'status'=>array('$in'=>[40])))->count('assignOrders');
+		$data['Assigned'] = $this->mongo_db->where(array("storeId"=>$storeId,'status'=>array('$in'=>[40])))->count('unassignOrders');
 		$data['orderPicked'] = $this->mongo_db->where(array("storeId"=>$storeId,'status'=>array('$in'=>[12,13,14])))->count('assignOrders');
 		$data['pickupReady'] = $this->mongo_db->where(array("storeId"=>$storeId,'status'=>array('$in'=>[5,6])))->count('pickupOrders');
 		$data['Completed'] = $this->mongo_db->where(array("storeId"=>$storeId))->count('completedOrders');

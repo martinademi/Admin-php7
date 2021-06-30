@@ -85,7 +85,7 @@ function datatable_users($for = '', $status = '') {
             $arr[] = $i++;
 			$arr[] = $value['cityName'];
             $arr[] = $value['name'];
-            $arr[] = ($value['franchiseName'] == "")?"N/A":$value['franchiseName'];
+            //$arr[] = ($value['franchiseName'] == "")?"N/A":$value['franchiseName'];
             $arr[] = ($value['storeName'] == "")?"N/A":$value['storeName'];
             $arr[] = $this->Customermodel->maskFileds($value['email'], 1);
             $arr[] = $this->Customermodel->maskFileds($mobile, 2); 

@@ -40,7 +40,7 @@ class Categorymodal extends CI_Model {
         $sl = $_POST['iDisplayStart'] + 1;
 
         foreach ($aaData as $value) {
-            $count = $this->mongo_db->where(array('categoryId' => new MongoDB\BSON\ObjectID($value['_id']['$oid'])))->count('storesecondCategory');
+            $count = $this->mongo_db->where(array('categoryId' => new MongoDB\BSON\ObjectID($value['_id']['$oid']),'status'=>1))->count('storesecondCategory');
 //                $count = count($cat);
             $count1 = $this->mongo_db->where(array('categoryId' => $value['_id']['$oid']))->count('metaTags');
 

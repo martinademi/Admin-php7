@@ -1211,9 +1211,9 @@ $allSpeciality = array();
                         <?php
                       //  if ($appCofig['pricing_model']['paymentMode'] == 1) {
                             ?>
-                            <li class="tabs_active" id="fifthlitab">
+                            <!-- <li class="tabs_active" id="fifthlitab">
                                 <a data-toggle="tab" href="#tab5" onclick="fifthTab('fourthlitab', 'tab5')"><i id="tab5icon" class=""></i> <span>BANK DETAILS</span></a>
-                            </li>
+                            </li> -->
                             <?php
                     //    }
                         ?>
@@ -1460,6 +1460,28 @@ $allSpeciality = array();
                                         </div>
                                         <div class="col-sm-3 error-box" id="planErr"></div>
                                         <input type="hidden" name="deliveryTypeMsg" id="deliveryTypeMsg">
+                                    </div>
+
+
+                                    <!-- Bank details -->
+                                    <div class="form-group">
+                                        <label for="fname" class="col-sm-2 control-label"><?php echo "Bank Holder Name"; ?><span style="" class="MandatoryMarker"> *</span></label>
+                                        <div class="col-sm-6">
+
+                                        <input type="text"  id="bankHolderName" name="bankHolderName" required="required"class="form-control" value="<?php echo $data['bankHolderName']; ?>" readonly/>
+
+                                        </div>
+                                        <div class="col-sm-3 error-box" id="text_bankHolderName"></div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="fname" class="col-sm-2 control-label"><?php echo "Bank Account Number"; ?></label>
+                                        <div class="col-sm-6">
+
+                                        <input type="text"  id="bankAccountNumber" name="bankAccountNumber" required="required"class="form-control" value="<?php echo $data['bankAccountNumber']; ?>"readonly />
+
+                                        </div>
+                                        <div class="col-sm-3 error-box" id="text_bankAccountNumber"></div>
                                     </div>
                                     
                                 </div>

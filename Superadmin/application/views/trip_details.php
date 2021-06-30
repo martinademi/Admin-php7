@@ -439,21 +439,32 @@ $arrStatusCode = array(10 => "A", 11 => "B", 12 => "C", 13 => "D", 14 => "E", 15
                                                         <a href="#" class="headinClass">Payment Type</a>
                                                     </p>
                                                     <p class="small">
-                                                        <?php
-                                                       switch($data['res']['paymentType']){
-														   case 1: echo "Card";break;
-														   case 2: if($data['res']['payByWallet']==1){
-																		echo "Flexy Coin";
-																		break;
-																	}else{
-																		echo "Cash";
-																		break;
-																	}
-														   
-														   case 3: echo "Wallet";break;
-														   case 4: echo "Coin Payments";break;
-													   }
-                                                        ?>
+                                                    <?php
+                                                        switch($data['res']['paymentType']){
+                                                          case 0:
+                                                             if($data['res']['payByWallet']==1){
+                                                                 echo "Wallet";
+                                                                 break;
+                                                             }
+                                                         case 1: 
+                                                             if($data['res']['payByWallet'] == 1){
+                                                                 echo "Card + Wallet";
+                                                             }else{
+                                                                 echo "Card";
+                                                             }
+                                                         break;
+                                                         case 2: 
+                                                             if($data['res']['payByWallet'] == 1){
+                                                                 echo "Cash + Wallet";
+                                                             }else{
+                                                                 echo "Cash";
+                                                             }
+                                                         break;
+                                                        case 24:
+                                                        echo"Razorpay";
+                                                        break;
+ 													   }
+                                                         ?>
                                                     </p>
                                                 </div>
                                             </div>
@@ -989,6 +1000,33 @@ $arrStatusCode = array(10 => "A", 11 => "B", 12 => "C", 13 => "D", 14 => "E", 15
 												 
                                             </div>
 											
+                                            <div class="row" style="margin-top: 1%;">
+                                                <div class="col-sm-4" style="padding-left: 22px;">
+                                                    <p class="no-margin">
+                                                        <a href="#" class="headinClass">Driver Tip</a>
+                                                    </p>
+                                                   
+                                                </div>
+                                                <div class="col-sm-2">
+                                                </div>
+                                                <div class="col-sm-3">
+                                                </div>
+                                                <div class="col-sm-2">
+                                                    <p class="no-margin">
+                                                        <a href="#" class="headinClass">
+														<?php ?>
+														<?php if($data['res']['abbrevation'] == "1"){
+															echo $data['res']['currencySymbol'].number_format($data['res']['accouting']['driverTip'],2,'.','');
+														}else{
+														echo number_format($data['res']['accouting']['driverTip'],2,'.','').$data['res']['currencySymbol'];
+														}?>
+														
+														</a>
+                                                    </p>
+                                                    
+                                                </div>
+												 
+                                            </div>
 											<div class="row" style="margin-top: 1%;">
                                                 <div class="col-sm-4" style="padding-left: 22px;">
                                                     <p class="no-margin">
@@ -1062,7 +1100,7 @@ $arrStatusCode = array(10 => "A", 11 => "B", 12 => "C", 13 => "D", 14 => "E", 15
                                                         ?><span  class="activity_status_text"><?php echo  date('d-M-Y h:i:s a ', ($resArray['time']) - ($this->session->userdata('timeOffset') * 60)); ?></span></span>
                                                         <span  class="bullet_line"></span>
                                                     </div>
-                                                <?php } else { ?>
+                                                <?php } /* else { ?>
                                                     <div  class="activity_body">
                                                         <?php echo $arrStatusCode[$resArray['status']]; ?><span  class="bullet_points" style="<?php echo $arrColor[$resArray['status']]; ?>"></span>
                                                         <span  class="activity_status col-lg-7"><?php
@@ -1073,7 +1111,7 @@ $arrStatusCode = array(10 => "A", 11 => "B", 12 => "C", 13 => "D", 14 => "E", 15
                                                         <span  class="bullet_line"></span>
                                                     </div>
                                                     <?php
-                                                }
+                                                }*/
                                             }
                                             ?>
 
@@ -1413,20 +1451,32 @@ $arrStatusCode = array(10 => "A", 11 => "B", 12 => "C", 13 => "D", 14 => "E", 15
                                                 </div>
 												<div class="col-sm-3">
                                                     <p class="no-margin">
-                                                        <?php
-                                                       switch($data['res']['paymentType']){
-														   case 1: echo "Card";break;
-														   case 2: if($data['res']['payByWallet']==1){
-																		echo "Flexy Coin";
-																		break;
-																	}else{
-																		echo "Cash";
-																		break;
-																	}
-														   case 3: echo "Wallet";break;
-														   case 4: echo "Coin Payments";break;
-													   }
-                                                        ?>
+                                                    <?php
+                                                        switch($data['res']['paymentType']){
+                                                          case 0:
+                                                             if($data['res']['payByWallet']==1){
+                                                                 echo "Wallet";
+                                                                 break;
+                                                             }
+                                                         case 1: 
+                                                             if($data['res']['payByWallet'] == 1){
+                                                                 echo "Card + Wallet";
+                                                             }else{
+                                                                 echo "Card";
+                                                             }
+                                                         break;
+                                                         case 2: 
+                                                             if($data['res']['payByWallet'] == 1){
+                                                                 echo "Cash + Wallet";
+                                                             }else{
+                                                                 echo "Cash";
+                                                             }
+                                                         break;
+                                                        case 24:
+                                                        echo"Razorpay";
+                                                        break;
+ 													   }
+                                                         ?>
                                                     </p>
                                                 </div>
                                             </div>
