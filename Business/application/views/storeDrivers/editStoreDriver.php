@@ -1249,9 +1249,9 @@ $allSpeciality = array();
                         <li class="tabs_active" id="fourthlitab">
                             <a data-toggle="tab" href="#tab4" onclick="bonafidetab('fourthlitab', 'tab4')"><i id="tab4icon" class=""></i> <span><?php echo $this->lang->line('PREFERRED_ZONES'); ?></span></a>
                         </li>
-                        <!-- <li class="tabs_active" id="fifthlitab">
+                        <li class="tabs_active" id="fifthlitab">
                                 <a data-toggle="tab" href="#tab5" onclick="bankdetailtab('fifthlitab', 'tab5')"><i id="tab5icon" class=""></i> <span><?php echo $this->lang->line('BANK_DETAILS'); ?></span></a>
-                         </li>                         -->
+                         </li>                        
                       
 
 

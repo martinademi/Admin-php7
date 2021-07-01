@@ -1289,13 +1289,13 @@ $(document).ready(function(){
                                                 <div class="col-sm-3 error-box" id="storeCommisionOnDeliveryFeeErr"></div>
                                             </div>
 
-                                           <!--  <hr/>
-                                            <br> -->
-                                            <div class="form-group" style="display:none">
+                                            <hr/>
+                                            <br>
+                                            <div class="form-group">
                                                 <label for="" class="control-label col-md-4" style="color: #0090d9;"><?php echo $this->lang->line('LAUNDRY_SETTINGS'); ?></label>
                                             </div>
 
-                                            <div class="form-group" style="display:none">
+                                            <div class="form-group">
                                                 <label for="" class="control-label col-md-4"><?php echo $this->lang->line('timeForNormalDelivery'); ?></label>
                                                 <div class="col-sm-3">
                                                     <span  class="abs_text"><b><?php echo $this->lang->line('hours'); ?></b></span>
@@ -1452,12 +1452,13 @@ $(document).ready(function(){
                                                                                             </div>
                                                                                             <div class="col-sm-3 error-box" id="refreshTokenErr"></div>
                                                                                         </div>-->
-                                                                                       
-                                            <div class="form-group" style="display:none">
+                                                                                        <hr/>
+                                            <br>
+                                            <div class="form-group">
                                                 <label for="" class="control-label col-md-4" style="color: #0090d9;"><?php echo 'SHIFT CONFIGURATION'; ?></label>
                                             </div>
 
-                                            <div class="form-group" style="display:none">
+                                            <div class="form-group">
                                                 <label for="" class="control-label col-md-4"><?php echo 'Shift Timings'; ?></label>
                                                 <div class="col-sm-3">
                                                     <select class="form-control shiftBufferTimings" id="shiftBufferTimings" name="shiftBufferTimings">

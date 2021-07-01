@@ -365,11 +365,11 @@ class SubsubCategorymodal extends CI_Model {
 
     function getSubsubCategoryDataList($id = '') {
         if ($id != '' || $id != null) {
-            $cursor = $this->mongo_db->where(array("subCategoryId" => new MongoDB\BSON\ObjectID($id),'visibility'=>1,'status'=>1))->get('storethirdCategory');
+            $cursor = $this->mongo_db->where(array("subCategoryId" => new MongoDB\BSON\ObjectID($id),'visibility'=>1))->get('storethirdCategory');
             echo json_encode(array('data' => $cursor));
         } else {
             $val = $this->input->post('val');
-            $cursor = $this->mongo_db->where(array("subCategoryId" => new MongoDB\BSON\ObjectID($val),'visibility'=>1,'status'=>1))->get('storethirdCategory');
+            $cursor = $this->mongo_db->where(array("subCategoryId" => new MongoDB\BSON\ObjectID($val),'visibility'=>1))->get('storethirdCategory');
             $entities = array();
             $entities = '<select class="form-control error-box-class"  id="subSubCategory" name="subSubCategory">
                      <option value="">Select Sub-SubCategory</option>';

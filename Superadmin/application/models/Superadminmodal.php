@@ -1137,7 +1137,7 @@ class Superadminmodal extends CI_Model {
         }
 
         if ($storeId == '' && $operatorId == '' || $storeId == null && $operatorId == null) {
-            $result = $this->mongo_db->where(array('_id' => new MongoDB\BSON\ObjectID($id)))->set(array( 'planName' => $planName, 'planID' => new MongoDB\BSON\ObjectID($planID),'status' => 8, 'statusMsg' => "logged out", 'driverType' => 1, "approvedTimeStamp" => time(), "approvedISODate" => $this->mongo_db->date($timestamp)))->update('driver');
+            $result = $this->mongo_db->where(array('_id' => new MongoDB\BSON\ObjectID($id)))->set(array( 'status' => 8, 'statusMsg' => "logged out", 'driverType' => 1, "approvedTimeStamp" => time(), "approvedISODate" => $this->mongo_db->date($timestamp)))->update('driver');
         }
 //            $result = $this->mongo_db->where(array('_id' => new MongoDB\BSON\ObjectID($id)))->set(array('status' => 2))->update('driver');
         if ($result) {
@@ -1440,7 +1440,7 @@ class Superadminmodal extends CI_Model {
                 if ($plan == '') {
 
                     $data['New'] = $this->mongo_db->where(array('status' => 1, 'driverType' => 1))->count('driver');
-                    $data['Approved'] = $this->mongo_db->where(array('driverType' => 1, 'status' => array('$in' => [3, 4, 5, 9, 8])))->count('driver');
+                    $data['Approved'] = $this->mongo_db->where(array('driverType' => 1, 'status' => array('$in' => [2, 3, 4, 8, 9])))->count('driver');
                     $data['Accepted'] = $this->mongo_db->where(array('driverType' => 1, 'status' => array('$in' => [3, 4])))->count('driver');
                     $data['Inactive'] = $this->mongo_db->where(array('driverType' => 1, 'status' => array('$in' => [2, 7])))->count('driver');
                     $data['Rejepted'] = $this->mongo_db->where(array('driverType' => 1, 'status' => 6))->count('driver');
@@ -1453,7 +1453,7 @@ class Superadminmodal extends CI_Model {
 //                    $respo = $this->datatables->datatable_mongodb('driver', array('status' => 1, 'planID' => new MongoDB\BSON\ObjectID($plan)));
 
                     $data['New'] = $this->mongo_db->where(array('status' => 1, 'driverType' => 1, 'planID' => new MongoDB\BSON\ObjectID($plan)))->count('driver');
-                    $data['Approved'] = $this->mongo_db->where(array('status' => array('$in' => [3, 4, 5, 9, 8]), 'planID' => new MongoDB\BSON\ObjectID($plan)))->count('driver');
+                    $data['Approved'] = $this->mongo_db->where(array('status' => array('$in' => [2, 3, 4, 8, 9]), 'planID' => new MongoDB\BSON\ObjectID($plan)))->count('driver');
                     $data['Accepted'] = $this->mongo_db->where(array('status' => array('$in' => [3, 4]), 'planID' => new MongoDB\BSON\ObjectID($plan)))->count('driver');
                     $data['Inactive'] = $this->mongo_db->where(array('status' => array('$in' => [2, 7]), 'planID' => new MongoDB\BSON\ObjectID($plan)))->count('driver');
                     $data['Rejepted'] = $this->mongo_db->where(array('status' => 6, 'planID' => new MongoDB\BSON\ObjectID($plan)))->count('driver');
@@ -1961,8 +1961,8 @@ class Superadminmodal extends CI_Model {
 
     function getAllPlans() {
         $this->load->library('mongo_db');
+        $res = $this->mongo_db->where(array("isDeleted" => false))->get('Driver_plans');
         $driver = $this->mongo_db->where(array('_id' => new MongoDB\BSON\ObjectID($this->input->post('id'))))->find_one('driver');
-        $res = $this->mongo_db->where(array("isDeleted" => false,"cityId" => isset($driver['cityId']) ? $driver['cityId'] : "" ))->get('Driver_plans');
         echo json_encode(array('data' => $res, 'driverData' => $driver));
     }
 
@@ -3769,7 +3769,7 @@ class Superadminmodal extends CI_Model {
                     break;
                 case 9:switch ($driverType) {
                         case '':if ($plan == '') {
-                                $respo = $this->datatables->datatable_mongodb('driver', array('driverType' => 1, 'status' => array('$in' => [3, 4, 5, 9, 8])));
+                                $respo = $this->datatables->datatable_mongodb('driver', array('driverType' => 1, 'status' => array('$in' => [ 3, 4, 8])));
                                 $respo['status'] = 9;
                             } else {
                                 $respo = $this->datatables->datatable_mongodb('driver', array('planID' => new MongoDB\BSON\ObjectID($plan), 'status' => array('$in' => [3, 4, 8])));
@@ -3777,7 +3777,7 @@ class Superadminmodal extends CI_Model {
                             } break;
 
                         case '1':if ($plan == '') {
-                                $respo = $this->datatables->datatable_mongodb('driver', array('status' => array('$in' => [3, 4, 5, 9, 8]), 'driverType' => 1));
+                                $respo = $this->datatables->datatable_mongodb('driver', array('status' => array('$in' => [3, 4, 8]), 'driverType' => 1));
                                 $respo['status'] = 9;
                             } else {
                                 $respo = $this->datatables->datatable_mongodb('driver', array('planID' => new MongoDB\BSON\ObjectID($plan), 'status' => array('$in' => [3, 4, 8])));
@@ -5708,29 +5708,24 @@ class Superadminmodal extends CI_Model {
 			
 			
             switch($value['paymentType']){
-            case 0: 
-                if($value['payByWallet'] == 1){
-                $paymentType = "Wallet";
-                }
-            break;
-            case 1: 
-                if($value['payByWallet'] == 1){
-                $paymentType = "Card + Wallet";
-                }else{
-                $paymentType = "Card";
-                }
-            break;
-            case 2:
-                if($value['payByWallet'] == 1){
-                $paymentType = "Cash + Wallet";
-                }else{
-                $paymentType = "Cash";
-                }
-            break;
-            case 24 :
-                $paymentType = "Razorpay";
-            break;
-        }                                                      
+														   case 1: $paymentType="Card";
+														   break;
+														   case 2: 
+														   if($value['payByWallet'] == 1 || $value['payByWallet']=='1'){
+															   $paymentType="Flexy Coin";
+														   }else{
+															    $paymentType="Cash";
+														   }
+
+														   break;
+														   case 3:  $paymentType="Wallet";
+														   break;
+														   case 4:  $paymentType="Coin Payments";
+														   break;
+													   }
+
+
+                                                       
             if($value['status']==16){    
                       
             $pdfLink='N/A';
@@ -5828,12 +5823,7 @@ class Superadminmodal extends CI_Model {
 
         if($stdate != '' && $stdate != "null"  && $enddate != '' && $enddate != "null" && $city!="undefined" && $store!="undefined" ){
             $aaData = $this->mongo_db->where(array('cityId'=>$city,'storeId'=>$store,'bookingDateTimeStamp' => array('$gte' => strtotime($stdate), '$lte' => strtotime($enddate . ' 23:59:59'))))->order_by(array('_id' => -1))->get('completedOrders');
-        }else if($stdate != '' && $stdate != "null"  && $enddate != '' && $enddate != "null" && $city!="undefined"){
-            $aaData = $this->mongo_db->where(array('cityId'=>$city,'bookingDateTimeStamp' => array('$gte' => strtotime($stdate), '$lte' => strtotime($enddate . ' 23:59:59'))))->order_by(array('_id' => -1))->get('completedOrders');
-        }else if($stdate != '' && $stdate != "null"  && $enddate != '' && $enddate != "null" && $store!="undefined"){
-            $aaData = $this->mongo_db->where(array('storeId'=>$store,'bookingDateTimeStamp' => array('$gte' => strtotime($stdate), '$lte' => strtotime($enddate . ' 23:59:59'))))->order_by(array('_id' => -1))->get('completedOrders');
-        }
-        else if ($stdate != '' && $stdate != "null"  && $enddate != '' && $enddate != "null" ){
+        }else if ($stdate != '' && $stdate != "null"  && $enddate != '' && $enddate != "null" ){
             $aaData = $this->mongo_db->where(array('bookingDateTimeStamp' => array('$gte' => strtotime($stdate), '$lte' => strtotime($enddate . ' 23:59:59'))))->order_by(array('_id' => -1))->get('completedOrders');
 		}else if($city!="undefined" && $store!="undefined" ){
             $aaData = $this->mongo_db->where(array('cityId'=>$city,'storeId'=>$store))->order_by(array('_id' => -1))->get('completedOrders');
@@ -5842,6 +5832,9 @@ class Superadminmodal extends CI_Model {
         }else{
             $aaData = $this->mongo_db->order_by(array('_id' => -1))->get('completedOrders');
 		}
+
+       
+
 
         foreach ($aaData as $value) {
            // echo '<pre>';print_r($value['statusMsg']);die;
@@ -5870,20 +5863,23 @@ class Superadminmodal extends CI_Model {
 														   case 4:  $paymentType="Coin Payments";
 														   break;
 													   }
+        
+
+
             $arr = array();
             $arr['OrderId'] = $value['orderId'];
             $arr['Order Type'] =$orderType;
-			$arr['Order Date & Time'] = ($value['bookingDateTimeStamp'] == '') ? 'N/A' : date('d-M-Y h:i:s a ', ($value['bookingDateTimeStamp']) - ($this->session->userdata('timeOffset') * 60));
+			$arr['Order Date & Time'] = ($value['bookingDate'] == '') ? 'N/A' : $value['bookingDate'];
 			$arr['City'] = ($value['pickup']['city'] == "")?"N/A":$value['pickup']['city'];
-            $arr['Driver Name'] =($value['driverDetails']['fName'] =="" && $value['driverDetails']['fName']==null && $value['driverDetails']['lName'] == "" && $value['driverDetails']['lName'] == null)?"N/A": $value['driverDetails']['fName'] . ' ' . $value['driverDetails']['lName'];
+            $arr['Driver Name'] =($value['driverDetails']['fName'] =="" || $value['driverDetails']['fName']==null || $value['driverDetails']['lName'] == "" || $value['driverDetails']['lName'] == null)?"N/A": $value['driverDetails']['fName'] . ' ' . $value['driverDetails']['lName'];
             $arr['Customer Name'] = $value['customerDetails']['name'];
             $arr['Store Name'] = $value['storeName'];
 			
 			if($value['abbrevation'] == "1" || $value['abbrevation'] == 1){
            // $arr['Total Amount'] =$value['currencySymbol']." ".number_format($value['subTotalAmount'], 2); 
-           $arr['Total Amount'] =$value['currencySymbol']." ".$value['totalAmount']; 
+           $arr['Total Amount'] =$value['currencySymbol']." ".$value['subTotalAmount']; 
 			}else{
-				$arr['Total Amount']= number_format($value['totalAmount'], 2)." ".$value['currencySymbol']; 
+				$arr['Total Amount']= number_format($value['subTotalAmount'], 2)." ".$value['currencySymbol']; 
 				
             }
             

@@ -563,6 +563,3 @@ $config['rewrite_short_tags'] = FALSE;
 | Array:		array('10.0.1.200', '192.168.5.0/24')
 */
 $config['proxy_ips'] = '';
-set_time_limit(0);
-ini_set('memory_limit', '1G');
-ini_set("auto_detect_line_endings", true);

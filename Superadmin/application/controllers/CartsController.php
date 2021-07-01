@@ -42,7 +42,7 @@ $this->lang->load('header_lang',$language);
         $this->table->set_template($tmpl);
         // $this->table->set_heading('SLNO','CART ID','CUSTOMER NAME','FRANCHISE NAME', 'STORE NAME','CITY','CART CAEGORY','CREATED', 'CART TOTAL', 'CART ACTIONS', 'STATUS', 'LAST ACTIVE ON');
 
-        $this->table->set_heading('SLNO','CART ID','CUSTOMER NAME',/*'FRANCHISE NAME',*/ 'STORE NAME','CITY','ORDER CATEGORY','CREATED ON','CART VALUE','STATUS', 'CART ACTIONS');
+        $this->table->set_heading('SLNO','CART ID','CUSTOMER NAME','FRANCHISE NAME', 'STORE NAME','CITY','ORDER CATEGORY','CREATED ON','CART VALUE','STATUS', 'CART ACTIONS');
         $data['pagename'] = "cart/carts";
         $this->load->view("company", $data);
     }

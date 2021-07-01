@@ -2257,7 +2257,7 @@ $status = 1;
                                 </label>
                             </div>
 
-                            <div class="col-sm-3" style="display: none;">
+                            <div class="col-sm-3">
                                 <label for="topic_richNotification">
                                     <input type="radio"  name="notificationType" id="richNotification" data-id="8"   value="8"/><span >Rich push notification</span>
                                 </label>                        
@@ -2557,7 +2557,7 @@ $status = 1;
                                 </label>
                             </div>
 
-                            <div class="col-sm-3" style="display: none;">
+                            <div class="col-sm-3">
                                 <label for="topic_richNotification">
                                     <input type="radio"  name="customernotificationType" id="customerrichNotification" data-id="8"   value="8"/><span >Rich push notification</span>
                                 </label>                        

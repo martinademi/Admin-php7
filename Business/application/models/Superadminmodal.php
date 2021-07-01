@@ -3130,20 +3130,20 @@ class Superadminmodal extends CI_Model {
                                 $respo['status'] = 0;
                             }
                             break;
-                            //
-                            //                        case '1':if ($plan == '') {
-                            //                                $respo = $this->datatables->datatable_mongodb('driver', array('status' => 9, 'accountType' => 1), 'mobileDevices.lastISOdate', -1);
-                            //                            } else {
-                            //                                $respo = $this->datatables->datatable_mongodb('driver', array('status' => 9, 'planID' => new MongoDB\BSON\ObjectID($plan)), 'mobileDevices.lastISOdate', -1);
-                            //                            }
-                            //                            break;
-                            //                        case '2':if ($plan == '') {
-                            //                                if ($operator == '')
-                            //                                    $respo = $this->datatables->datatable_mongodb('driver', array('status' => 9, 'accountType' => 2), 'mobileDevices.lastISOdate', -1);
-                            //                                else
-                            //                                    $respo = $this->datatables->datatable_mongodb('driver', array('status' => 9, 'accountType' => 2, 'companyId' => new MongoDB\BSON\ObjectID($operator)), 'mobileDevices.lastISOdate', -1);
-                            //                            }
-                            //                            break;
+//
+//                        case '1':if ($plan == '') {
+//                                $respo = $this->datatables->datatable_mongodb('driver', array('status' => 9, 'accountType' => 1), 'mobileDevices.lastISOdate', -1);
+//                            } else {
+//                                $respo = $this->datatables->datatable_mongodb('driver', array('status' => 9, 'planID' => new MongoDB\BSON\ObjectID($plan)), 'mobileDevices.lastISOdate', -1);
+//                            }
+//                            break;
+//                        case '2':if ($plan == '') {
+//                                if ($operator == '')
+//                                    $respo = $this->datatables->datatable_mongodb('driver', array('status' => 9, 'accountType' => 2), 'mobileDevices.lastISOdate', -1);
+//                                else
+//                                    $respo = $this->datatables->datatable_mongodb('driver', array('status' => 9, 'accountType' => 2, 'companyId' => new MongoDB\BSON\ObjectID($operator)), 'mobileDevices.lastISOdate', -1);
+//                            }
+//                            break;
                         case '3':
                             if ($store == '') {
                                 $respo = $this->datatables->datatable_mongodb('driver', array('status' => 9, 'accountType' => 3), 'mobileDevices.lastISOdate', -1);
@@ -3168,19 +3168,19 @@ class Superadminmodal extends CI_Model {
                                 $respo['status'] = 1;
                             }
                             break;
-                            //
-                            //                        case '1':if ($plan == '') {
-                            //                                $respo = $this->datatables->datatable_mongodb('driver', array('status' => 1, 'accountType' => 1));
-                            //                            } else {
-                            //                                $respo = $this->datatables->datatable_mongodb('driver', array('status' => 1, 'planID' => new MongoDB\BSON\ObjectID($plan)));
-                            //                            }
-                            //                            break;
-                            //                        case '2':if ($plan == '') {
-                            //                                if ($operator == '')
-                            //                                    $respo = $this->datatables->datatable_mongodb('driver', array('status' => 1, 'accountType' => 2));
-                            //                                else
-                            //                                    $respo = $this->datatables->datatable_mongodb('driver', array('status' => 1, 'accountType' => 2, 'companyId' => new MongoDB\BSON\ObjectID($operator)));
-                            //                            }
+//
+//                        case '1':if ($plan == '') {
+//                                $respo = $this->datatables->datatable_mongodb('driver', array('status' => 1, 'accountType' => 1));
+//                            } else {
+//                                $respo = $this->datatables->datatable_mongodb('driver', array('status' => 1, 'planID' => new MongoDB\BSON\ObjectID($plan)));
+//                            }
+//                            break;
+//                        case '2':if ($plan == '') {
+//                                if ($operator == '')
+//                                    $respo = $this->datatables->datatable_mongodb('driver', array('status' => 1, 'accountType' => 2));
+//                                else
+//                                    $respo = $this->datatables->datatable_mongodb('driver', array('status' => 1, 'accountType' => 2, 'companyId' => new MongoDB\BSON\ObjectID($operator)));
+//                            }
 
                         case '3':
                             if ($store == '') {
@@ -3201,25 +3201,25 @@ class Superadminmodal extends CI_Model {
                                 $respo = $this->datatables->datatable_mongodb('driver', array('planID' => new MongoDB\BSON\ObjectID($plan), 'status' => array('$in' => [3, 4])));
                                 $respo['status'] = 3;
                             }
-                            //                            break;
-                            //
-                            //                        case '1':if ($plan == '') {
-                            //                                $respo = $this->datatables->datatable_mongodb('driver', array('status' => array('$in' => [3, 4]), 'accountType' => 1));
-                            //                            } else {
-                            //                                $respo = $this->datatables->datatable_mongodb('driver', array('planID' => new MongoDB\BSON\ObjectID($plan), 'status' => array('$in' => [3, 4])));
-                            //                                var_dump('pass4');
-                            //                            }
-                            //                            break;
-                            //                        case '2':if ($plan == '') {
-                            //                                if ($operator == '') {
-                            //                                    $respo = $this->datatables->datatable_mongodb('driver', array('status' => array('$in' => [3, 4]), 'accountType' => 2));
-                            //                                } else {
-                            //                                    $respo = $this->datatables->datatable_mongodb('driver', array('status' => array('$in' => [3, 4]), 'accountType' => 2, 'companyId' => new MongoDB\BSON\ObjectID($operator)));
-                            //                                }
-                            //                            } else {
-                            //                                $respo = $this->datatables->datatable_mongodb('driver', array('planID' => new MongoDB\BSON\ObjectID($plan), 'status' => array('$in' => [3, 4])));
-                            //                            }
-                            //                            break;
+//                            break;
+//
+//                        case '1':if ($plan == '') {
+//                                $respo = $this->datatables->datatable_mongodb('driver', array('status' => array('$in' => [3, 4]), 'accountType' => 1));
+//                            } else {
+//                                $respo = $this->datatables->datatable_mongodb('driver', array('planID' => new MongoDB\BSON\ObjectID($plan), 'status' => array('$in' => [3, 4])));
+//                                var_dump('pass4');
+//                            }
+//                            break;
+//                        case '2':if ($plan == '') {
+//                                if ($operator == '') {
+//                                    $respo = $this->datatables->datatable_mongodb('driver', array('status' => array('$in' => [3, 4]), 'accountType' => 2));
+//                                } else {
+//                                    $respo = $this->datatables->datatable_mongodb('driver', array('status' => array('$in' => [3, 4]), 'accountType' => 2, 'companyId' => new MongoDB\BSON\ObjectID($operator)));
+//                                }
+//                            } else {
+//                                $respo = $this->datatables->datatable_mongodb('driver', array('planID' => new MongoDB\BSON\ObjectID($plan), 'status' => array('$in' => [3, 4])));
+//                            }
+//                            break;
 
                         case '3':
                             if ($store == '') {
@@ -3241,21 +3241,21 @@ class Superadminmodal extends CI_Model {
                                 $respo = $this->datatables->datatable_mongodb('driver', array('planID' => new MongoDB\BSON\ObjectID($plan), 'status' => 6));
                                 $respo['status'] = 4;
                             } break;
-                            //                        case '1':if ($plan == '')
-                            //                                $respo = $this->datatables->datatable_mongodb('driver', array('status' => 6, 'accountType' => 1));
-                            //                            else
-                            //                                $respo = $this->datatables->datatable_mongodb('driver', array('planID' => new MongoDB\BSON\ObjectID($plan), 'status' => 6));
-                            //                            break;
-                            //                        case '2':if ($plan == '') {
-                            //                                if ($operator == '')
-                            //                                    $respo = $this->datatables->datatable_mongodb('driver', array('status' => 6, 'accountType' => 2));
-                            //                                else
-                            //                                    $respo = $this->datatables->datatable_mongodb('driver', array('status' => 6));
-                            //                            }
-                            //                            else {
-                            //                                $respo = $this->datatables->datatable_mongodb('driver', array('planID' => new MongoDB\BSON\ObjectID($plan), 'status' => 6));
-                            //                            }
-                            //                            break;
+//                        case '1':if ($plan == '')
+//                                $respo = $this->datatables->datatable_mongodb('driver', array('status' => 6, 'accountType' => 1));
+//                            else
+//                                $respo = $this->datatables->datatable_mongodb('driver', array('planID' => new MongoDB\BSON\ObjectID($plan), 'status' => 6));
+//                            break;
+//                        case '2':if ($plan == '') {
+//                                if ($operator == '')
+//                                    $respo = $this->datatables->datatable_mongodb('driver', array('status' => 6, 'accountType' => 2));
+//                                else
+//                                    $respo = $this->datatables->datatable_mongodb('driver', array('status' => 6));
+//                            }
+//                            else {
+//                                $respo = $this->datatables->datatable_mongodb('driver', array('planID' => new MongoDB\BSON\ObjectID($plan), 'status' => 6));
+//                            }
+//                            break;
                         case '3':
                             if ($store == '') {
                                 $respo = $this->datatables->datatable_mongodb('driver', array('status' => 6, 'accountType' => 3));
@@ -3275,22 +3275,22 @@ class Superadminmodal extends CI_Model {
                                 $respo = $this->datatables->datatable_mongodb('driver', array('planID' => new MongoDB\BSON\ObjectID($plan), 'status' => 7));
                                 $respo['status'] = 5;
                             }break;
-                            //
-                            //                        case '1':if ($plan == '')
-                            //                                $respo = $this->datatables->datatable_mongodb('driver', array('status' => 7, 'accountType' => 1));
-                            //                            else
-                            //                                $respo = $this->datatables->datatable_mongodb('driver', array('planID' => new MongoDB\BSON\ObjectID($plan), 'status' => 7));
-                            //                            break;
-                            //                        case '2':if ($plan == '') {
-                            //                                if ($operator == '')
-                            //                                    $respo = $this->datatables->datatable_mongodb('driver', array('status' => 7, 'accountType' => 2));
-                            //                                else
-                            //                                    $respo = $this->datatables->datatable_mongodb('driver', array('status' => 7, 'accountType' => 2, 'companyId' => new MongoDB\BSON\ObjectID($operator)));
-                            //                            }
-                            //                            else {
-                            //                                $respo = $this->datatables->datatable_mongodb('driver', array('planID' => new MongoDB\BSON\ObjectID($plan), 'status' => 7));
-                            //                            }
-                            //                            break;
+//
+//                        case '1':if ($plan == '')
+//                                $respo = $this->datatables->datatable_mongodb('driver', array('status' => 7, 'accountType' => 1));
+//                            else
+//                                $respo = $this->datatables->datatable_mongodb('driver', array('planID' => new MongoDB\BSON\ObjectID($plan), 'status' => 7));
+//                            break;
+//                        case '2':if ($plan == '') {
+//                                if ($operator == '')
+//                                    $respo = $this->datatables->datatable_mongodb('driver', array('status' => 7, 'accountType' => 2));
+//                                else
+//                                    $respo = $this->datatables->datatable_mongodb('driver', array('status' => 7, 'accountType' => 2, 'companyId' => new MongoDB\BSON\ObjectID($operator)));
+//                            }
+//                            else {
+//                                $respo = $this->datatables->datatable_mongodb('driver', array('planID' => new MongoDB\BSON\ObjectID($plan), 'status' => 7));
+//                            }
+//                            break;
 
 
                         case '3':
@@ -3312,21 +3312,21 @@ class Superadminmodal extends CI_Model {
                                 $respo = $this->datatables->datatable_mongodb('driver', array('planID' => new MongoDB\BSON\ObjectID($plan), 'status' => array('$in' => [2, 7])));
                                 $respo['status'] = 8;
                             }break;
-                            //                        case '1':if ($plan == '')
-                            //                                $respo = $this->datatables->datatable_mongodb('driver', array('status' => array('$in' => [2, 7]), 'accountType' => 1));
-                            //                            else
-                            //                                $respo = $this->datatables->datatable_mongodb('driver', array('planID' => new MongoDB\BSON\ObjectID($plan), 'status' => array('$in' => [2, 7])));
-                            //                            break;
-                            //                        case '2':if ($plan == '') {
-                            //                                if ($operator == '')
-                            //                                    $respo = $this->datatables->datatable_mongodb('driver', array('status' => array('$in' => [2, 7]), 'accountType' => 2));
-                            //                                else
-                            //                                    $respo = $this->datatables->datatable_mongodb('driver', array('status' => array('$in' => [2, 7]), 'accountType' => 2, 'companyId' => new MongoDB\BSON\ObjectID($operator)));
-                            //                            }
-                            //                            else {
-                            //                                $respo = $this->datatables->datatable_mongodb('driver', array('planID' => new MongoDB\BSON\ObjectID($plan), 'status' => array('$in' => [2, 7])));
-                            //                            }
-                            //                            break;
+//                        case '1':if ($plan == '')
+//                                $respo = $this->datatables->datatable_mongodb('driver', array('status' => array('$in' => [2, 7]), 'accountType' => 1));
+//                            else
+//                                $respo = $this->datatables->datatable_mongodb('driver', array('planID' => new MongoDB\BSON\ObjectID($plan), 'status' => array('$in' => [2, 7])));
+//                            break;
+//                        case '2':if ($plan == '') {
+//                                if ($operator == '')
+//                                    $respo = $this->datatables->datatable_mongodb('driver', array('status' => array('$in' => [2, 7]), 'accountType' => 2));
+//                                else
+//                                    $respo = $this->datatables->datatable_mongodb('driver', array('status' => array('$in' => [2, 7]), 'accountType' => 2, 'companyId' => new MongoDB\BSON\ObjectID($operator)));
+//                            }
+//                            else {
+//                                $respo = $this->datatables->datatable_mongodb('driver', array('planID' => new MongoDB\BSON\ObjectID($plan), 'status' => array('$in' => [2, 7])));
+//                            }
+//                            break;
                         case '3':
                             if ($store == '') {
                                 $respo = $this->datatables->datatable_mongodb('driver', array('status' => array('$in' => [2, 7]), 'accountType' => 3));
@@ -3346,21 +3346,21 @@ class Superadminmodal extends CI_Model {
                                 $respo = $this->datatables->datatable_mongodb('driver', array('planID' => new MongoDB\BSON\ObjectID($plan), 'status' => array('$in' => [2, 3, 4, 8, 9])));
                                 $respo['status'] = 9;
                             }break;
-                            //
-                            //                        case '1':if ($plan == '')
-                            //                                $respo = $this->datatables->datatable_mongodb('driver', array('status' => array('$in' => [2, 3, 4, 8, 9]), 'accountType' => 1));
-                            //                            else
-                            //                                $respo = $this->datatables->datatable_mongodb('driver', array('planID' => new MongoDB\BSON\ObjectID($plan), 'status' => array('$in' => [2, 3, 4, 8, 9])));
-                            //                            break;
-                            //                        case '2':if ($plan == '') {
-                            //                                if ($operator == '')
-                            //                                    $respo = $this->datatables->datatable_mongodb('driver', array('status' => array('$in' => [2, 3, 4, 8, 9]), 'accountType' => 2));
-                            //                                else
-                            //                                    $respo = $this->datatables->datatable_mongodb('driver', array('status' => array('$in' => [2, 3, 4, 8, 9]), 'accountType' => 2, 'companyId' => new MongoDB\BSON\ObjectID($operator)));
-                            //                            }else {
-                            //                                $respo = $this->datatables->datatable_mongodb('driver', array('planID' => new MongoDB\BSON\ObjectID($plan), 'status' => array('$in' => [2, 3, 4, 8, 9])));
-                            //                            }
-                            //                            break;
+//
+//                        case '1':if ($plan == '')
+//                                $respo = $this->datatables->datatable_mongodb('driver', array('status' => array('$in' => [2, 3, 4, 8, 9]), 'accountType' => 1));
+//                            else
+//                                $respo = $this->datatables->datatable_mongodb('driver', array('planID' => new MongoDB\BSON\ObjectID($plan), 'status' => array('$in' => [2, 3, 4, 8, 9])));
+//                            break;
+//                        case '2':if ($plan == '') {
+//                                if ($operator == '')
+//                                    $respo = $this->datatables->datatable_mongodb('driver', array('status' => array('$in' => [2, 3, 4, 8, 9]), 'accountType' => 2));
+//                                else
+//                                    $respo = $this->datatables->datatable_mongodb('driver', array('status' => array('$in' => [2, 3, 4, 8, 9]), 'accountType' => 2, 'companyId' => new MongoDB\BSON\ObjectID($operator)));
+//                            }else {
+//                                $respo = $this->datatables->datatable_mongodb('driver', array('planID' => new MongoDB\BSON\ObjectID($plan), 'status' => array('$in' => [2, 3, 4, 8, 9])));
+//                            }
+//                            break;
 
                         case '3':
                             if ($store == '') {
@@ -3720,8 +3720,17 @@ class Superadminmodal extends CI_Model {
         $operator = $this->session->userdata('company_id');
         $store = $this->session->userdata('storeId');
         $plan = $this->session->userdata('plan');
-
-        // Driver status 1 : New , 3:online , 4:offline , 6:Rejected, 7 : Banned , 8: logged out . 9:timed out
+//        print_r($driverType);
+//        echo "---------------";
+//        print_r($operator);
+//        echo "2";
+//        print_r($store);
+//        echo "3";
+//        print_r($plan);
+//        echo "-------------------1111------------";
+//        print_r($status);
+//        die;
+// Driver status 1 : New , 3:online , 4:offline , 6:Rejected, 7 : Banned , 8: logged out . 9:timed out
 
         if ($for == 'my') {
 
@@ -3748,21 +3757,21 @@ class Superadminmodal extends CI_Model {
                                 $respo['status'] = 0;
                             }
                             break;
-                    //                        case '2':if ($plan == '') {
-                    //                                if ($operator == '')
-                    //                                    $respo = $this->datatables->datatable_mongodb('driver', array('status' => 9, 'accountType' => 2), 'mobileDevices.lastISOdate', -1);
-                    //                                else
-                    //                                    $respo = $this->datatables->datatable_mongodb('driver', array('status' => 9, 'accountType' => 2, 'companyId' => new MongoDB\BSON\ObjectID($operator)), 'mobileDevices.lastISOdate', -1);
-                    //                            }
-                    //                            break;
-                    //                        case '3':
-                    //                            if ($store == '') {
-                    //                                $respo = $this->datatables->datatable_mongodb('driver', array('status' => 9, 'accountType' => 3), 'mobileDevices.lastISOdate', -1);
-                    //                            } else {
-                    //                                $respo = $this->datatables->datatable_mongodb('driver', array('status' => 9, 'accountType' => 3, 'storeId' => new MongoDB\BSON\ObjectID($store)), 'mobileDevices.lastISOdate', -1);
-                    //                            }
-                    //
-                    //                            break;
+//                        case '2':if ($plan == '') {
+//                                if ($operator == '')
+//                                    $respo = $this->datatables->datatable_mongodb('driver', array('status' => 9, 'accountType' => 2), 'mobileDevices.lastISOdate', -1);
+//                                else
+//                                    $respo = $this->datatables->datatable_mongodb('driver', array('status' => 9, 'accountType' => 2, 'companyId' => new MongoDB\BSON\ObjectID($operator)), 'mobileDevices.lastISOdate', -1);
+//                            }
+//                            break;
+//                        case '3':
+//                            if ($store == '') {
+//                                $respo = $this->datatables->datatable_mongodb('driver', array('status' => 9, 'accountType' => 3), 'mobileDevices.lastISOdate', -1);
+//                            } else {
+//                                $respo = $this->datatables->datatable_mongodb('driver', array('status' => 9, 'accountType' => 3, 'storeId' => new MongoDB\BSON\ObjectID($store)), 'mobileDevices.lastISOdate', -1);
+//                            }
+//
+//                            break;
                     }
                     break;
 
@@ -3790,19 +3799,19 @@ class Superadminmodal extends CI_Model {
                             }
                             break;
 
-                            //                        case '2':if ($plan == '') {
-                            //                                if ($operator == '')
-                            //                                    $respo = $this->datatables->datatable_mongodb('driver', array('status' => 1, 'accountType' => 2));
-                            //                                else
-                            //                                    $respo = $this->datatables->datatable_mongodb('driver', array('status' => 1, 'accountType' => 2, 'companyId' => new MongoDB\BSON\ObjectID($operator)));
-                            //                            }
-                            //                        case '3':
-                            //                            if ($store == '') {
-                            //                                $respo = $this->datatables->datatable_mongodb('driver', array('status' => 1, 'accountType' => 3));
-                            //                            } else {
-                            //                                $respo = $this->datatables->datatable_mongodb('driver', array('status' => 1, 'accountType' => 3, 'storeId' => new MongoDB\BSON\ObjectID($store)));
-                            //                            }
-                            //                            break;
+//                        case '2':if ($plan == '') {
+//                                if ($operator == '')
+//                                    $respo = $this->datatables->datatable_mongodb('driver', array('status' => 1, 'accountType' => 2));
+//                                else
+//                                    $respo = $this->datatables->datatable_mongodb('driver', array('status' => 1, 'accountType' => 2, 'companyId' => new MongoDB\BSON\ObjectID($operator)));
+//                            }
+//                        case '3':
+//                            if ($store == '') {
+//                                $respo = $this->datatables->datatable_mongodb('driver', array('status' => 1, 'accountType' => 3));
+//                            } else {
+//                                $respo = $this->datatables->datatable_mongodb('driver', array('status' => 1, 'accountType' => 3, 'storeId' => new MongoDB\BSON\ObjectID($store)));
+//                            }
+//                            break;
                     }
                     break;
                 case 3:switch ($driverType) {
@@ -3825,24 +3834,24 @@ class Superadminmodal extends CI_Model {
                                 $respo['status'] = 3;
                             }
                             break;
-                            //                        case '2':if ($plan == '') {
-                            //                                if ($operator == '') {
-                            //                                    $respo = $this->datatables->datatable_mongodb('driver', array('status' => array('$in' => [3, 4]), 'accountType' => 2));
-                            //                                } else {
-                            //                                    $respo = $this->datatables->datatable_mongodb('driver', array('status' => array('$in' => [3, 4]), 'accountType' => 2, 'companyId' => new MongoDB\BSON\ObjectID($operator)));
-                            //                                }
-                            //                            } else {
-                            //                                $respo = $this->datatables->datatable_mongodb('driver', array('planID' => new MongoDB\BSON\ObjectID($plan), 'status' => array('$in' => [3, 4])));
-                            //                            }
-                            //                            break;
-                            //                        case '3':
-                            //                            if ($store == '') {
-                            //                                $respo = $this->datatables->datatable_mongodb('driver', array('status' => array('$in' => [3, 4]), 'accountType' => 3));
-                            //                            } else {
-                            //                                $respo = $this->datatables->datatable_mongodb('driver', array('status' => array('$in' => [3, 4]), 'accountType' => 3, 'storeId' => new MongoDB\BSON\ObjectID($store)));
-                            //                            }
-                            //
-                            //                            break;
+//                        case '2':if ($plan == '') {
+//                                if ($operator == '') {
+//                                    $respo = $this->datatables->datatable_mongodb('driver', array('status' => array('$in' => [3, 4]), 'accountType' => 2));
+//                                } else {
+//                                    $respo = $this->datatables->datatable_mongodb('driver', array('status' => array('$in' => [3, 4]), 'accountType' => 2, 'companyId' => new MongoDB\BSON\ObjectID($operator)));
+//                                }
+//                            } else {
+//                                $respo = $this->datatables->datatable_mongodb('driver', array('planID' => new MongoDB\BSON\ObjectID($plan), 'status' => array('$in' => [3, 4])));
+//                            }
+//                            break;
+//                        case '3':
+//                            if ($store == '') {
+//                                $respo = $this->datatables->datatable_mongodb('driver', array('status' => array('$in' => [3, 4]), 'accountType' => 3));
+//                            } else {
+//                                $respo = $this->datatables->datatable_mongodb('driver', array('status' => array('$in' => [3, 4]), 'accountType' => 3, 'storeId' => new MongoDB\BSON\ObjectID($store)));
+//                            }
+//
+//                            break;
                     }
                     break;
                 case 4:switch ($driverType) {
@@ -3864,23 +3873,23 @@ class Superadminmodal extends CI_Model {
                         
                                 $respo['status'] = 4;
                         } break;
-                            //                        case '2':if ($plan == '') {
-                            //                                if ($operator == '')
-                            //                                    $respo = $this->datatables->datatable_mongodb('driver', array('status' => 6, 'accountType' => 2));
-                            //                                else
-                            //                                    $respo = $this->datatables->datatable_mongodb('driver', array('status' => 6));
-                            //                            }
-                            //                            else {
-                            //                                $respo = $this->datatables->datatable_mongodb('driver', array('planID' => new MongoDB\BSON\ObjectID($plan), 'status' => 6));
-                            //                            }
-                            //                            break;
-                            //                        case '3':
-                            //                            if ($store == '')
-                            //                                $respo = $this->datatables->datatable_mongodb('driver', array('status' => 6, 'accountType' => 3));
-                            //                            else
-                            //                                $respo = $this->datatables->datatable_mongodb('driver', array('status' => 6, 'accountType' => 3, 'storeId' => new MongoDB\BSON\ObjectID($store)));
-                            //
-                            //                            break;
+//                        case '2':if ($plan == '') {
+//                                if ($operator == '')
+//                                    $respo = $this->datatables->datatable_mongodb('driver', array('status' => 6, 'accountType' => 2));
+//                                else
+//                                    $respo = $this->datatables->datatable_mongodb('driver', array('status' => 6));
+//                            }
+//                            else {
+//                                $respo = $this->datatables->datatable_mongodb('driver', array('planID' => new MongoDB\BSON\ObjectID($plan), 'status' => 6));
+//                            }
+//                            break;
+//                        case '3':
+//                            if ($store == '')
+//                                $respo = $this->datatables->datatable_mongodb('driver', array('status' => 6, 'accountType' => 3));
+//                            else
+//                                $respo = $this->datatables->datatable_mongodb('driver', array('status' => 6, 'accountType' => 3, 'storeId' => new MongoDB\BSON\ObjectID($store)));
+//
+//                            break;
                     }
                     break;
                 case 5:switch ($driverType) {
@@ -3904,23 +3913,23 @@ class Superadminmodal extends CI_Model {
                                 
                         }break;
 
-                        //                        case '2':if ($plan == '') {
-                        //                                if ($operator == '')
-                        //                                    $respo = $this->datatables->datatable_mongodb('driver', array('status' => 7, 'accountType' => 2));
-                        //                                else
-                        //                                    $respo = $this->datatables->datatable_mongodb('driver', array('status' => 7, 'accountType' => 2, 'companyId' => new MongoDB\BSON\ObjectID($operator)));
-                        //                            }
-                        //                            else {
-                        //                                $respo = $this->datatables->datatable_mongodb('driver', array('planID' => new MongoDB\BSON\ObjectID($plan), 'status' => 7));
-                        //                            }
-                        //                            break;
-                        //                        case '3':
-                        //                            if ($store == '')
-                        //                                $respo = $this->datatables->datatable_mongodb('driver', array('status' => 7, 'accountType' => 3));
-                        //                            else
-                        //                                $respo = $this->datatables->datatable_mongodb('driver', array('status' => 7, 'accountType' => 3, 'storeId' => new MongoDB\BSON\ObjectID($store)));
-                        //
-                        //                            break;
+//                        case '2':if ($plan == '') {
+//                                if ($operator == '')
+//                                    $respo = $this->datatables->datatable_mongodb('driver', array('status' => 7, 'accountType' => 2));
+//                                else
+//                                    $respo = $this->datatables->datatable_mongodb('driver', array('status' => 7, 'accountType' => 2, 'companyId' => new MongoDB\BSON\ObjectID($operator)));
+//                            }
+//                            else {
+//                                $respo = $this->datatables->datatable_mongodb('driver', array('planID' => new MongoDB\BSON\ObjectID($plan), 'status' => 7));
+//                            }
+//                            break;
+//                        case '3':
+//                            if ($store == '')
+//                                $respo = $this->datatables->datatable_mongodb('driver', array('status' => 7, 'accountType' => 3));
+//                            else
+//                                $respo = $this->datatables->datatable_mongodb('driver', array('status' => 7, 'accountType' => 3, 'storeId' => new MongoDB\BSON\ObjectID($store)));
+//
+//                            break;
                     }
                     break;
                 case 8:switch ($driverType) {
@@ -3939,58 +3948,58 @@ class Superadminmodal extends CI_Model {
                                 $respo = $this->datatables->datatable_mongodb('driver', array('planID' => new MongoDB\BSON\ObjectID($plan), 'status' => array('$in' => [2, 7])));
                                 $respo['status'] = 8;
                             } break;
-                            //                        case '2':if ($plan == '') {
-                            //                                if ($operator == '')
-                            //                                    $respo = $this->datatables->datatable_mongodb('driver', array('status' => array('$in' => [2, 7]), 'accountType' => 2));
-                            //                                else
-                            //                                    $respo = $this->datatables->datatable_mongodb('driver', array('status' => array('$in' => [2, 7]), 'accountType' => 2, 'companyId' => new MongoDB\BSON\ObjectID($operator)));
-                            //                            }
-                            //                            else {
-                            //                                $respo = $this->datatables->datatable_mongodb('driver', array('planID' => new MongoDB\BSON\ObjectID($plan), 'status' => array('$in' => [2, 7])));
-                            //                            }
-                            //                            break;
-                            //                        case '3':
-                            //                            if ($store == '')
-                            //                                $respo = $this->datatables->datatable_mongodb('driver', array('status' => array('$in' => [2, 7]), 'accountType' => 3));
-                            //                            else
-                            //                                $respo = $this->datatables->datatable_mongodb('driver', array('status' => array('$in' => [2, 7]), 'accountType' => 3, 'storeId' => new MongoDB\BSON\ObjectID($store)));
-                            //
-                            //                            break;
+//                        case '2':if ($plan == '') {
+//                                if ($operator == '')
+//                                    $respo = $this->datatables->datatable_mongodb('driver', array('status' => array('$in' => [2, 7]), 'accountType' => 2));
+//                                else
+//                                    $respo = $this->datatables->datatable_mongodb('driver', array('status' => array('$in' => [2, 7]), 'accountType' => 2, 'companyId' => new MongoDB\BSON\ObjectID($operator)));
+//                            }
+//                            else {
+//                                $respo = $this->datatables->datatable_mongodb('driver', array('planID' => new MongoDB\BSON\ObjectID($plan), 'status' => array('$in' => [2, 7])));
+//                            }
+//                            break;
+//                        case '3':
+//                            if ($store == '')
+//                                $respo = $this->datatables->datatable_mongodb('driver', array('status' => array('$in' => [2, 7]), 'accountType' => 3));
+//                            else
+//                                $respo = $this->datatables->datatable_mongodb('driver', array('status' => array('$in' => [2, 7]), 'accountType' => 3, 'storeId' => new MongoDB\BSON\ObjectID($store)));
+//
+//                            break;
                     }
                     break;
                 case 9:switch ($driverType) {
                         case '':if ($plan == '') {
-                                $respo = $this->datatables->datatable_mongodb('driver', array('accountType' => 1, 'status' => array('$in' => [3, 4, 5, 6, 9, 8])));
+                                $respo = $this->datatables->datatable_mongodb('driver', array('accountType' => 1, 'status' => array('$in' => [2, 3, 4, 8, 9])));
                                 $respo['status'] = 9;
                             } else {
-                                $respo = $this->datatables->datatable_mongodb('driver', array('planID' => new MongoDB\BSON\ObjectID($plan), 'status' => array('$in' => [3, 4, 5, 6, 9, 8])));
+                                $respo = $this->datatables->datatable_mongodb('driver', array('planID' => new MongoDB\BSON\ObjectID($plan), 'status' => array('$in' => [2, 3, 4, 8, 9])));
                                 $respo['status'] = 9;
                             } break;
 
                         case '1':if ($plan == '') {
-                                $respo = $this->datatables->datatable_mongodb('driver', array('status' => array('$in' => [3, 4, 5, 6, 9, 8]), 'accountType' => 1));
+                                $respo = $this->datatables->datatable_mongodb('driver', array('status' => array('$in' => [2, 3, 4, 8, 9]), 'accountType' => 1));
                                 $respo['status'] = 9;
                             } else {
-                                $respo = $this->datatables->datatable_mongodb('driver', array('planID' => new MongoDB\BSON\ObjectID($plan), 'status' => array('$in' => [3, 4, 5, 6, 9, 8])));
+                                $respo = $this->datatables->datatable_mongodb('driver', array('planID' => new MongoDB\BSON\ObjectID($plan), 'status' => array('$in' => [2, 3, 4, 8, 9])));
                                 $respo['status'] = 9;
                             } break;
 
-                            //                        case '2':if ($plan == '') {
-                            //                                if ($operator == '')
-                            //                                    $respo = $this->datatables->datatable_mongodb('driver', array('status' => array('$in' => [2, 3, 4, 8, 9]), 'accountType' => 2));
-                            //                                else
-                            //                                    $respo = $this->datatables->datatable_mongodb('driver', array('status' => array('$in' => [2, 3, 4, 8, 9]), 'accountType' => 2, 'companyId' => new MongoDB\BSON\ObjectID($operator)));
-                            //                            }else {
-                            //                                $respo = $this->datatables->datatable_mongodb('driver', array('planID' => new MongoDB\BSON\ObjectID($plan), 'status' => array('$in' => [2, 3, 4, 8, 9])));
-                            //                            }
-                            //                            break;
-                            //                        case '3':
-                            //                            if ($store == '')
-                            //                                $respo = $this->datatables->datatable_mongodb('driver', array('status' => array('$in' => [2, 3, 4, 8, 9]), 'accountType' => 3));
-                            //                            else
-                            //                                $respo = $this->datatables->datatable_mongodb('driver', array('status' => array('$in' => [2, 3, 4, 8, 9]), 'accountType' => 3, 'storeId' => new MongoDB\BSON\ObjectID($store)));
-                            //
-                            //                            break;
+//                        case '2':if ($plan == '') {
+//                                if ($operator == '')
+//                                    $respo = $this->datatables->datatable_mongodb('driver', array('status' => array('$in' => [2, 3, 4, 8, 9]), 'accountType' => 2));
+//                                else
+//                                    $respo = $this->datatables->datatable_mongodb('driver', array('status' => array('$in' => [2, 3, 4, 8, 9]), 'accountType' => 2, 'companyId' => new MongoDB\BSON\ObjectID($operator)));
+//                            }else {
+//                                $respo = $this->datatables->datatable_mongodb('driver', array('planID' => new MongoDB\BSON\ObjectID($plan), 'status' => array('$in' => [2, 3, 4, 8, 9])));
+//                            }
+//                            break;
+//                        case '3':
+//                            if ($store == '')
+//                                $respo = $this->datatables->datatable_mongodb('driver', array('status' => array('$in' => [2, 3, 4, 8, 9]), 'accountType' => 3));
+//                            else
+//                                $respo = $this->datatables->datatable_mongodb('driver', array('status' => array('$in' => [2, 3, 4, 8, 9]), 'accountType' => 3, 'storeId' => new MongoDB\BSON\ObjectID($store)));
+//
+//                            break;
                     }
                     break;
             }

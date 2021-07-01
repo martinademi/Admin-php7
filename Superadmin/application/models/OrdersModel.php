@@ -57,19 +57,17 @@
 		   	   
 		   	   
 		   	 switch ($status) {
-				case 0: 
-					
+		   	   	case 0: 
 		   	   		 $queryObj['status'] = 1;
 		   	   		 $respo = $this->datatables->datatable_mongodb('newOrder',$queryObj,'',-1);		   	   		
 		   	   		 break;
-				case 1:
-					
-              		// 1.unassignOrders--->4,40 2.pickupOrders-->4,3.assignOrders -->8,10,11
+		   	   	case 1:
+              // 1.unassignOrders--->4,40 2.pickupOrders-->4,3.assignOrders -->8,10,11
 
-					$queryObj['status'] = array('$in' => [4,40,8,10,11]);
-					$respo1 = $this->datatables->datatable_mongodb('unassignOrders',$queryObj,'',-1);
-					$respo2 = $this->datatables->datatable_mongodb('pickupOrders',$queryObj,'',-1);
-					$respo3 = $this->datatables->datatable_mongodb('assignOrders',$queryObj,'',-1);
+               $queryObj['status'] = array('$in' => [4,40,8,10,11]);
+               $respo1 = $this->datatables->datatable_mongodb('unassignOrders',$queryObj,'',-1);
+               $respo2 = $this->datatables->datatable_mongodb('pickupOrders',$queryObj,'',-1);
+               $respo3 = $this->datatables->datatable_mongodb('assignOrders',$queryObj,'',-1);
         
         			$respo['sEcho']= $respo1['sEcho']  + $respo2['sEcho'] +  $respo3['sEcho'];
     					$respo['iTotalRecords']= $respo1['iTotalRecords']  + $respo2['iTotalRecords'] +  $respo3['iTotalRecords'];
@@ -78,57 +76,95 @@
 		   	   		break;
 		   	   	case 2:
 		   	   		 $queryObj['status'] = array('$in' => [40]);
-					$respo = $this->datatables->datatable_mongodb('unassignOrders',$queryObj,'',-1);				
-				break;
+		   	   		 $respo = $this->datatables->datatable_mongodb('unassignOrders',$queryObj,'',-1);			   	   		 
 		   	   	case 3:
 		   	   		 $queryObj['status'] = array('$in' => [12,13,14]);
-					$respo = $this->datatables->datatable_mongodb('assignOrders',$queryObj,'',-1);		   	   		   
+		   	   		 $respo = $this->datatables->datatable_mongodb('assignOrders',$queryObj,'',-1);		   	   		
 		   	   		break;
 		   	   	case 4:
 		   	   		 $queryObj['status'] = array('$in' => [5,6]);
-						   $respo = $this->datatables->datatable_mongodb('pickupOrders',$queryObj,'',-1);		   	   		
+		   	   		 $respo = $this->datatables->datatable_mongodb('pickupOrders',$queryObj,'',-1);		   	   		
 		   	   		break;
 		   	   	case 5:
-		   	   		 	$queryObj['status'] = array('$in' => [7,15]);
-						$respo = $this->datatables->datatable_mongodb('completedOrders',$queryObj,'',-1);		   	   								
+		   	   		 $queryObj['status'] = array('$in' => [7,15]);
+		   	   		 $respo = $this->datatables->datatable_mongodb('completedOrders',$queryObj,'',-1);		   	   		
 		   	   		break;
 	   	   		case 6:
-	   	   		 	$queryObj['status'] =array('$in' => [2,3,16]);
-				   	$respo = $this->datatables->datatable_mongodb('completedOrders',$queryObj,'',-1);		   	   		
-					break; 	   	
-		   	}		   	   
-		   
+	   	   		 	 $queryObj['status'] =array('$in' => [2,3,16]);
+	   	   		     $respo = $this->datatables->datatable_mongodb('completedOrders',$queryObj,'',-1);		   	   		
+	   	   			 break; 	   	
+		   	   }		   	   
+		   	   // ***********************
+		   	   // old code
+   
+   				// if ($stDate != '' && $endDate != ''){ 					
+   				// 		switch ($status) {
+   				// 				case 0:$respo = $this->datatables->datatable_mongodb('newOrder', array("status"=>1,'timeStamp.created.isoDate' => array('$gte' => $strtTimeOff, '$lte' =>  $endTimeOff)),'',-1);
+   				// 					break;
+   				// 				case 1:
+   				// 					$respo1 = $this->datatables->datatable_mongodb('unassignOrders', array("status"=>array('$in' => [4,40]),'timeStamp.created.isoDate' => array('$gte' => $strtTimeOff, '$lte' =>  $endTimeOff)),'',-1);
+   				// 					$respo2 = $this->datatables->datatable_mongodb('pickupOrders', array("status"=>array('$in' => [4]),'timeStamp.created.isoDate' => array('$gte' => $strtTimeOff, '$lte' =>  $endTimeOff)),'',-1);
+   				// 					$respo3 = $this->datatables->datatable_mongodb('assignOrders', array("status"=>array('$in' => [8,10,11]),'timeStamp.created.isoDate' => array('$gte' => $strtTimeOff, '$lte' =>  $endTimeOff)),'',-1);
+   				// 					$respo['sEcho']= $respo1['sEcho']  + $respo2['sEcho'] +  $respo3['sEcho'];
+   				// 					$respo['iTotalRecords']= $respo1['iTotalRecords']  + $respo2['iTotalRecords'] +  $respo3['iTotalRecords'];
+   				// 					$respo['iTotalDisplayRecords']= $respo1['iTotalDisplayRecords']  + $respo2['iTotalDisplayRecords'] +  $respo3['iTotalDisplayRecords'];
+   				// 					$respo['aaData']=array_merge($respo1['aaData'],$respo2['aaData'],$respo3['aaData']);
+   				// 					break;
+   				// 				case 2:$respo = $this->datatables->datatable_mongodb('unassignOrders', array("status"=>array('$in' => [40]),'timeStamp.created.isoDate' => array('$gte' =>  $strtTimeOff, '$lte' =>  $endTimeOff)), '',-1);
+   				// 					break;
+   				// 				case 3:$respo = $this->datatables->datatable_mongodb('assignOrders', array("status"=>array('$in' => [12,13,14]),'timeStamp.created.isoDate' => array('$gte' =>  $strtTimeOff, '$lte' =>  $endTimeOff)),'',-1);
+   				// 					break;
+   				// 				case 4:$respo = $this->datatables->datatable_mongodb('pickupOrders', array("status" => array('$in' => [5,6]),'timeStamp.created.isoDate' => array('$gte' =>  $strtTimeOff, '$lte' =>  $endTimeOff)),'',-1);
+   				// 					break;
+   				// 				case 5:$respo = $this->datatables->datatable_mongodb('completedOrders', array("status" => array('$in' => [7,15]),'timeStamp.created.timeStamp' => array('$gte' => $strtTimeOff, '$lte' =>  $endTimeOff)),'',-1);
+   				// 					break;
+   				// 				case 6:$respo = $this->datatables->datatable_mongodb('completedOrders', array("status" => array('$in' => [2,3,16]),'timeStamp.created.isoDate' => array('$gte' =>  $strtTimeOff, '$lte' =>  $endTimeOff)),'',-1);
+   				// 					break;   							   
+   				// 			}
+   	 
+   				// 	}else{ 							
+   				// 			switch ($status) {
+   				// 					case 0:$respo = $this->datatables->datatable_mongodb('newOrder', array('status'=>1),'',-1);
+   				// 						break;
+   				// 					case 1:
+   				// 						    $respo1 = $this->datatables->datatable_mongodb('unassignOrders', array('visiableInAccept'=>true,'status'=>array('$in'=>[4,40])),'',-1);
+   				// 							$respo2 = $this->datatables->datatable_mongodb('pickupOrders', array('status'=>array('$in'=>[4])),'',-1);
+   				// 							$respo3 = $this->datatables->datatable_mongodb('assignOrders', array('status'=>array('$in'=>[8,10,11])),'',-1);
+   				// 							$respo['sEcho']= $respo1['sEcho']  + $respo2['sEcho'] +  $respo3['sEcho'];
+   				// 							$respo['iTotalRecords']= $respo1['iTotalRecords']  + $respo2['iTotalRecords'] +  $respo3['iTotalRecords'];
+   				// 							$respo['iTotalDisplayRecords']= $respo1['iTotalDisplayRecords']  + $respo2['iTotalDisplayRecords'] +  $respo3['iTotalDisplayRecords'];
+   				// 							$respo['aaData']=array_merge($respo1['aaData'],$respo2['aaData'],$respo3['aaData']);
+   				// 						   break;
+   				// 					case 2:$respo = $this->datatables->datatable_mongodb('unassignOrders', array('status'=>array('$in'=>[40])), '',-1);
+   				// 						break;
+   				// 					case 3:$respo = $this->datatables->datatable_mongodb('assignOrders', array('status'=>array('$in'=>[12,13,14])),'',-1);
+   				// 						break;
+   				// 					case 4:$respo = $this->datatables->datatable_mongodb('pickupOrders', array('status'=>array('$in'=>[5,6])),'',-1);
+   				// 						break;
+   				// 					case 5:$respo = $this->datatables->datatable_mongodb('completedOrders', array("status" => array('$in' => [7,15])),'',-1);
+   				// 						break;	
+   				// 					case 6:$respo = $this->datatables->datatable_mongodb('completedOrders', array("status" => array('$in' => [2,3,16])),'',-1);
+   				// 			  			break;	
+   				// 				}
+   				// 		}
+   		
    		
    
-		   $aaData = $respo["aaData"];		   
+           $aaData = $respo["aaData"];
            $datatosend = array();
            $slno = $_POST['iDisplayStart']+1;
            
-        foreach ($aaData as $value) {
-		    $arr = array();
+      foreach ($aaData as $value) {
+   		         $arr = array();
           switch($value['paymentType']){
-			case 0 : 
-				if($value['payByWallet'] == 1){
-					$paymentType = "Wallet";
-				}
-			break;
-			case 1 : 
-				if($value['payByWallet'] == 1){
-					$paymentType = "Card + Wallet";
-				}else{
-					$paymentType = "Card";
-				}
-			break;
-			case 2 : 
-				if($value['payByWallet'] == 1){
-					$paymentType = "Cash + Wallet";
-				}else{
-					$paymentType = "Cash";
-				}
-			break;
-			case 24 :
-				$paymentType = "Razorpay";
-			break;
+   		   		case 1: $paymentType = "Card";
+   					break;
+   					case 2: $paymentType = "Cash";
+   					break;
+   					case 3: $paymentType = "Wallet";
+   					break;
+   					case 4: $paymentType = "Coin Payment";
+   					break;
    			}
    			if($value['bookingType'] == 1 && $value['serviceType'] == 1){
    				$bookingType = "ASAP Delivery";
@@ -197,7 +233,8 @@
    		}
    
    		    $mobile=$value['customerDetails']['countryCode'].$value['customerDetails']['mobile'];
-			   $arr[] = $slno++;			
+   			
+               $arr[] = $slno++;			
    			$arr[] = '<a style="cursor:pointer;" class="orderDetails" value="'.$value['orderId'].'" orderId="'.$value['orderId'].'" storeType="'.$value['storeType'].'">' . $value['orderId'] . '</a>';
    			$arr[] = $value['pickup']['city'] ;
    			$arr[] = $value['customerDetails']['name'] ;
@@ -248,7 +285,7 @@
    	 function getOrdersCount() {
    		$this->load->library('mongo_db');    
    		$data['New'] = $this->mongo_db->count('newOrder');
-   		$data['Assigned'] = $this->mongo_db->where(array('status'=>array('$in'=>[40])))->count('unassignOrders');
+   		$data['Assigned'] = $this->mongo_db->where(array('status'=>array('$in'=>[40])))->count('assignOrders');
    		$data['orderPicked'] = $this->mongo_db->where(array('status'=>array('$in'=>[12,13,14])))->count('assignOrders');
    		$data['pickupReady'] = $this->mongo_db->where(array('status'=>array('$in'=>[5,6])))->count('pickupOrders');		
    		//$data['Completed'] = $this->mongo_db->where(array('status'=>array('$in'=>[7,15])))->count('completedOrders');
@@ -532,20 +569,20 @@
         $strtTimeOff=(strtotime($startDate . ' 00:00:00')+$timeOffSet);
         $endTimeOff=(strtotime($endDate . ' 23:59:59') +$timeOffSet);
 
-        if($city!='' && $storeName!='' && $startDate != '' && $endDate != ''){
+        if($city!=undefined && $storeName!=undefined && $startDate != '' && $endDate != ''){
           echo ' ins 1';
               $queryObj['cityId'] =$city;
               $queryObj['storeId'] =$storeName;
               $queryObj['bookingDateTimeStamp'] = array('$gte' => $strtTimeOff, '$lte' =>  $endTimeOff);
-           }else if($city!='' && $storeName!=''){   
+           }else if($city!=undefined && $storeName!=undefined){   
             echo ' ins 2';
               $queryObj['cityId'] =$city;
               $queryObj['storeId'] =$storeName;
-           }else if($city!='' && $startDate != '' && $endDate != ''){
+           }else if($city!=undefined && $startDate != '' && $endDate != ''){
             echo ' ins 3';
               $queryObj['cityId'] =$city;
               $queryObj['bookingDateTimeStamp'] = array('$gte' => $strtTimeOff, '$lte' =>  $endTimeOff);
-           }else if($city!=''){
+           }else if($city!=undefined){
             echo ' ins 4';
               $queryObj['cityId'] =$city;
            }else if($startDate != '' && $endDate != ''){
@@ -583,7 +620,7 @@
               break;
             case 5:
                $queryObj['status'] = array('$in' => [7,15]);
-			   $respo = $this->mongo_db->where($queryObj)->get('completedOrders');
+               $respo = $this->mongo_db->where($queryObj)->get('completedOrders');             
               break;
             case 6:
                $queryObj['status'] =array('$in' => [2,3,16]);
@@ -718,30 +755,16 @@
    			foreach ($aaData as $value) {
    				// echo '<pre>';print_r($value);die;
    				$arr = array();
-				switch($value['paymentType']){
-				case 0: 
-					if($value['payByWallet'] == 1){
-						$paymentType = "Wallet";
-					}
-				break;
-				case 1: 
-					if($value['payByWallet'] == 1){
-						$paymentType = "Card + Wallet";
-					}else{
-						$paymentType = "Card";
-					}
-				break;
-				case 2: 
-					if($value['payByWallet'] == 1){
-						$paymentType = "Cash + Wallet";
-					}else{
-						$paymentType = "Cash";
-					}
-				break;
-				case 24 :
-					$paymentType = "Razorpay";
-				break;
-				}
+   				switch($value['paymentType']){
+   					case 1: $paymentType = "Card";
+   						break;
+   						case 2: $paymentType = "Cash";
+   						break;
+   						case 3: $paymentType = "Wallet";
+   						break;
+   						case 4: $paymentType = "Coin Payment";
+   						break;
+   				}
    				if($value['bookingType'] == 1 && $value['serviceType'] == 1){
    					$bookingType = "ASAP Delivery";
    				}

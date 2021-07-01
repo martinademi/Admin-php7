@@ -54,7 +54,7 @@ $this->Logoutmodal->logout();
 
         $this->table->set_template($tmpl);
         $checkbox=' <input type="checkbox" id="select_all" />';
-        $this->table->set_heading('Sl no','Name','City',/*'Franchise',*/'Merchant','Applicable On','Offer Type','Discount','Minimum Purchase Quantity','Start Date','End Date','Global Usage Count','ACTION','Select');
+        $this->table->set_heading('Sl no','Name','City','Franchise','Merchant','Applicable On','Offer Type','Discount','Minimum Purchase Quantity','Start Date','End Date','Global Usage Count','ACTION','Select');
     
         $data['pagename'] = "Offers/productOffers";
         $this->load->view("company", $data);
@@ -134,7 +134,7 @@ $this->Logoutmodal->logout();
                            
                             '<a class="" href="'.base_url()."index.php?/productOffers/claimDetails/". $campaignData['offerId'].'/'. $campaignData['name']['en'] .'" style="color: royalblue;"  id="'.$campaignData['offerId'].'">' . $campaignData['name']['en'] .  '</a>',                
                             $campaignData['city'],
-                            //$campData,
+                            $campData,
                             $campaignData['storeName'],
                             $campaignData['applicableOnStatus'],
                             $campaignData['offerTypeString'],

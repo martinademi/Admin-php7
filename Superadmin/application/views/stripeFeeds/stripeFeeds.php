@@ -227,7 +227,7 @@
         <ul class="breadcrumb" style="margin-top: 5%;">
 
             <li>
-                <a href="#" class="active"><?php echo $this->lang->line('CASH_FREE_LOGS'); ?></a>
+                <a href="#" class="active">STRIPE FEEDS</a>
             </li>
 
         </ul>

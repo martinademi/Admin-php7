@@ -224,7 +224,6 @@ $acc_pageArr = array(
     'Colors/colors' => 'productSetup',
     'Shifts/shifts'=>'driver',
     'Taxes/tax' => 'taxes',
-    'Tip/tip' => 'taxes',
     'SizeGroups/sizegroup' => 'productSetup',
     'Brands/brands' => 'productSetup',
     'AppWebPages/cterms' => 'policyPages',
@@ -597,7 +596,6 @@ if ($main_admin_check != true) {
                     'Colors/colors': 'productSetup',
                     'Shifts/shifts':'driver',
                     'Taxes/tax': 'taxes',
-                    'Tip/tip' : 'taxes',
                     'SizeGroups/sizegroup': 'productSetup',
                     'Brands/brands': 'productSetup',
                     'AppWebPages/cterms': 'policyPages',
@@ -767,7 +765,6 @@ if ($main_admin_check != true) {
                                     <li class="dashboard"><a  href="<?php echo base_url(); ?>index.php?/superadmin/Dashboard"><img class="menuIconClass" src="<?php echo ServiceLink . '/pics/Dashboard.png' ?>" ><?php echo $this->lang->line('dashboard'); ?></a></li>
                                     <li class="menuPageName_paymentgateway"><a  href="<?php echo base_url(); ?>index.php?/PaymentGateway"><img class="menuIconClass" src="<?php echo ServiceLink . 'pics/payroll_off.png' ?>" ><?php echo $this->lang->line('paymentgateway'); ?></a></li>
                                     <li class="menuPageName_taxes"><a  href="<?php echo base_url(); ?>index.php?/taxController"><img class="menuIconClass" style="width:15px;" src="<?php echo base_url(); ?>theme/grocerIcons/Payout logs.png" ><?php echo $this->lang->line('taxsetup'); ?></a></li>
-                                     <li class="menuPageName_tip"><a  href="<?php echo base_url(); ?>index.php?/tipController"><img class="menuIconClass" style="width:15px;" src="<?php echo base_url(); ?>theme/grocerIcons/Payout logs.png" ><?php echo "TIP"; ?></a></li>
                                     
                                     
 
@@ -813,12 +810,12 @@ if ($main_admin_check != true) {
                                         <ul class="nav child_menu">
                                             <li class="category"><a  href="<?php echo base_url(); ?>index.php?/Category"><img style="width:20px" class="menuIconClass" src="<?php echo base_url() ?>theme/grocerIcons/list.png" ><?php echo $this->lang->line('productcategories'); ?></a></li>
 											<li class="category"><a  href="<?php echo base_url(); ?>index.php?/ProductCategory"><img style="width:20px" class="menuIconClass" src="<?php echo base_url() ?>theme/grocerIcons/list.png" ><?php echo $this->lang->line('storeproductcategories'); ?></a></li>
-                                            <!-- <li class="franchisecategory"><a  href="<?php echo base_url(); ?>index.php?/FranchiseCategory"><img style="width:20px" class="menuIconClass" src="<?php echo base_url() ?>theme/grocerIcons/list.png" ><?php echo $this->lang->line('franchiseproductcategories'); ?></a></li> -->
-                                            <!-- <li class="colors" ><a  href="<?php echo base_url(); ?>index.php?/colorsController"><img style="width:20px" class="menuIconClass"  src="<?php echo base_url() ?>theme/grocerIcons/Color.png" > <?php echo $this->lang->line('colors'); ?></a></li>
-                                            <li class="sizegroup" ><a  href="<?php echo base_url(); ?>index.php?/sizeController"><img style="width:20px" class="menuIconClass"  src="<?php echo base_url() ?>theme/grocerIcons/Size.png" > <?php echo $this->lang->line('sizegroups'); ?></a></li> -->
+                                            <li class="franchisecategory"><a  href="<?php echo base_url(); ?>index.php?/FranchiseCategory"><img style="width:20px" class="menuIconClass" src="<?php echo base_url() ?>theme/grocerIcons/list.png" ><?php echo $this->lang->line('franchiseproductcategories'); ?></a></li>
+                                            <li class="colors" ><a  href="<?php echo base_url(); ?>index.php?/colorsController"><img style="width:20px" class="menuIconClass"  src="<?php echo base_url() ?>theme/grocerIcons/Color.png" > <?php echo $this->lang->line('colors'); ?></a></li>
+                                            <li class="sizegroup" ><a  href="<?php echo base_url(); ?>index.php?/sizeController"><img style="width:20px" class="menuIconClass"  src="<?php echo base_url() ?>theme/grocerIcons/Size.png" > <?php echo $this->lang->line('sizegroups'); ?></a></li>
                                             <li class="brands" ><a  href="<?php echo base_url(); ?>index.php?/brandsController"><img style="width:20px" class="menuIconClass"  src="<?php echo base_url() ?>theme/grocerIcons/Brands.png" > <?php echo $this->lang->line('brands'); ?></a></li>
                                             <li class="manufacturer" ><a  href="<?php echo base_url(); ?>index.php?/Manufacturer_Controller"><img style="width:20px" class="menuIconClass" src="<?php echo base_url() ?>theme/grocerIcons/Manufacturer.png" ><?php echo $this->lang->line('manufacturer'); ?></a></li>
-                                            <!-- <li class="manufacturer" ><a  href="<?php echo base_url(); ?>index.php?/symptomController"><img style="width:20px" class="menuIconClass" src="<?php echo base_url() ?>theme/grocerIcons/Orders.png" ><?php echo $this->lang->line('SYMPTOM'); ?></a></li> -->
+                                            <li class="manufacturer" ><a  href="<?php echo base_url(); ?>index.php?/symptomController"><img style="width:20px" class="menuIconClass" src="<?php echo base_url() ?>theme/grocerIcons/Orders.png" ><?php echo $this->lang->line('SYMPTOM'); ?></a></li>
                                            <!--  <li class="packagebox" ><a  href="<?php echo base_url(); ?>index.php?/packageBox"><img style="width:20px" class="menuIconClass"  src="<?php echo base_url() ?>theme/grocerIcons/Size.png" > <?php echo $this->lang->line('packagebox'); ?></a></li> -->
                                             <li><a><img class="menuIconClass" src="<?php echo base_url() ?>theme/grocerIcons/Manufacturer.png" >ADD-ON's GROUP<span class="fa fa-chevron-down"></span></a>
                                             <ul class="nav child_menu">
@@ -851,13 +848,13 @@ if ($main_admin_check != true) {
                                     </li>
 
                                  
-                                    <!-- <li class="menuPageName_franchiseSetup"><a><img class="menuIconClass" src="<?php echo base_url() ?>theme/icon/Francies_location.png" > <?php echo $this->lang->line('franchisesetup'); ?><span class="fa fa-chevron-down"></span></a>
+                                    <li class="menuPageName_franchiseSetup"><a><img class="menuIconClass" src="<?php echo base_url() ?>theme/icon/Francies_location.png" > <?php echo $this->lang->line('franchisesetup'); ?><span class="fa fa-chevron-down"></span></a>
                                         <ul class="nav child_menu">
                                             <li class="franchise"><a  href="<?php echo base_url(); ?>index.php?/Franchise"><img class="menuIconClass" src="<?php echo base_url() ?>theme/icon/Francies_location.png" > <?php echo $this->lang->line('franchise'); ?></a></li>
                                             <li class="franchiseCommission"><a  href="<?php echo base_url(); ?>index.php?/Franchise/franchiseCommission"><img class="menuIconClass"  src="<?php echo base_url() ?>theme/icon/Francies_location.png" > <?php echo $this->lang->line('franchisecommission'); ?></a></li>
                                            <li class="franchiseManager"><a  href="<?php echo base_url(); ?>index.php?/franchiseManager"><img class="menuIconClass"  src="<?php echo base_url() ?>theme/icon/manager.png" > <?php echo $this->lang->line('franchisemanager'); ?></a></li>
                                         </ul>
-                                    </li> -->
+                                    </li>
 
                          
                                     <!-- <li class="menuPageName_customer"><a><img style="width:15px;" src="<?php echo base_url(); ?>/theme/grocerIcons/customer.png"  class="menuIconClass"><?php echo $this->lang->line('customers'); ?><span class="fa fa-chevron-down"></span></a>
@@ -933,7 +930,7 @@ if ($main_admin_check != true) {
                                             
                                             <!-- <li class="stripePayoutLogs"><a  href="<?php echo base_url(); ?>index.php?/superadmin/paymentCycle"><img class="menuIconClass" src="<?php echo ServiceLink . 'pics/payroll_off.png' ?>" >STRIPE PAYOUT LOGS</a></li> -->
                                             <!-- <li class="stripeTaxLogs"><a  href="<?php echo base_url(); ?>index.php?/superadmin/paymentCycle"><img class="menuIconClass" src="<?php echo ServiceLink . 'pics/payroll_off.png' ?>" >STRIPE TXN LOGS</a></li> -->
-                                            <li class="stripeTaxLogs"><a  href="<?php echo base_url(); ?>index.php?/Stripefeeds/index"><img class="menuIconClass" src="<?php echo ServiceLink . 'pics/payroll_off.png' ?>" ><?php echo $this->lang->line('CASH_FREE_LOGS'); ?></a></li>
+                                            <li class="stripeTaxLogs"><a  href="<?php echo base_url(); ?>index.php?/Stripefeeds/index"><img class="menuIconClass" src="<?php echo ServiceLink . 'pics/payroll_off.png' ?>" ><?php echo $this->lang->line('STRIPE_LOGS'); ?></a></li>
                                             <li class="payoff" ><a  href="<?php echo base_url(); ?>index.php?/payoff"><img class="menuIconClass" src="<?php echo ServiceLink . 'pics/payroll_off.png' ?>" ><?php echo $this->lang->line('PAYOFF'); ?></a></li>
                                          
                                         </ul>
@@ -943,10 +940,10 @@ if ($main_admin_check != true) {
                                     <li class="menuPageName_marketing"><a><img class="menuIconClass" src="<?php echo ServiceLink . 'pics/Vehicles.png'; ?>" ><?php echo $this->lang->line('marketing'); ?><span class="fa fa-chevron-down"></span></a>
                                         <ul class="nav child_menu">
                                             <!-- <li ><a  href="<?php echo base_url(); ?>index.php?/campaigns/index/1"><img class="menuIconClass" src="<?php echo ServiceLink . 'pics/Vehicle types.png' ?>" > <?php echo $this->lang->line('loyaltyprogram'); ?></a></li> -->
-                                            <li><a  href="<?php echo base_url(); ?>index.php?/referralController/index/1"><img class="menuIconClass" src="<?php echo ServiceLink . 'pics/Vehicles.png' ?>" > <?php echo $this->lang->line('referalcampaign'); ?></a></li>
+                                            <!-- <li><a  href="<?php echo base_url(); ?>index.php?/referralController/index/1"><img class="menuIconClass" src="<?php echo ServiceLink . 'pics/Vehicles.png' ?>" > <?php echo $this->lang->line('referalcampaign'); ?></a></li> -->
                                             <li><a  href="<?php echo base_url(); ?>index.php?/CouponCode/index/1"><img class="menuIconClass" src="<?php echo ServiceLink . 'pics/Vehicle Models.png' ?>" > <?php echo $this->lang->line('promocodes'); ?></a> </li>
                                             <li><a href="<?php echo base_url(); ?>index.php?/Sendnotification"><img style="width:15px;" src="<?php echo base_url(); ?>theme/grocerIcons/App content.png"  class="menuIconClass"> <?php echo $this->lang->line('sendnotification'); ?></a></li>
-                                            <!-- <li class="offers"><a  href="<?php echo base_url(); ?>index.php?/logs/promoLogs"><img class="menuIconClass" src="<?php echo ServiceLink . 'pics/icon_Zones.png' ?>" class="">  <?php echo $this->lang->line('promocodelogs'); ?></a></li> -->
+                                            <li class="offers"><a  href="<?php echo base_url(); ?>index.php?/logs/promoLogs"><img class="menuIconClass" src="<?php echo ServiceLink . 'pics/icon_Zones.png' ?>" class="">  <?php echo $this->lang->line('promocodelogs'); ?></a></li>
                                             <li class="" style="display:none"><a><img class="menuIconClass" src="<?php echo ServiceLink . 'pics/icon_Zones.png'; ?>" >LOGS<span class="fa fa-chevron-down"></span></a>
                                                 <ul class="nav child_menu">
                                                     <li class="offers"><a  href="<?php echo base_url(); ?>index.php?/logs/campaignQualifiedTripLogs"><img class="menuIconClass" src="<?php echo ServiceLink . 'pics/icon_Zones.png' ?>" class="">   <?php echo $this->lang->line('campaignqualifiedtriplogs'); ?></a></li>

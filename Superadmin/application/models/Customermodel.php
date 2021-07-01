@@ -70,9 +70,9 @@ class Customermodel extends CI_Model {
             $arr[] = ($value['email'] == '' || $value['email'] == null) ? "N/A" : $this->Customermodel->maskFileds($value['email'], 1);
             $arr[] = ($value['registeredFromCity'] == '' || $value['registeredFromCity'] == null) ? "N/A" : $value['registeredFromCity'];
             $arr[] = ($value['mobileDevices']['appVersion'] == '' || $value['mobileDevices']['appVersion'] == null) ? "N/A" : $value['mobileDevices']['appVersion'];
-            //$arr[] = ($value['approvedDate'] == '' || $value['approvedDate'] == null) ? "N/A" :  date('F  d, Y h:i:s A ', ($value['approvedDate']) - ($this->session->userdata('timeOffset') * 60));
+            $arr[] = ($value['approvedDate'] == '' || $value['approvedDate'] == null) ? "N/A" :  date('F  d, Y h:i:s A ', ($value['approvedDate']) - ($this->session->userdata('timeOffset') * 60));
             $arr[] = date('F  d, Y h:i:s A ', ($value['createdDate']) - ($this->session->userdata('timeOffset') * 60));
-            // $arr[] = date('F  d, Y h:i:s A ', ($value['deactivateDate']) - ($this->session->userdata('timeOffset') * 60));
+            $arr[] = date('F  d, Y h:i:s A ', ($value['deactivateDate']) - ($this->session->userdata('timeOffset') * 60));
             $arr[] = date('F  d, Y h:i:s A ', ($value['banDate']) - ($this->session->userdata('timeOffset') * 60));
             $arr[] = ($value['deactivateReason'] != '') ? $value['deactivateReason'] : "No reason specified";
             $arr[] = ($value['deviceId'] == '' || $value['deviceId'] == null)?'N/A':$value['deviceId'];

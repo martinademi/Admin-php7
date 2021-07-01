@@ -82,7 +82,7 @@ class SubCategorymodal extends CI_Model {
         $sl = $_POST['iDisplayStart'] + 1;
 
         foreach ($aaData as $value) {
-            $count = $this->mongo_db->where(array('subCategoryId' => new MongoDB\BSON\ObjectID($value['_id']['$oid']),'status'=>1))->count('storethirdCategory');
+            $count = $this->mongo_db->where(array('subCategoryId' => new MongoDB\BSON\ObjectID($value['_id']['$oid'])))->count('storethirdCategory');
             $count1 = $this->mongo_db->where(array('categoryId' => $param,'subCategoryId' => $value['_id']['$oid']))->count('metaTags');
 
             if($status!=2){
@@ -148,11 +148,11 @@ class SubCategorymodal extends CI_Model {
 
 
         if ($id != '' || $id != null) {
-            $cursor = $this->mongo_db->where(array("categoryId" => new MongoDB\BSON\ObjectID($id),'visibility'=>1,'status'=>1))->get('storesecondCategory');
+            $cursor = $this->mongo_db->where(array("categoryId" => new MongoDB\BSON\ObjectID($id),'visibility'=>1))->get('storesecondCategory');
             echo json_encode(array('data' => $cursor));
         } else {
             $val = $this->input->post('val');
-            $cursor = $this->mongo_db->where(array("categoryId" => new MongoDB\BSON\ObjectID($val),'visibility'=>1,'status'=>1))->get('storesecondCategory');
+            $cursor = $this->mongo_db->where(array("categoryId" => new MongoDB\BSON\ObjectID($val),'visibility'=>1))->get('storesecondCategory');
             $entities = array();
             $entities = '<select class="form-control error-box-class"  id="subCategory" name="subCategory">
                      <option value="">Select Sub-Category</option>';

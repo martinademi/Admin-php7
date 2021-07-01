@@ -47,7 +47,6 @@ $lang['heading_DriverMileageSetting'] = 'MILEAGE SETTINGS';
 $lang['lable_baseFare'] = 'Base Fare';
 $lang['lable_Mileage_Price'] = 'Mileage Price';
 $lang['lable_ConvenienceFee'] = 'Convenience Fee';
-$lang['label_Convenience'] = 'Convenience';
 $lang['lable_timeFee'] = 'Time Fee';
 $lang['lable_waitingFee'] = 'Waiting Fee';
 $lang['lable_minimumFare'] = 'Minimum Fare';

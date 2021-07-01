@@ -312,22 +312,6 @@ $appConfig['currency'] = "$";
             }
         });
     }
-    function fetchConvenienceDataCityWise(){
-        $.ajax({
-                url: "<?php echo base_url() ?>index.php?/business/ConvenienceDataCityWise",
-                type: 'POST',
-                dataType: 'json',
-                data: { val: $('#cityLists').val() },
-                success : function (json) {
-                if(json.data.convenienceType == 1){
-                    ("#convenienceTypeF").attr('checked', true);
-                } else{
-                    ("#convenienceTypeP").attr('checked', true);
-                }
-                $("#convenienceFee").val(json.data.convenienceFee);
-            }
-        });
-    }
     function getAddLatLong() {
         //console.log("my text",text)
         var addr = $('#mapentityAddress').val();
@@ -561,7 +545,7 @@ function placeCom(place){
         });
 
         $('#cityLists').on('change', function () {
-            fetchConvenienceDataCityWise();
+
             $.ajax({
                 url: "<?php echo base_url() ?>index.php?/business/getZones",
                 type: 'POST',
@@ -688,17 +672,7 @@ function placeCom(place){
              $('#dp_id').val($('#dp_name option:selected').attr('data-id'));
              $('#dp_email').val($('#dp_name option:selected').attr('data-email'));
         });
-        var conEnable;
-        $("#Convenience").on("change", function (e) {
-        conEnable = $("input[name='Convenience']:checked").val();
-            if(conEnable == "on"){
-                conEnable = 1;
-                $("#conveniencediv").show();
-            } else{
-                conEnable = 0;
-                $("#conveniencediv").hide();
-            }
-        });
+
         $('#insert').click(function () {
             var status = '<?php echo $status; ?>';
             $(this).prop('disabled', false);
@@ -783,7 +757,6 @@ function placeCom(place){
             var forcedAccept = $("input[name='forcedAccept']:checked").val();
             var autoDispatch = $("input[name='autoDispatch']:checked").val();
             var Autoapproval = $("input[name='Autoapproval']:checked").val();
-            var popularStore = $("input[name='popularStore']:checked").val();
             var grocerDriver = $("#grocerDriver").val();
             var storeDriver = $("#storeDriver").val();
             var Offlinedriver = $("#Offlinedrivers").val();
@@ -1026,7 +999,6 @@ function placeCom(place){
                         locationId: locationId,
                         forcedAccept: forcedAccept,
                         Autoapproval: Autoapproval,
-                        popularStore: popularStore,
                         autoDispatch: autoDispatch,
                         CategoryId: CategoryList,
                         SubCategoryId: SubCategoryList,
@@ -1043,8 +1015,7 @@ function placeCom(place){
 						storeTypeName:storeTypeName,
                         consumptionTime:consumptionTime,
                         foodtype:foodtype,
-                        convenienceType:convenienceType,
-                        conEnable:conEnable
+                        convenienceType:convenienceType
 
                     },
                     dataType: 'JSON',
@@ -1903,16 +1874,6 @@ function placeCom(place){
                                         </div>
                                     </div>
 
-                                    <div class="form-group">
-                                        <label for="fname" class="col-sm-2 control-label error-box-class"><?php echo 'POPULAR STORE'; ?></label>
-                                        <div class="col-sm-6">
-                                            <div class="switch">
-                                                <input id="popularStore" name="popularStore" class="cmn-toggle cmn-toggle-round" type="checkbox" style="display: none;">
-                                                <label for="popularStore"></label>
-                                            </div>
-                                        </div>
-                                    </div>
-
                                     <input type="hidden" class="form-control" id="entitypostalcode" value='' placeholder="0" name="PostalCode"  aria-required="true" <?PHP echo $enable; ?>>
 
                                     <input type="hidden" class="form-control" id="entiryLongitude" value='' placeholder="0.00" name="Longitude"  aria-required="true" <?PHP echo $enable; ?>>
@@ -2205,45 +2166,28 @@ function placeCom(place){
                                             <span class="abs_text1"><b><?php echo $this->lang->line('Minutes'); ?></b></span>
                                         </div>
                                     </div>
-                                </div>
-                            </section>
-                            <section class="" id="convenience">
-                            <div class="convenience row row-same-height">
-                            <h6 class="textAlign"><?php echo $this->lang->line('label_Convenience'); ?></h6>
-                            <hr>
-                            <div class="form-group">
-                                <label for="fname" class="col-sm-2 control-label error-box-class"><?php echo $this->lang->line('label_Convenience'); ?></label>
-                                <div class="col-sm-6">
-                                    <div class="switch">
-                                        <input id="Convenience" name="Convenience" class="cmn-toggle cmn-toggle-round" type="checkbox" style="display: none;">
-                                        <label for="Convenience"></label>
+                                    <div class="form-group required" aria-required="true">
+                                        <?php $data['convenienceType'] =  (isset($data['convenienceType']) == '1') ? $data['convenienceType'] : 1 ?>
+                                        <span class="col-sm-2 control-label"><?php echo 'Convenience Type'; ?><span class="mandatory"></span></span>
+                                        <div class="col-sm-2">
+                                            <input type="radio" name="convenienceType" value=1 id="convenienceType"  <?php echo ($data['convenienceType'] == 1) ? "CHECKED" : " " ?> >
+                                            <span class=" control-label">Fixed</span>
+                                        </div>
+                                        <div class="col-sm-2">
+                                            <input type="radio" name="convenienceType" value=2 id="convenienceType"  <?php echo ($data['convenienceType'] == 2) ? "CHECKED" : " " ?> >
+                                            <span class=" control-label">Percentage</span>
+                                        </div>
                                     </div>
-                                </div>
-                            </div>
-                            
-                            <div class="conveniencediv" id="conveniencediv" style="display:none;">
-                                <div class="form-group required" aria-required="true">
-                                    <?php $data['convenienceType'] =  (isset($data['convenienceType']) == '1') ? $data['convenienceType'] : 1 ?>
-                                    <span class="col-sm-2 control-label"><?php echo 'Convenience Type'; ?><span class="mandatory"></span></span>
-                                    <div class="col-sm-2">
-                                        <input type="radio" name="convenienceType" value=1 id="convenienceTypeF"  <?php echo ($data['convenienceType'] == 1) ? "CHECKED" : " " ?> >
-                                        <span class=" control-label">Fixed</span>
+                                    <div class="form-group required">
+                                        <label class='col-sm-2 control-label'><?php echo $this->lang->line('lable_ConvenienceFee'); ?></label>
+                                        <div class="col-sm-2">
+                                            <!-- <span class="abs_text1 currencySymbol"><b><?php echo $appConfig['currency']; ?></b></span> -->
+                                            <input type="text" name="pricing[convenienceFee]" id="convenienceFee" placeholder="Enter Convenience Fee" class="form-control required numbervalidation" data-v-max="9999999999.99" data-m-dec="2">
+                                        </div>
                                     </div>
-                                    <div class="col-sm-2">
-                                        <input type="radio" name="convenienceType" value=2 id="convenienceTypeP"  <?php echo ($data['convenienceType'] == 2) ? "CHECKED" : " " ?> >
-                                        <span class=" control-label">Percentage</span>
-                                    </div>
-                                </div>
-                                <div class="form-group required">
-                                    <label class='col-sm-2 control-label'><?php echo $this->lang->line('lable_ConvenienceFee'); ?></label>
-                                    <div class="col-sm-2">
-                                        <!-- <span class="abs_text1 currencySymbol"><b><?php echo $appConfig['currency']; ?></b></span> -->
-                                        <input type="text" name="pricing[convenienceFee]" id="convenienceFee" placeholder="Enter Convenience Fee" class="form-control required numbervalidation" data-v-max="9999999999.99" data-m-dec="2">
-                                    </div>
-                                </div>
-                            </div>
 
-                            </div>
+
+                                </div>
                             </section>
                             <section class="" id="tab4">
                                 <div class="row row-same-height">

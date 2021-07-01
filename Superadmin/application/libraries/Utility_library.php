@@ -1,7 +1,7 @@
 <?php if (!defined('BASEPATH')) exit('No direct script access allowed');
  
  
- //require_once '/xampp/htdocs/delivx-hellobee-admin-php7/Superadmin/application/models/S3.php';
+ require_once '/var/www/html/Admin/admin/Superadmin/application/models/S3.php';
 Class Utility_library
 {
 
@@ -46,6 +46,7 @@ Class Utility_library
             }
             // Instantiate the class
             $s3 = new S3(AMAZON_AWS_ACCESS_KEY, AMAZON_AWS_AUTH_SECRET);
+//            print_r($s3);die;
             $result = $s3->putObjectFile($uploadFile, $bucketName, $folder_name . '/' . $rename_file, S3::ACL_PUBLIC_READ, array("Cache-Control" => "max-age=864000", "Expires" => gmdate("D, d M Y H:i:s T", time() + 864000)),"image/jpeg");
  
             //// Put our file (also with public read access)

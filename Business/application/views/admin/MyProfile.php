@@ -235,12 +235,7 @@ if(($ProfileData['driverType'] == '2')){
 
 
     $(document).ready(function () {
-        // freelancer driver store cool
-        var driverTypeStore= '<?php echo $ProfileData['driverType'] ?>';
-        if(driverTypeStore==1){
-            $('#autoDispatch').prop('checked', true);
-            $('#autoDispatch').prop('disabled', true);
-        }
+
         // orderType validation
         var orderType='<?php echo $ProfileData['orderType'] ?>';
         if (orderType == '1') {
@@ -1608,7 +1603,7 @@ for ($i = 1; $i <= $no_of_slots; $i++) {
     });
 
 </script>
-<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=places&key=<?= GOOGLE_MAP_API_KEY ?>"></script>
+<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=places&key=AIzaSyCK5bz3K1Ns_BASkAcZFLAI_oivKKo98VE"></script>
 <script>
     var addressType = '';
     function callMap() {
@@ -2196,7 +2191,7 @@ function placeCom(place){
                                     </div>
                                         <!-- send order email id -->
                                             
-                                    <div class="form-group" style="display:none;">
+                                    <div class="form-group">
                                         <label for="fname" class="col-sm-3 control-label"><?php echo $this->lang->line('Send_Order_Email_To'); ?>  <span style="color: red; font-size: 15px">*</span></label>
                                         <div class="col-sm-6">
                                             <input type="text" class="form-control" id="OrderEmails" value='<?PHP echo $ProfileData['orderEmail']; ?>' placeholder="Order Email" name="FData[OrderEmail]"  aria-required="true">

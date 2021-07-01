@@ -442,7 +442,7 @@ body.dragging,
                  
          var divElement1 = '<div class="customPriceField row"><div class="form-group pos_relative2 customPriceField' + z + '">'
                     + '<label id="titleLabel' + z + '" for="fname" class="col-sm-2 control-label">Units ' + z + ' </label>'
-                    + '<div class="col-sm-2 pos_relative2">'
+                    + '<div class="col-sm-3 pos_relative2">'
                     + '<span  class="abs_text"><b><?php echo $this->lang->line('label_Title'); ?></b></span>'
                     + '<input type="text" name="units[' + z + '][name][en]" value="' + row.name.en + '" class="form-control productTitle" id="title' + z + '"  placeholder="Enter Unit">'
                     + '</div>'
@@ -451,10 +451,10 @@ body.dragging,
                     + ' <input type="text" maxlength="8" name="units[' + z + '][price][en]" value="' + row.price.en + '" class="form-control productValue" id="value' + z + '" placeholder="Enter Unit Price" onkeypress="return isNumberKey(event)">'
                     + ' </div>'
                    
-                    + '<div class="col-sm-2 pos_relative2">'         
+                    + '<div class="col-sm-1 pos_relative2">'         
                     + '<input type="hidden" name="units[' + z + '][unitId]" value="' + row.unitId + '">'        
                     + ' <?php if($storeType != "1" || $storeType != 1){?>'                                  
-                    + '<input type="text" readonly maxlength="8" name="units[' + z + '][quantity][en]" value="' + row.availableQuantity + '" class="error-box-class  form-control productTitle" id="quantity0"  placeholder="Enter Stock"  onkeypress="return isNumberKey(event)">'                   
+                    + '<input type="text" maxlength="8" name="units[' + z + '][quantity][en]" value="' + row.availableQuantity + '" class="error-box-class  form-control productTitle" id="quantity0"  placeholder="Enter Stock"  onkeypress="return isNumberKey(event)">'                   
                     + '<input type="hidden" name="units[' + z + '][availableQuantity]" value="' + row.availableQuantity + '">'
                     + '<?php } ?>'
                     + '</div>'
@@ -468,7 +468,7 @@ body.dragging,
                     + '<input type="hidden" name="units[' + z + '][name][<?= $val['langCode']; ?>]" value="' + row.name.<?php echo $val['langCode']; ?> + '" class="error-box-class  form-control productTitle title<?= $val['langCode']; ?>"  placeholder="Enter Unit">'
                     + '<input type="hidden" name="units[' + z + '][price][<?= $val['langCode']; ?>]" value="' + row.price.<?php echo $val['langCode']; ?> + '" class="error-box-class  form-control productValue value<?= $val['langCode']; ?>" placeholder="Enter the price"  onkeypress="return isNumberKey(event)">'
                     + '<?php if($storeType == "1" || $storeType == 1){?>'
-                    + '<input type="hidden" readonly maxlength="8" name="units[' + z + '][quantity][<?= $val['langCode']; ?>]" class="error-box-class  form-control productTitle quantity<?= $val['langCode']; ?>"  placeholder="Enter Stock"  onkeypress="return isNumberKey(event)">'
+                    + '<input type="hidden" maxlength="8" name="units[' + z + '][quantity][<?= $val['langCode']; ?>]" class="error-box-class  form-control productTitle quantity<?= $val['langCode']; ?>"  placeholder="Enter Stock"  onkeypress="return isNumberKey(event)">'
                     + ' <?php } ?>
                             <?php } else { }
                             }                                                 
@@ -811,7 +811,7 @@ body.dragging,
 
          var divElement1 = '<div class="customPriceField row"><div class="form-group pos_relative2 customPriceField' + z + '">'
                     + '<label id="titleLabel' + z + '" for="fname" class="col-sm-2 control-label">Units ' + len + ' </label>'
-                    + '<div class="col-sm-2 pos_relative2">'
+                    + '<div class="col-sm-3 pos_relative2">'
                     + '<span  class="abs_text"><b><?php echo $this->lang->line('label_Title'); ?></b></span>'
                     + '<input type="text" name="units[' + len + '][name][en]" class="form-control productTitle" id="title' + z + '"  placeholder="Enter Unit">'
                     + '</div>'
@@ -820,8 +820,8 @@ body.dragging,
                     + ' <input type="text" maxlength="8" name="units[' + len + '][price][en]" class="form-control productValue" id="value' + z + '" placeholder="Enter Unit Price" onkeypress="return isNumberKey(event)">'
                     + ' </div>'
                     + ' <?php if($storeType == "5" || $storeType == 5){?>'
-                    + '<div class="col-sm-2 pos_relative2">'                                                   
-                    + '<input type="text" readonly maxlength="8" name="units[' + len + '][quantity][en]" class="error-box-class  form-control productTitle" id="quantity0"  placeholder="Enter Stock"  onkeypress="return isNumberKey(event)">'
+                    + '<div class="col-sm-1 pos_relative2">'                                                   
+                    + '<input type="text" maxlength="8" name="units[' + len + '][quantity][en]" class="error-box-class  form-control productTitle" id="quantity0"  placeholder="Enter Stock"  onkeypress="return isNumberKey(event)">'
                     + '</div>'
                     + '<?php } ?>'
                     + '<div class="col-sm-3 form-group" id="text_unitLanguage" >'

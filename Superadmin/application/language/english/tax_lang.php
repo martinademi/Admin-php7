@@ -48,7 +48,6 @@ $lang['error_oneselect'] = 'Please select only one tax';
 //alert
 $lang['alert_activate'] = "Are you sure you want to activate the taxes ?";
 $lang['alert_deactivate'] = "Are you sure you want to deactivate the taxes ?";
-$lang['alert_activate_tip'] = "Are you sure you want to activate the tip ?";
-$lang['alert_deactivate_tip'] = "Are you sure you want to deactivate the tip ?";
+
 
 

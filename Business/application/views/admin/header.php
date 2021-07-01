@@ -228,11 +228,11 @@
                                     </a>
                                 </li>
 
-                                <!-- <li class="workinghour"><a href="<?php echo base_url(); ?>index.php?/Deliveryschduled">
+                                <li class="workinghour"><a href="<?php echo base_url(); ?>index.php?/Deliveryschduled">
                                         <img class="menuIconClass" src="<?php echo ServiceLink; ?>pics/svg/working hours.svg">
                                         <span><?php echo $this->lang->line('DELIVERY_SCHEDULE'); ?></span>
                                     </a>
-                                </li> -->
+                                </li>
 
 
                                 <li class="Storemanagers"><a  href="<?php echo base_url(); ?>index.php?/Storemanagers">

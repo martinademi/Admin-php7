@@ -1015,7 +1015,7 @@ function citiesList(){
                                             <div class="col-sm-3 error-box text_err" id="text_serviceZones" style="color:red"></div>                                       
                                         </div>
                                     </div>
-                                    <!-- <div class="row">
+                                    <div class="row">
                                         <div class="form-group pos_relative2">
                                             <label for="fname" class="col-sm-2 control-label"><?php echo $this->lang->line('label_Franchise'); ?></label>
                                             <div class="col-sm-6 pos_relative2">
@@ -1027,7 +1027,7 @@ function citiesList(){
                                             </div>
                                             <div class="col-sm-3 error-box" id="text_subCategory"></div>
                                         </div>
-                                    </div> -->
+                                    </div>
                                   
                                     
                                     <div class="row">

@@ -116,7 +116,7 @@ class CartsModal extends CI_Model {
             $arr[] = $index++;
             $arr[] = '<a href="' . base_url() . 'index.php?/CartsController/getCartDetailsData/' . $data['_id']['$oid'] . '" style="cursor: pointer;text-decoration: underline;"  cartId="' . $data['_id']['$oid'] . '">' . $data['_id']['$oid'] . '</a>';
             $arr[] = (!isset($data['userName']) || $data['userName'] == '') ? "Guest User" : $data['userName'];
-            //$arr[] = "N/A";
+            $arr[] = "N/A";
             $arr[] = ($storeName == '') ? "N/A" : $storeName;
             $arr[] = (!isset($data['cityName']) || $data['cityName'] == '') ? "N/A" : $data['cityName'];
             $arr[] = $storeType;

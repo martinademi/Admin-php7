@@ -103,7 +103,7 @@ $this->Logoutmodal->logout();
         // $data['business'] = $this->Businessmodal->businessData();
         $data['category'] = $this->Businessmodal->storecategoryData();
         $data['pagename'] = 'Business/editbusiness';
-        $data['storeIds'] = $id;
+
         $this->load->view("company", $data);
     }
 
@@ -215,7 +215,5 @@ $this->Logoutmodal->logout();
     public function getStoresCount() {
         $this->Businessmodal->getStoresCount();
     }
-    public function ConvenienceDataCityWise(){
-        $this->Businessmodal->ConvenienceDataCityWise();
-    }
+
 }

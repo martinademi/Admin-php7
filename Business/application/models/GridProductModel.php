@@ -202,7 +202,7 @@ class GridProductModel extends CI_Model {
 
             if($categoryId!='' || $categoryId!=null){
 
-            $data=$this->mongo_db->where(array('categoryId'=> new MongoDB\BSON\ObjectId($categoryId),'visibility'=>1,'storeid'=>$storeId,'status'=>1))->get('storesecondCategory');
+            $data=$this->mongo_db->where(array('categoryId'=> new MongoDB\BSON\ObjectId($categoryId),'visibility'=>1,'storeid'=>$storeId))->get('storesecondCategory');
 
              $entities = array();
             $entities = '<select class="form-control error-box-class"  id="subCategory" name="subCategory">
@@ -240,7 +240,7 @@ class GridProductModel extends CI_Model {
             $subCategoryId = $this->input->post('subCatId');
             $storeId=$this->session->userdata('badmin')['BizId']; 
            
-            $data=$this->mongo_db->where(array('subCategoryId'=> new MongoDB\BSON\ObjectId($subCategoryId),'visibility'=>1,'storeid'=>$storeId, 'status'=>1))->get('storethirdCategory');
+            $data=$this->mongo_db->where(array('subCategoryId'=> new MongoDB\BSON\ObjectId($subCategoryId),'visibility'=>1,'storeid'=>$storeId))->get('storethirdCategory');
 
             $entities = array();
             $entities = '<select class="form-control error-box-class"  id="subSubCategory" name="subSubCategory">

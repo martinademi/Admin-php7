@@ -44,10 +44,6 @@ $option = '<option value="01">01</option><option value="02">02</option><option v
         margin-top: -12px;
     }
 
-    .multiselect-container>li>a>label.radio input[type=radio] {
-        display: none;
-    }
-
     .clickable_but {
         background: #7dc1fb;
         padding: 4px 7px;
@@ -399,7 +395,7 @@ $option = '<option value="01">01</option><option value="02">02</option><option v
 // Function to get all cities
 function citiesList(){
         $.ajax({
-                url: "<?php echo base_url() ?>" + "index.php?/ReferralController/getCityData",
+                url: "<?php echo APILink ?>" + "admin/city",
                 type: 'GET',
                 dataType: 'json',
                 headers: {
@@ -409,13 +405,11 @@ function citiesList(){
                 },
             }).done(function(json) {
                 
-               
                 $("#citiesList").html('');
                 
                  for (var i = 0; i< json.data.length; i++) {
                 
-                    //var citiesList = "<option value="+ json.data[i].cities.cityId.$oid + " currency="+ json.data[i].cities.currency + ">"+  json.data[i].cities.cityName +"</option>";
-                    var citiesList = "<option value="+ json.data[i].id + " currency="+ json.data[i].currency + ">"+  json.data[i].cityname +"</option>";
+                    var citiesList = "<option value="+ json.data[i].id + " currency="+ json.data[i].currency + ">"+  json.data[i].cityName +"</option>";
                     $("#citiesList").append(citiesList);  
                 }
                  $('#citiesList').multiselect({
@@ -433,9 +427,6 @@ function citiesList(){
             url: "<?php echo APILink ?>" + "zones/" + cityIds,
             type: 'GET',
             dataType: 'json',
-            headers: {
-                'language':'en'
-            },
             data: {
             },
         }).done(function (json) {
@@ -984,7 +975,7 @@ function citiesList(){
                }
             });
 
-            //console.log(cityDetails);
+            
 
             var dataToInsert = JSON.stringify({
                                 "title": $("#titile").val(),
@@ -1018,9 +1009,6 @@ function citiesList(){
                                 'currency':'',
                                 'currencySymbol':'',
                                 "newUserCategory": '',
-                                "campaignType" : "11",
-                                "referrerlDriverDiscountAmt" : 0,
-                                "newUserDriverDiscountAmt" :0
 
 
 
@@ -1163,8 +1151,8 @@ function citiesList(){
                                     <div class="col-sm-6 form-group">
                                         <label for="fname" class="col-sm-3 control-label aligntext">CITIES <span class="mandatoryField"> &nbsp *</span></label> 
                                         <div class="col-sm-7">
-                                            <select id="citiesList" name="company_select" class="form-control" style="width: 55% !important">
-                                                
+                                            <select id="citiesList" name="company_select" class="form-control" style="width: 55% !important" multiple="multiple">
+
                                             </select>
                                         </div>
                                         <div class="col-sm-3 error-box" id="citiesError"></div>
@@ -1260,7 +1248,7 @@ function citiesList(){
                                             <div class="col-sm-6 removePadding">
                                                 <div class="radio radio-success">
                                                     <input class = "marginLeft" type="radio" checked="checked" value="1" name="rewardTriggerType" id="newUserTripCountTrigger">
-                                                    <label onclick="calltrigger('newUserTripCountTrigger')">BOOOKING COUNT</label>
+                                                    <label onclick="calltrigger('newUserTripCountTrigger')">TRIP COUNT</label>
                                                     <input class= "marginLeft" type="radio"  value="2" name="rewardTriggerType" id="newUserTotalBusinessTrigger">
                                                     <label onclick="calltrigger('newUserTotalBusinessTrigger')">TOTAL BUSINESS</label>
                                                 </div>
@@ -1327,8 +1315,8 @@ function citiesList(){
                                                         <div class="radio radio-success">
                                                             <input class = "marginLeft" type="radio" checked="checked" value="1" name="referrerRewardType" id="referrerWalletCredit">
                                                             <label>Wallet Credit</label>
-                                                            <!-- <input type="radio" class ="marginLeft"  value="2" name="referrerRewardType" id="referrerCouponDelivery">
-                                                            <label>Coupon Delivery</label> -->
+                                                            <input type="radio" class ="marginLeft"  value="2" name="referrerRewardType" id="referrerCouponDelivery">
+                                                            <label>Coupon Delivery</label>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -1413,8 +1401,8 @@ function citiesList(){
                                                         <div class="radio radio-success">
                                                             <input class = "marginLeft" type="radio"  value="1" name="newUserRewardType" id="newUserWalletCredit" checked="checked">
                                                             <label>Wallet Credit</label>
-                                                            <!-- <input  class ="marginLeft" type="radio"  value="2" name="newUserRewardType" id="newUserCouponDelivery">
-                                                            <label>Coupon Delivery</label> -->
+                                                            <input  class ="marginLeft" type="radio"  value="2" name="newUserRewardType" id="newUserCouponDelivery">
+                                                            <label>Coupon Delivery</label>
                                                         </div>
                                                     </div>
 

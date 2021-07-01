@@ -34,8 +34,8 @@ class DispatchLogsmodel extends CI_Model {
        
         $sl = $_POST['iDisplayStart'] + 1;
 
-        $timeOffSet=($this->session->userdata('timeOffset') * 60);
         if ($stDate && $endDate) {
+            $timeOffSet=($this->session->userdata('timeOffset') * 60);
             $strtTimeOff=(strtotime($stDate . '00:00:00')+$timeOffSet );
             $endTimeOff=(strtotime($endDate . ' 23:59:59') +$timeOffSet);          
 
@@ -88,7 +88,7 @@ class DispatchLogsmodel extends CI_Model {
             // $arr[] = $value['statusMsg'];
 
            // $arr[] = $sl++;
-            $arr[] = ($value['dispatcherId']!="")?$value['dispatcherId']:'N/A';
+            $arr[] = ($value['dispatchNo']!="")?$value['dispatchNo']:'N/A';
             $arr[] = ($value['bookingId']!="")?$value['bookingId']:'N/A';
             $arr[] = ($value['orderCategory']!="")?$value['orderCategory']:'N/A';            
             $arr[] = $dispatchMode;
@@ -97,10 +97,10 @@ class DispatchLogsmodel extends CI_Model {
             $arr[] = '<a style="cursor: pointer;" class="getCustomerDetails" slave="'.$value['customerId'].'">'.$value['customerName'].'</a>';
             $arr[] =  $value['providerName'];
             $arr[] =  '<a style="cursor: pointer;" id="driverID' . $value['driverId']['$oid'] . '"  class="getDriverDetails" mas_id="' . $value['driverId']['$oid'] . '">' . $value['driverName'] . '</a>';
-            $arr[] = date('j-M-Y g:i:s A',$value['dispatchedByServerAt'] - $timeOffSet);
-            $arr[] = ($value['ackTime'] == '')? 'N/A' : date('j-M-Y g:i:s A',$value['ackTime'] - $timeOffSet);
-            $arr[] = ($value['responseTime'] == '')? 'N/A' : date('j-M-Y g:i:s A',$value['responseTime'] - $timeOffSet);
-            $arr[] = date('j-M-Y g:i:s A',$value['expiryTimestamp'] - $timeOffSet);
+            $arr[] = date('j-M-Y g:i:s A',$value['dispatchedByServerAt']);
+            $arr[] = ($value['ackTime'] == '')? 'N/A' : date('j-M-Y g:i:s A',$value['ackTime']);
+            $arr[] = ($value['responseTime'] == '')? 'N/A' : date('j-M-Y g:i:s A',$value['responseTime']);
+            $arr[] = date('j-M-Y g:i:s A',$value['expiryTimestamp']);
             $arr[] = $value['statusMsg'];
             $arr[] = 'N/A';
 

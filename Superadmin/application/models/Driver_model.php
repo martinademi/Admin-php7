@@ -64,7 +64,7 @@ class Driver_model extends CI_Model {
             $r = $this->callapi->CallAPI('POST', $url, array('userId' => $this->input->post('masterId'), 'from' => $this->input->post('from')));
 
         $jsonResponse = json_decode($r, true);
-        $timeoffset = $this->session->userdata()['timeOffset'] * 60;
+
         foreach ($jsonResponse['data'] as $result) {
             
                //Total Online time
@@ -82,10 +82,10 @@ class Driver_model extends CI_Model {
                     $diffTime =  $timeAgo['m'] . ' Min '.$diffTime;
                 if ((int) $timeAgo['h'] > 0)
                     $diffTime = $timeAgo['h'] . ' Hour ' . $diffTime;
-                $onlineTime = $onlineTime + $shifts['d'];
-                $totalTime = gmdate("H:i:s", $onlineTime);
+                
+             
 
-                $shiftsArr[] = array('st' => date('Y-m-d H:i:s', $shifts['s']), 'end' => date('Y-m-d H:i:s', $shifts['e']), 'dur' => $diffTime,'totalOnlineTime'=>$totalTime,'stTime'=>date('h:i: A', $shifts['s'] - $timeoffset), 'endTime' => date('h:i A', $shifts['e'] - $timeoffset));
+                $shiftsArr[] = array('st' => date('Y-m-d H:i:s', $shifts['s']), 'end' => date('Y-m-d H:i:s', $shifts['e']), 'dur' => $diffTime,'totalOnlineTime'=>$totalOnlineTime,'stTime'=>date('h:i: A', $shifts['s']), 'endTime' => date('h:i A', $shifts['e']));
             }
               
         }

@@ -55,7 +55,7 @@ class productOffers extends CI_Controller {
         $this->table->set_template($tmpl);
         // $checkbox=' <input type="checkbox" id="select_all" />';
        // $this->table->set_heading('Sl no','Name','City','Franchise','Applicable On','Offer Type','Discount','Minimum Purchase Quantity','Start Date','End Date','Global Usage Count','ACTION','SELECT');
-       $this->table->set_heading($this->lang->line('col_slno'),$this->lang->line('col_name'),$this->lang->line('col_city'),/*$this->lang->line('col_franchise'),*/$this->lang->line('col_store'),$this->lang->line('col_applicableOn'),$this->lang->line('col_offerType'),$this->lang->line('col_discount'),$this->lang->line('col_minimumPurchaseQuantity'),$this->lang->line('col_startDate'),$this->lang->line('col_endDate'),$this->lang->line('col_globalUsageCount'),$this->lang->line('col_action'),$this->lang->line('col_select'));
+       $this->table->set_heading($this->lang->line('col_slno'),$this->lang->line('col_name'),$this->lang->line('col_city'),$this->lang->line('col_franchise'),$this->lang->line('col_store'),$this->lang->line('col_applicableOn'),$this->lang->line('col_offerType'),$this->lang->line('col_discount'),$this->lang->line('col_minimumPurchaseQuantity'),$this->lang->line('col_startDate'),$this->lang->line('col_endDate'),$this->lang->line('col_globalUsageCount'),$this->lang->line('col_action'),$this->lang->line('col_select'));
     
         $data['pagename'] = "Offers/productOffers";
        $this->load->view("template", $data);
@@ -126,7 +126,7 @@ class productOffers extends CI_Controller {
                           // '<a class="" href="'.base_url()."index.php?/productOffers/claimDetails/". $campaignData['offerId'].'/'. $campaignData['name']['en'] .'" style="color: royalblue;"  id="'.$campaignData['offerId'].'">' . $campaignData['name']['en'] .  '</a>',                
                           '<a class="" href="'.base_url()."index.php?/productOffers/claimDetails/". $campaignData['offerId'].'" style="color: royalblue; text-decoration:underline;"  id="'.$campaignData['offerId'].'">' . $campaignData['name']['en'] .  '</a>',                
                            $campaignData['city'],
-                           //$campData,
+                           $campData,
                            $campaignData['storeName'],
                            $campaignData['applicableOnStatus'],
                            $campaignData['offerTypeString'],

@@ -684,7 +684,7 @@ $(document).ready(function (){
                                 newPlanID = planNew.planID.$oid;
                             });
                         } else {
-                            newPlanID = 'planID' in result.driverData ? result.driverData.planID.$oid : "";
+                            newPlanID = result.driverData.planID.$oid;
                         }
 
                         //current plan

@@ -102,7 +102,6 @@ $this->Logoutmodal->logout();
        $this->table->set_template($tmpl);
        $this->table->set_heading('SL No.', 'TITLE', 'START DATE', 'END DATE', 'CITY', 'DISCOUNT', 'CODES', 'UNLOCKED COUNT', 'CLAIMS', 'ACTION','SELECT');
        $data['pagename'] = 'camp/marketing/referralCodeList';
-       
        $this->load->view("company", $data);
         /*changes end*/
     }
@@ -128,8 +127,8 @@ $this->Logoutmodal->logout();
             $this->Logout();
         }
         $offersData = $this->Referralmodel->referralCampaignsByStatus($status, $offset, $limit, $sSearch, $cityId);
-        /* echo '<pre>';
-         print_r($offersData);die;*/
+        // echo '<pre>';
+        // print_r($offersData);
         // exit;
         $draw = intval($this->input->get("draw"));
         $start = intval($this->input->get("start"));
@@ -137,7 +136,7 @@ $this->Logoutmodal->logout();
         $slNo = 1;
        foreach ($offersData['data'] as $campaignData) {
           $cityIds = [];       
-        
+          
        foreach ($campaignData['cities'] as $cityDetails) {
          array_push($cityIds, $cityDetails['cityId']);
          $cityname = $cityDetails['cityName'];
@@ -168,8 +167,8 @@ $this->Logoutmodal->logout();
                $data[] = [
                 $slNo,
                 $campaignData['title'],
-                   date('j-M-Y g:i A', strtotime($campaignData['startTime']) - ((int)($this->session->userdata('timeOffset') * 60))),
-                   date('j-M-Y g:i A', strtotime($campaignData['endTime']) - ((int)($this->session->userdata('timeOffset') * 60))),
+                   date('j-M-Y g:i A', strtotime($campaignData['startTime']) - ((int)$_COOKIE['timeOffset'] * 60)),
+                   date('j-M-Y g:i A', strtotime($campaignData['endTime']) - ((int)$_COOKIE['timeOffset'] * 60)),
 //                date( "d-m-Y H:i:s", strtotime($campaignData['startTime'])),
 //                date( "d-m-Y H:i:s", strtotime($campaignData['endTime'])),
                 '<span class="cityDetails" style="color: blue; cursor: pointer;" city_ids='.$cityIdStrings.' val='.$cityIdStrings.'>'.$cityname.'</span>',
@@ -210,7 +209,6 @@ $this->Logoutmodal->logout();
             $this->Logout();
         }
         // Load the page
-        //$data['allCities'] = $this->Referralmodel->getCitydata();       
         $data['pagename'] = "camp/marketing/addNewReferralCampaign";
         $this->load->view("company", $data);
     }
@@ -272,8 +270,7 @@ $this->Logoutmodal->logout();
         }
         
         $offersData = $this->Referralmodel->referralCodesByCampaignId($campaignId, $offset, $limit);
-        $offersData['data'] = isset($offersData['data']) ? $offersData['data'] : [];
-        $data = [];
+        
         $draw = intval($this->input->get("draw"));
         $start = intval($this->input->get("start"));
         $length = intval($this->input->get("length"));
@@ -305,7 +302,7 @@ $this->Logoutmodal->logout();
                 $campaignData['firstName'],
                 $campaignData['email'],
                 $campaignData['phoneNumber'],
-                date('j-M-Y g:i A', ($campaignData['registeredOn']) - ($this->session->userdata('timeOffset') * 60)),
+                date('j-M-Y g:i A', strtotime($campaignData['registeredOn']) - ($this->session->userdata('timeOffset') * 60)),
 //                date( "d-m-Y H:i:s", strtotime($campaignData['registeredOn'])),
                 $campaignData['referralCode'],
                 // $totalCodesGenerated,
@@ -464,11 +461,7 @@ $this->Logoutmodal->logout();
         echo json_encode($output);
     }
 
-    function getCityData(){
-      $this->Referralmodel->getCityData();
-    }
 
-    
 
 
 }

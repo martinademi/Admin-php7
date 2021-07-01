@@ -135,42 +135,63 @@
           //Check if the stripe has verified the account or/and added bank account
      $.ajax({
        
-         url: '<?php echo APILink; ?>store/getBankDetails/<?php echo $storedata['_id']['$oid']; ?>',
+         url: '<?php echo APILink; ?>admin/connectAccount/<?php echo $storedata['_id']['$oid']; ?>',
                  type: "GET",
                  dataType: "JSON",
                  headers: {
                      authorization: '<?php echo $this->session->userdata('godsviewToken'); ?>',
                      language:"en"
                                  },
-                 success: function (result,textStatus,xhr) {                  
+                 success: function (result,textStatus,xhr) {
+                   
+                     
                      $('.createBankAccountDivButton').hide();
-                     $('.stripeResponse').text('');                    
-                     console.log('rel',result)
-                     if (xhr.status == 200)
-                     {  
-
-                       if(!Object.keys(result.data).length){  
-                             
-                             $('.createBankAccountInfo').hide()
-                             $('.stripeCreateFormDiv').show()                             
-                        }else{
-                           
-                             $('.stripeCreateFormDiv').hide()
-                             $('.createBankAccountInfo').show()  
-
-                             $('#accNumber').val(result.data.bankAccount)
-                             $('#accountHolderName').val(result.data.name)
-
-                        } 
-
-                     } else {   
-                                              
+                     $('.stripeResponse').text('');
+                    // if (result.message == "Success.")
+                    if (xhr.status == 200)
+                     {       
+                   
+                         if (result.data.legal_entity.verification.status =="verified")
+                         {
+                   
+                             if (result.data.external_accounts.data.length > 0)
+                             {
+                   
+                                 $('.createBankAccountDivButton').hide();
+                                 $.each(result.data.external_accounts.data, function (index, value)
+                                 {
+                                     $('.stripeCreateFormDiv').hide();
+                                     $('.addBankFormDiv').show();
+   
+                                     $('#bankCountryRead').val(value.country);
+                                     $('#bankAccountNumberRead').val('********' + value.last4);
+                                     $('#bankAccountHolderNameRead').val(value.account_holder_name);
+                                     $('#bankRoutingNumberRead').val("Account added Successfully");
+   
+   
+                                 });
+                             } else
+                             {
+   
+                                 $('.createBankAccountDivButton').show();
+                                 $('.stripeCreateFormDiv').hide();
+                                 $('.addBankFormDiv').hide();
+                             }
+                         } else {
+   
+                             $('.stripeResponse').css('color', 'red');
+                             $('.stripeResponse').text('Account is not verified yet..!');
+                         }
+   
+                     } else {
+   
+                         $('.addBankFormDiv').hide();
+   
                      }
                  },
                  error: function(xhr, status, error) {
-
-                    alert("error")
-                    
+                    $(".createBankAccountDivButton").hide();
+                    $(".addBankFormDiv").hide();
                  }
              });
      });
@@ -362,28 +383,9 @@
            }
        });
    }
-   function fetchConvenienceDataCityWise(){
-        $.ajax({
-                url: "<?php echo base_url() ?>index.php?/business/ConvenienceDataCityWise",
-                type: 'POST',
-                dataType: 'json',
-                data: { val: $('#cityLists').val() },
-                success : function (json) {
-                if(json.data.convenienceType == 1){
-                    ("#convenienceTypeF").attr('checked', true);
-                } else{
-                    ("#convenienceTypeP").attr('checked', true);
-                }
-                $("#convenienceFee").val(json.data.convenienceFee);
-            }
-        });
-    }
+   
    $(document).ready(function(){
-   var conStatus = <?php echo $storedata['conEnable'];?> ;
-   if(conStatus == 1){
-    $("#Convenience").attr('checked',true);
-    $("#conveniencediv").show();
-   }
+   
     $('#CategoryList').on('change', function () {
    
      
@@ -610,14 +612,6 @@
                $('#Autoapproval').prop('checked', false);
            }
        }
-        var popularStore = '<?php echo $storedata['popularStore'] ?>';
-        if (popularStore) {
-            if (popularStore == 1) {
-               $('#popularStore').prop('checked', true);               
-            } else if (popularStore == 0) {
-               $('#popularStore').prop('checked', false);               
-            }
-        }
    
        var pricingStaus = '<?php echo $storedata['pricingStatus'] ?>';
        if (pricingStaus == '0') {
@@ -709,7 +703,6 @@
    
    
        $('#cityLists').on('change', function () {
-        fetchConvenienceDataCityWise();
            $.ajax({
                url: "<?php echo base_url() ?>index.php?/business/getZones",
                type: 'POST',
@@ -910,17 +903,7 @@
    
    
        });
-        var conEnable;
-        $("#Convenience").on("change", function (e) {
-        conEnable = $("input[name='Convenience']:checked").val();
-            if(conEnable == "on"){
-                conEnable = 1;
-                $("#conveniencediv").show();
-            } else{
-                conEnable = 0;
-                $("#conveniencediv").hide();
-            }
-        });
+   
    
        $('#edit').click(function () {
            var status = '<?php echo $status; ?>';
@@ -992,7 +975,7 @@
    
            var autoDispatch = $("input[name='autoDispatch']:checked").val();
            var Autoapproval = $("input[name='FData[autoApproval]']:checked").val();
-           var popularStore = $("input[name='FData[popularStore]']:checked").val();
+   
            var CategoryList = $("#CategoryList").val();
            var SubCategoryList = $("#subcatLists").val();
    
@@ -1086,11 +1069,7 @@
            } else {
                var Dcredit_card = 0;
            }
-           if($("input[name='Convenience']:checked").val() =="on"){
-            conEnable = 1;
-           } else {
-            conEnable = 0;
-           }
+   
            var Facebook = $('#Facebook').val();
            var Twitter = $('#Twitter').val();
            var Instagram = $('#Instagram').val();
@@ -1177,126 +1156,112 @@
                    $('#text_dpayment').text("<?php echo $this->lang->line('error_paymentTypes'); ?>");
                }
            } else {
+   
                $.ajax({
-                    url: "<?php echo base_url(); ?>index.php?/Business/validateEmail",
-                    type: 'POST',
-                    data: {email: $('#email').val(),id:"<?=$storeIds?>"},
-                    datatype: 'json', 
-                    success: function (response) {
-                        response = JSON.parse(response)
-
-                        if (response.msg == 0) {
-                            $.ajax({
-                                url: "<?php echo base_url('index.php?/Business') ?>/operationBusiness/edit",
-                                type: 'POST',
-                                data: {
-                                    storeId: '<?php echo $storedata['_id']['$oid']; ?>',
-                                    commission: '<?php echo $storedata['commission']; ?>',
-                                    commissionType: '<?php echo $storedata['commissionType']; ?>',
-                                    profileImage: profileImage,
-                                    foodType :foodType,
-                                    costForTwo:costForTwo,
-                                    profileAllText: profileAllText,
-                                    profileSeoTitle: profileSeoTitle,
-                                    profileSeoDesc: profileSeoDesc,
-                                    profileSeoKeyword: profileSeoKeyword,
-                                    currencySymbol: currencySymbol,
-                                    currency:currency,
-                                    baseFare: baseFare,
-                                    mileagePrice: mileagePrice,
-                                    mileagePriceAfterMinutes: mileagePriceAfterMinutes,
-                                    timeFee: timeFee,
-                                    timeFeeAfterMinutes: timeFeeAfterMinutes,
-                                    waitingFee: waitingFee,
-                                    waitingFeeAfterMinutes: waitingFeeAfterMinutes,
-                                    minimumFare: minimumFare,
-                                    onDemandBookingsCancellationFee: onDemandBookingsCancellationFee,
-                                    onDemandBookingsCancellationFeeAfterMinutes: onDemandBookingsCancellationFeeAfterMinutes,
-                                    scheduledBookingsCancellationFee: scheduledBookingsCancellationFee,
-                                    scheduledBookingsCancellationFeeAfterMinutes: scheduledBookingsCancellationFeeAfterMinutes,
-                                    convenienceFee: convenienceFee,
-                
-                                    bannerImage: bannerImage,
-                                    bannerAllText: bannerAllText,
-                                    bannerSeoTitle: bannerSeoTitle,
-                                    bannerSeoDesc: bannerSeoDesc,
-                                    bannerSeoKeyword: bannerSeoKeyword,
-                
-                                    BusinessName: BusinessName,
-                                    OwnerName: OwnerName,
-                                    countryCode: countryCode,
-                
-                                    Phone: Phone,
-                                    Email: Email,
-                                    Password: Password,
-                                    Website: Website,
-                                    Description: Description,
-                                    storeaddress: Address,
-                                    billingAddress: billingAddress,
-                                    Longitude: Longitude,
-                                    Latitude: Latitude,
-                                    Country: Country,
-                                    city: city,
-                                    cityName: cityName,
-                                    CatId: CatId,
-                                    subCatId: subCatId,
-                                    pricing: pricing,
-                                    minorderVal: minorderVal,
-                                    freedelVal: freedelVal,
-                                    select: select,
-                                    basefare: basefare,
-                                    range: range,
-                                    priceperkm: priceperkm,
-                                    Pcash: Pcash,
-                                    Pcredit_card: Pcredit_card,
-                                    Dcash: Dcash,
-                                    Dcredit_card: Dcredit_card,
-                                    avgcooktime: avgcooktime,
-                                    Budget: Budget,
-                                    grocerDriver: grocerDriver,
-                                    storeDriver: storeDriver,
-                                    bCountryCode: bCountryCode,
-                                    businessNumber: businessNumber,
-                                    Offlinedriver: Offlinedriver,
-                                    serviceZones: serviceZones,
-                                    posID: posID,
-                                    locationId: locationId,
-                                    driverType: driverType,
-                                    forcedAccept: forcedAccept,
-                                    Autoapproval: Autoapproval,
-                                    popularStore: popularStore,
-                                    autoDispatch: autoDispatch,
-                                    CategoryId: CategoryList,
-                                    SubCategoryId: SubCategoryList,
-                                    Facebook: Facebook,
-                                    Twitter: Twitter,
-                                    Instagram: Instagram,
-                                    LinkedIn: LinkedIn,
-                                    Google: Google,
-                                    avgDeliveryTime: avgDeliveryTime,
-                                    addressCompo: addressCompo,
-                                    streetname:streetname,
-                                    localityname:localityname,
-                                    areaname:areaname,
-                                    convenienceType:convenienceType,
-                                    conEnable:conEnable
-                
-                                },
-                                dataType: 'JSON',
-                                async: true,
-                                success: function (response) {
-                                    window.location.href = "<?php echo base_url('index.php?') ?>/Business";
-                                }
-                
-                            });
-                        } else{
-                            $('#email').focus();
-                            $("#text_email").text("Email is already allocated !");
-                        }
-                    }
-                }); 
-            }
-        });
+                   url: "<?php echo base_url('index.php?/Business') ?>/operationBusiness/edit",
+                   type: 'POST',
+                   data: {
+                       storeId: '<?php echo $storedata['_id']['$oid']; ?>',
+                       commission: '<?php echo $storedata['commission']; ?>',
+                       commissionType: '<?php echo $storedata['commissionType']; ?>',
+                       profileImage: profileImage,
+                       foodType :foodType,
+                       costForTwo:costForTwo,
+                       profileAllText: profileAllText,
+                       profileSeoTitle: profileSeoTitle,
+                       profileSeoDesc: profileSeoDesc,
+                       profileSeoKeyword: profileSeoKeyword,
+                       currencySymbol: currencySymbol,
+                       currency:currency,
+                       baseFare: baseFare,
+                       mileagePrice: mileagePrice,
+                       mileagePriceAfterMinutes: mileagePriceAfterMinutes,
+                       timeFee: timeFee,
+                       timeFeeAfterMinutes: timeFeeAfterMinutes,
+                       waitingFee: waitingFee,
+                       waitingFeeAfterMinutes: waitingFeeAfterMinutes,
+                       minimumFare: minimumFare,
+                       onDemandBookingsCancellationFee: onDemandBookingsCancellationFee,
+                       onDemandBookingsCancellationFeeAfterMinutes: onDemandBookingsCancellationFeeAfterMinutes,
+                       scheduledBookingsCancellationFee: scheduledBookingsCancellationFee,
+                       scheduledBookingsCancellationFeeAfterMinutes: scheduledBookingsCancellationFeeAfterMinutes,
+                       convenienceFee: convenienceFee,
+   
+                       bannerImage: bannerImage,
+                       bannerAllText: bannerAllText,
+                       bannerSeoTitle: bannerSeoTitle,
+                       bannerSeoDesc: bannerSeoDesc,
+                       bannerSeoKeyword: bannerSeoKeyword,
+   
+                       BusinessName: BusinessName,
+                       OwnerName: OwnerName,
+                       countryCode: countryCode,
+   
+                       Phone: Phone,
+                       Email: Email,
+                       Password: Password,
+                       Website: Website,
+                       Description: Description,
+                       storeaddress: Address,
+                       billingAddress: billingAddress,
+                       Longitude: Longitude,
+                       Latitude: Latitude,
+                       Country: Country,
+                       city: city,
+                       cityName: cityName,
+                       CatId: CatId,
+                       subCatId: subCatId,
+                       pricing: pricing,
+                       minorderVal: minorderVal,
+                       freedelVal: freedelVal,
+                       select: select,
+                       basefare: basefare,
+                       range: range,
+                       priceperkm: priceperkm,
+                       Pcash: Pcash,
+                       Pcredit_card: Pcredit_card,
+                       Dcash: Dcash,
+                       Dcredit_card: Dcredit_card,
+                       avgcooktime: avgcooktime,
+                       Budget: Budget,
+                       grocerDriver: grocerDriver,
+                       storeDriver: storeDriver,
+                       bCountryCode: bCountryCode,
+                       businessNumber: businessNumber,
+                       Offlinedriver: Offlinedriver,
+                       serviceZones: serviceZones,
+                       posID: posID,
+                       locationId: locationId,
+                       driverType: driverType,
+                       forcedAccept: forcedAccept,
+                       Autoapproval: Autoapproval,
+                       autoDispatch: autoDispatch,
+                       CategoryId: CategoryList,
+                       SubCategoryId: SubCategoryList,
+                       Facebook: Facebook,
+                       Twitter: Twitter,
+                       Instagram: Instagram,
+                       LinkedIn: LinkedIn,
+                       Google: Google,
+                       avgDeliveryTime: avgDeliveryTime,
+                       addressCompo: addressCompo,
+                       streetname:streetname,
+                       localityname:localityname,
+                       areaname:areaname,
+                       convenienceType:convenienceType
+   
+                   },
+                   dataType: 'JSON',
+                   async: true,
+                   success: function (response)
+                   {
+                      // console.log('response------',response);
+                       window.location.href = "<?php echo base_url('index.php?') ?>/Business";
+                   }
+   
+               });
+           }
+       });
    
        $('.lan_check').change(function () {
            if ($(this).is(':checked')) {
@@ -1698,93 +1663,6 @@
            myIP = data.ip;
        });
    });
-
-
-   $(document).on('click', '#validateBankAccount', function () { 
-    var name=$('#account_holder_name').val();
-    var phone=$('#account_holder_pnum').val();
-    var bankAccount =$('#accountNumber').val();
-    var ifsc=$('#ifsc').val();
-    var address=$('#Address').val();
-    var city=$('#cityname').val();
-    var state=$('#state').val();
-    var pincode=$('#postalcode').val();
-    var storeId="<?php echo $storedata['_id']['$oid'];?>";
-   
-
-    $.ajax({
-         url: '<?php echo APILink; ?>store/bankDetailValidation',
-         type: "POST",
-         dataType: "JSON",
-         headers: {
-             authorization: '<?php echo $this->session->userdata('godsviewToken'); ?>',
-             language:"en"
-         },
-         data :{
-            name:name,
-            phone:phone,
-            bankAccount:bankAccount,
-            ifsc:ifsc
-        },
-
-        success: function (result,textStatus,xhr) {                  
-                     
-             if(xhr.status==200){
-                  $.ajax({
-                         url: '<?php echo APILink; ?>store/addBankDetails',
-                         type: "POST",
-                         dataType: "JSON",
-                         headers: {
-                             authorization: '<?php echo $this->session->userdata('godsviewToken'); ?>',
-                             language:"en"
-                         },
-                         data :{
-                            storeId:storeId,
-                            bankAccount:bankAccount,
-                            ifsc:ifsc,
-                            address:address,
-                            city:city,
-                            state:state,
-                            pincode:pincode                         
-                        },
-                        success: function (result,textStatus,xhr) {   
-                              
-                              if(xhr.status==200){  
-                                 alert(result.message)
-
-                              }
-                        },
-                        error: function(xhr, status, error) {
-
-                              if(xhr.status==500){
-                                alert("Entered bank Account is already registered");
-                              }else{
-                                alert("Something went wrong")
-                              }
-                              
-                           
-
-                           }                  
-                    });
-
-
-              }else{
-
-                alert("Invalid Account")
-
-              }
-
-
-        },
-        error: function(xhr, status, error) {
-
-              alert("Bank detail not valid")
-
-           }
-        
-      });
-
-  });
    
    $(document).ready(function(){
    
@@ -1889,8 +1767,40 @@
                $('#createBankAccountPopUp1').modal('show');
            });
    
+   
+    //Get the currency
+   /*  $('#bankCountry1').change(function () {
+        console.log('currency');
+           $('#bankCurrency').empty();
+           $.ajax({
+               url: '<?php echo APILink; ?>connectAccountCurrency/' + $('#bankCountry1').val(),
+               type: "GET",
+               dataType: "JSON",
+             
+               beforeSend: function (xhr) {
+                   xhr.setRequestHeader("authorization", '<?php echo $this->session->userdata('godsviewToken'); ?>');
+                   xhr.setRequestHeader("language", 'en');
+   
+               },
+               success: function (result) {
+                   console.log(result);
+                   var html = '';
+   
+                   if (result.data.currency) {
+                       $.each(result.data.currency, function (index, response) {
+                           html += "<option value=" + response + ">" + response + "</option>";
+                   });
+                       $('#bankCurrency').append(html);
+                       $('#bankCurrency').val(result.data.default_currency);
+                   }
+   
+               }, error: function (xhr, status, err) {
+                   alert("error...! " + $.parseJSON(xhr.responseText).message);
+               },
+           });
+       })*/
        
-  $('#addBankAccount').click(function ()
+   $('#addBankAccount').click(function ()
            {
    
                
@@ -2058,30 +1968,6 @@
    
    
    });
-
-   function validateEmail(text) {
-        var emailstr = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
-        var email = $('#email').val();
-        if (!emailstr.test(email)) {
-            $("#text_email").text("<?php echo $this->lang->line('error_ValidEmail'); ?>");
-        } else {
-            $.ajax({
-                url: "<?php echo base_url(); ?>index.php?/Business/validateEmail",
-                type: 'POST',
-                data: {email: email,id:"<?=$storeIds?>"},
-                datatype: 'json', 
-                success: function (response) {
-                response = JSON.parse(response)
-                    if (response.msg == 1) {
-                        $("#text_email").text("Email is already allocated !");
-                        return false;
-                    } else{
-                        return true;
-                    }
-                }
-            });
-        }
-    }
 </script>
 <div class="page-content-wrapper">
    <!-- START PAGE CONTENT -->
@@ -2235,8 +2121,8 @@
                            <div class="form-group">
                               <label for="fname" class="col-sm-2 control-label"><?php echo $this->lang->line('label_OwnerEmail'); ?><span class="MandatoryMarker">*</span></label>
                               <div class="col-sm-6">
-                                 <input type="text"  id="email" name="Email" onkeyup="validateEmail(this)" class="form-control error-box-class" value="<?php echo $storedata['ownerEmail']; ?>">
-                              </div>    
+                                 <input type="text"  id="email" name="Email"  class="form-control error-box-class" value="<?php echo $storedata['ownerEmail']; ?>">
+                              </div>
                               <div class="col-sm-3 error-box" id="text_email" style="color:red"></div>
                            </div>
                            <div class="form-group">
@@ -2455,15 +2341,6 @@
                                  <div class="switch">
                                     <input id="Autoapproval" name="FData[autoApproval]" class="cmn-toggle cmn-toggle-round" type="checkbox" style="display: none;">
                                     <label for="Autoapproval"></label>
-                                 </div>
-                              </div>
-                           </div>
-                           <div class="form-group">
-                              <label for="fname" class="col-sm-2 control-label error-box-class"><?php echo 'POPULAR STORE'; ?></label>
-                              <div class="col-sm-6">
-                                 <div class="switch">
-                                    <input id="popularStore" name="FData[popularStore]" class="cmn-toggle cmn-toggle-round" type="checkbox" style="display: none;">
-                                    <label for="popularStore"></label>
                                  </div>
                               </div>
                            </div>
@@ -2690,48 +2567,27 @@
                                  <span class="abs_text1"><b><?php echo $this->lang->line('Minutes'); ?></b></span>
                               </div>
                            </div>
+                           <div class="form-group required" aria-required="true">
+                                <?php $data['convenienceType'] =  (isset($data['convenienceType']) == '1') ? $data['convenienceType'] : 1 ?>
+                                <span class="col-sm-2 control-label"><?php echo 'Convenience Type'; ?><span class="mandatory"></span></span>
+                                <div class="col-sm-2">
+                                    <input type="radio" name="convenienceType" value=1 id="convenienceType"  <?php echo ($storedata['convenienceType'] == 1) ? "CHECKED" : " " ?> >
+                                    <span class=" control-label">Fixed</span>
+                                </div>
+                                <div class="col-sm-2">
+                                    <input type="radio" name="convenienceType" value=2 id="convenienceType"  <?php echo ($storedata['convenienceType'] == 2) ? "CHECKED" : " " ?> >
+                                    <span class=" control-label">Percentage</span>
+                                </div>
+                            </div>
+                           <div class="form-group required">
+                              <label class='col-sm-2 control-label'><?php echo $this->lang->line('lable_ConvenienceFee'); ?></label>
+                              <div class="col-sm-2">
+                                 <!-- <span class="abs_text1 currencySymbol"><b><?php echo $storedata['currencySymbol']; ?></b></span> -->
+                                 <input type="text" value="<?php echo $storedata['convenienceFee']; ?>" name="pricing[convenienceFee]" id="convenienceFee" placeholder="Enter Convenience Fee" class="form-control required numbervalidation" data-v-max="9999999999.99" data-m-dec="2">
+                              </div>
+                           </div>
                         </div>
                      </section>
-                    
-                    <section class="" id="convenience">
-                    <div class="convenience row row-same-height">
-                    <h6 class="textAlign"><?php echo $this->lang->line('label_Convenience'); ?></h6>
-                    <hr>
-                    <div class="form-group">
-                        <label for="fname" class="col-sm-2 control-label error-box-class"><?php echo $this->lang->line('label_Convenience'); ?></label>
-                        <div class="col-sm-6">
-                            <div class="switch">
-                                <input id="Convenience" name="Convenience" class="cmn-toggle cmn-toggle-round" type="checkbox" style="display: none;">
-                                <label for="Convenience"></label>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="conveniencediv" id="conveniencediv" style="display:none;">
-                        <div class="form-group required" aria-required="true">
-                            <?php $data['convenienceType'] =  (isset($data['convenienceType']) == '1') ? $data['convenienceType'] : 1 ?>
-                            <span class="col-sm-2 control-label"><?php echo 'Convenience Type'; ?><span class="mandatory"></span></span>
-                            <div class="col-sm-2">
-                                <input type="radio" name="convenienceType" value=1 id="convenienceTypeF"  <?php echo ($storedata['convenienceType'] == 1) ? "CHECKED" : " " ?> >
-                                <span class=" control-label">Fixed</span>
-                            </div>
-                            <div class="col-sm-2">
-                                <input type="radio" name="convenienceType" value=2 id="convenienceTypeP"  <?php echo ($storedata['convenienceType'] == 2) ? "CHECKED" : " " ?> >
-                                <span class=" control-label">Percentage</span>
-                            </div>
-                        </div>
-                        <div class="form-group required">
-                            <label class='col-sm-2 control-label'><?php echo $this->lang->line('lable_ConvenienceFee'); ?></label>
-                            <div class="col-sm-2">
-                                <!-- <span class="abs_text1 currencySymbol"><b><?php echo $appConfig['currency']; ?></b></span> -->
-                                <input type="text" name="pricing[convenienceFee]" id="convenienceFee" placeholder="Enter Convenience Fee" class="form-control required numbervalidation" data-v-max="9999999999.99" data-m-dec="2" value=<?php echo $storedata['convenienceFee']?>>
-                            </div>
-                        </div>
-                    </div>
-
-                    </div>
-                    </section>
-
                      <section class="" id="tab4">
                         <div class="row row-same-height">
                            <h6 class="textAlign"><?php echo $this->lang->line('heading_SocialMediaLinks'); ?></h6>
@@ -2769,10 +2625,9 @@
                         </div>
                      </section>
                      <!-- Stripe account Details -->
-                     <!-- Stripe account Details -->
                      <section class="" id="tab5"  >
                         <div class="row row-same-height">
-                           <h6 class="textAlign">ACCOUNT & BANK DETAILS</h6>
+                           <h6 class="textAlign">STRIPE ACCOUNT & BANK DETAILS</h6>
                            <hr>
                            <div class="tab-pane slide-left padding-20" id="tab5">
                               <div class="row row-same-height">
@@ -2781,38 +2636,73 @@
                                        <div class="panel panel-default">
                                           <div class="panel-body stripeCreateFormDiv">
                                              <div class="errors"></div>
-
                                              <div class="row">
                                                 <div class="col-md-6">
                                                    <div class="form-group">
-                                                      <label>Name</label>
-                                                      <input class="form-control account_holder_fname" id="account_holder_name" type="text" data-stripe="account_holder_name" placeholder="" autocomplete="off">
+                                                      <label>Country</label>
+                                                      <select  class="form-control" id="country" data-stripe="country" >
+                                                         <option value="US">United States</option>
+                                                         <option value="AU">Australia</option>
+                                                         <option value="AT">Austria</option>
+                                                         <option value="BE">Belgium</option>
+                                                         <option value="BR">Brazil</option>
+                                                         <option value="CA">Canada</option>
+                                                         <option value="DK">Denmark</option>
+                                                         <option value="FI">Finland</option>
+                                                         <option value="FR">France</option>
+                                                         <option value="DE">Germany</option>
+                                                         <option value="HK">Hong Kong</option>
+                                                         <option value="IE">Ireland</option>
+                                                         <option value="IT">Italy</option>
+                                                         <option value="JP">Japan</option>
+                                                         <option value="LU">Luxembourg</option>
+                                                         <option value="MX">Mexico</option>
+                                                         <option value="NZ">New Zealand</option>
+                                                         <option value="NL">Netherlands</option>
+                                                         <option value="NO">Norway</option>
+                                                         <option value="PT">Portugal</option>
+                                                         <option value="SG">Singapore</option>
+                                                         <option value="ES">Spain</option>
+                                                         <option value="SE">Sweden</option>
+                                                         <option value="CH">Switzerland</option>
+                                                      </select>
                                                    </div>
                                                 </div>
                                                 <div class="col-md-6">
                                                    <div class="form-group">
-                                                      <label>Phone</label>
-                                                      <input class="form-control account_holder_lname" id="account_holder_pnum" type="text" data-stripe="account_holder_lname" placeholder="" autocomplete="off">
+                                                      <label>Personal ID Number </label>
+                                                      <input class="form-control"   id="presnalid" placeholder="Personal Id Number" autocomplete="off" onkeypress="return isNumberKey(event)">
                                                    </div>
                                                 </div>
                                              </div>
-
                                              <div class="row">
                                                 <div class="col-md-6">
                                                    <div class="form-group">
-                                                      <label>Account</label>
-                                                      <input class="form-control"   id="accountNumber" placeholder="Account Number" autocomplete="off" onkeypress="return isNumberKey(event)">
+                                                      <label>First Name</label>
+                                                      <input class="form-control account_holder_fname" id="account_holder_fname" type="text" data-stripe="account_holder_fname" placeholder="" autocomplete="off">
                                                    </div>
                                                 </div>
                                                 <div class="col-md-6">
                                                    <div class="form-group">
-                                                      <label>IFSC </label>
-                                                      <input class="form-control"   id="ifsc" placeholder="IFSC Code" autocomplete="off" >
+                                                      <label>Last Name</label>
+                                                      <input class="form-control account_holder_lname" id="account_holder_lname" type="text" data-stripe="account_holder_lname" placeholder="" autocomplete="off">
                                                    </div>
                                                 </div>
                                              </div>
-                                            
-                                            
+                                             <!-- <div class="row">
+                                                <div class="col-md-6" id="routing_number_div">
+                                                    <div class="form-group">
+                                                        <label id="routing_number_label">Routing Number</label>
+                                                        <input class="form-control  bank_account" id="routing_number" type="tel" size="12" data-stripe="routing_number" placeholder="110000000" autocomplete="off" onkeypress="return isNumberKey(event)">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label id="account_number_label">Account Number</label>
+                                                        <input class="form-control bank_account" id="account_number" type="tel" size="20" data-stripe="account_number" placeholder="000123456789" autocomplete="off" onkeypress="return isNumberKey(event)">
+                                                    </div>
+                                                </div>
+                                                </div> -->
                                              <div id="nextscreenHtmlNextScreen">
                                                 <div class="row">
                                                    <div class="col-md-6">
@@ -2827,60 +2717,117 @@
                                                          <input class="form-control" id="cityname"  placeholder="City Name" autocomplete="off">
                                                       </div>
                                                    </div>
-                                              </div>
-
+                                                </div>
                                                 <div class="row">
-                                                  <div class="col-md-6">
-                                                      <div class="form-group">
-                                                         <label id="account_number_label">State</label>
-                                                         <input class="form-control" placeholder="State" id="state" autocomplete="off">
-                                                      </div>
-                                                   </div>
                                                    <div class="col-md-6">
                                                       <div class="form-group">
-                                                         <label>Pin Code </label>
+                                                         <label>Postal Code </label>
                                                          <input class="form-control"   id="postalcode" placeholder="Postal Code" autocomplete="off" >
                                                          <div id="loadingimgs1" style="display:none; position:absolute; width:150px; height:75px;z-index:1000;top:-70%; left:44%" >
                                                             <img src="<?php echo base_url(); ?>theme/icon/loadingicon.gif" style="width:75px;height:75px;">
                                                          </div>
                                                       </div>
-                                                   </div>                                                   
-                                                </div>                                                
-                                             </div>
-
-                                             <div class="row">
-                                                <div class="col-md-6">
-                                                   <button style="width:176px;" class="btn btn-sm btn-block btn-success " type="button" id="validateBankAccount">CREATE ACCOUNT</button>
+                                                   </div>
+                                                   <div class="col-md-6">
+                                                      <div class="form-group">
+                                                         <label id="account_number_label">State</label>
+                                                         <input class="form-control" placeholder="State" id="state" autocomplete="off">
+                                                      </div>
+                                                   </div>
+                                                </div>
+                                                <div class="row">
+                                                   <div class="col-sm-6">
+                                                      <div class="form-group">
+                                                         <label for="fname">ID PROOF</label>
+                                                         <input type="file" class="form-control" style="height: 37px;" id="id_proof" data="id_proof">
+                                                         <input type="hidden" id="idproof">
+                                                         <div class="col-sm-3 error-box" id="id_proofErr"></div>
+                                                      </div>
+                                                   </div>
+                                                   <div class="col-md-6">
+                                                      <div class="form-group">
+                                                         <label> DOB </label>
+                                                         <input type="text" class="form-control datepicker-component1" id="DateOfB">
+                                                      </div>
+                                                   </div>
                                                 </div>
                                              </div>
-
-
+                                             <div class="row">
+                                                <div class="col-md-6">
+                                                   <button style="width:176px;" class="btn btn-sm btn-block btn-success " type="button" id="addBankAcc">CREATE STRIPE ACCOUNT</button>
+                                                </div>
+                                             </div>
                                              <div class="row">
                                                 <div class="col-md-12">
                                                    <span class="stripeResponse" style="font-weight:600;font-size: 11px;"></span>
                                                 </div>
                                              </div>
                                           </div>
-
-
-                                          <div class="row createBankAccountInfo" style="display:none" >
-                                              <div class="col-md-6">
-                                                   <div class="form-group">
-                                                      <label>Name</label>
-                                                      <input readonly class="form-control account_holder_fname" id="accountHolderName" type="text" data-stripe="accountHolderName" placeholder="" autocomplete="off">
-                                                   </div>
-                                                </div>
-                                               <div class="col-md-6">
-                                                   <div class="form-group">
-                                                      <label>Account</label>
-                                                      <input class="form-control" readonly  id="accNumber" placeholder="Account Number" autocomplete="off" onkeypress="return isNumberKey(event)">
-                                                   </div>
-                                                </div>                                        
+                                          <div class="row createBankAccountDivButton" >
+                                             <br>
+                                             <div class="row">
+                                                <span class="" style="font-weight:600;font-size: 11px;color:green;padding-left: 24px;">Stripe account has been created and verified, Please add your bank account information</span>
                                              </div>
-
-                                         
-
-
+                                             <br>
+                                             <div class="col-md-6">
+                                             </div>
+                                             <div class="col-md-6">
+                                                <button style="width:164px;" class="btn btn-sm btn-block btn-success"  type="button" id="createBankAccount">ADD BANK ACCOUNT</button>
+                                             </div>
+                                          </div>
+                                          <div class="panel-body addBankFormDiv"  >
+                                             <div class="errors"></div>
+                                             <div class="form-group">
+                                                <label for="" class="control-label col-md-3">Country<span style="" class="MandatoryMarker"> *</span></label>
+                                                <div class="col-sm-6">
+                                                   <select class="form-control" id="bankCountryRead" data-stripe="country" disabled="">
+                                                      <option value="US">United States</option>
+                                                      <option value="AU">Australia</option>
+                                                      <option value="AT">Austria</option>
+                                                      <option value="BE">Belgium</option>
+                                                      <option value="BR">Brazil</option>
+                                                      <option value="CA">Canada</option>
+                                                      <option value="DK">Denmark</option>
+                                                      <option value="FI">Finland</option>
+                                                      <option value="FR">France</option>
+                                                      <option value="DE">Germany</option>
+                                                      <option value="HK">Hong Kong</option>
+                                                      <option value="IE">Ireland</option>
+                                                      <option value="IT">Italy</option>
+                                                      <option value="JP">Japan</option>
+                                                      <option value="LU">Luxembourg</option>
+                                                      <option value="MX">Mexico</option>
+                                                      <option value="NZ">New Zealand</option>
+                                                      <option value="NL">Netherlands</option>
+                                                      <option value="NO">Norway</option>
+                                                      <option value="PT">Portugal</option>
+                                                      <option value="SG">Singapore</option>
+                                                      <option value="ES">Spain</option>
+                                                      <option value="SE">Sweden</option>
+                                                      <option value="CH">Switzerland</option>
+                                                   </select>
+                                                </div>
+                                             </div>
+                                             <div class="form-group">
+                                                <label for="" class="control-label col-md-3">Account Number<span style="" class="MandatoryMarker"> *</span></label>
+                                                <div class="col-sm-6">
+                                                   <input type="text" class="form-control number" id="bankAccountNumberRead" name="bankAccountNumberRead" placeholder="" onkeypress="return isNumberKey(event)" readonly="">
+                                                </div>
+                                                <div class="col-sm-3 errors bankAccountNumberErr"></div>
+                                             </div>
+                                             <div class="form-group">
+                                                <label for="" class="control-label col-md-3">Account Holder Name<span style="" class="MandatoryMarker"> *</span></label>
+                                                <div class="col-sm-6">
+                                                   <input type="text" class="form-control" id="bankAccountHolderNameRead" name="bankAccountHolderNameRead" placeholder="" readonly="">
+                                                </div>
+                                             </div>
+                                             <div class="form-group">
+                                                <label for="" class="control-label col-md-3">Routing Number<span style="" class="MandatoryMarker"> *</span></label>
+                                                <div class="col-sm-6">
+                                                   <input type="text" class="form-control number" id="bankRoutingNumberRead" name="bankRoutingNumberRead" placeholder="" onkeypress="return isNumberKey(event)" readonly="">
+                                                </div>
+                                             </div>
+                                          </div>
                                        </div>
                                     </div>
                                  </div>

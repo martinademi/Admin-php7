@@ -305,10 +305,9 @@ class brandsmodal extends CI_Model {
         echo json_encode(array("msg" => "Selected brand has been deactivated successfully", "flag" => 0));
     }
 
-    // get Brand
+// get Brand
     function getBrands(){
 
-        //$val=$this->mongo_db->where(array("status"=> 1))->get('centralBrands');
         $val=$this->mongo_db->where(array("status"=> 1))->get('centralBrands');
         return $val;
     }

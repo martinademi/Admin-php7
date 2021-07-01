@@ -1364,7 +1364,7 @@ console.log('personalUsageFile');
                         console.log(response);
                         console.log(amazonPath+ response.data[0].path);
                         htmlImage +='<div class="col-sm-2 imageremovedynamic" data-id="'+fieldID+'"><a href="'+amazonPath + response.data[0].path+'" target="_blank"><img src="'+amazonPath + response.data[0].path+'" style="height:100px;width:100px;border:1px solid;"></a></div>';
-                         $('#dynamicViewImage').append(htmlImage);
+                        $('#dynamicViewImage').html(htmlImage);
                         $.each(response.data, function (index, row) {
                             console.log(row);
                            
@@ -1910,7 +1910,7 @@ console.log('personalUsageFile');
                                     var y = z + 1;
                                     var divElement1 = '<div class="customPriceField row"><div class="form-group pos_relative2 customPriceField' + z + '">'
                                                 + '<label id="titleLabel' + z + '" for="fname" class="col-sm-2 control-label">Units ' + z + ' </label>'
-                                                + '<div class="col-sm-2 pos_relative2">'
+                                                + '<div class="col-sm-3 pos_relative2">'
                                                 + '<span  class="abs_text"><b><?php echo $this->lang->line('label_Title'); ?></b></span>'
                                                 + '<input type="text" name="units[' + z + '][name][en]" value="' + row.name.en + '" class="form-control productTitle" id="title' + z + '"  placeholder="Enter Unit">'
                                                 + '</div>'
@@ -1919,7 +1919,7 @@ console.log('personalUsageFile');
                                                 + ' <input type="text" maxlength="8" name="units[' + z + '][price][en]" value="' + row.price.en + '" class="form-control productValue" id="value' + z + '" placeholder="Enter Unit Price" onkeypress="return isNumberKey(event)">'
                                                 + ' </div>'
                                             
-                                                + '<div class="col-sm-2 pos_relative2">'         
+                                                + '<div class="col-sm-1 pos_relative2">'         
                                                 + '<input type="hidden" name="units[' + z + '][unitId]" value="' + row.unitId + '">'        
                                                 + ' <?php if($storeType != "1" || $storeType != 1){?>'                                  
                                                 + '<input type="text" maxlength="8" name="units[' + z + '][quantity][en]" value="0" class="error-box-class  form-control productTitle" id="quantity0"  placeholder="Enter Stock"  onkeypress="return isNumberKey(event)">'                   
@@ -2986,7 +2986,7 @@ console.log('personalUsageFile');
 
                                             <div class="form-group pos_relative2 customPriceField1">
                                                 <label id="titleLabel" for="fname" class="col-sm-2 control-label"><?php echo $this->lang->line('label_Units'); ?> 1<span style="" class="MandatoryMarker"> *</span></label>
-                                                <div class="col-sm-2 pos_relative2">
+                                                <div class="col-sm-3 pos_relative2">
                                                     <span  class="abs_text"><b><?php echo $this->lang->line('label_Title'); ?></b></span>
                                                     <input type="text" name="units[0][name][en]" class="error-box-class  form-control productTitle" id="title0"  placeholder="Enter Unit ">
                                                 </div>
@@ -2996,7 +2996,7 @@ console.log('personalUsageFile');
                                                 </div>
 
                                                 <?php if($storeType != "1" || $storeType != 1){?>
-                                                <div class="col-sm-2 pos_relative2">                                                   
+                                                <div class="col-sm-1 pos_relative2">                                                   
                                                     <input type="text" name="units[0][quantity][en]" maxlength="8" class="error-box-class  form-control productTitle" id="quantity0"  placeholder="Enter Stock"  onkeypress="return isNumberKey(event)">
                                                 </div>   
                                                  <?php } ?>
@@ -5234,7 +5234,7 @@ console.log('personalUsageFile');
             var y = z + 1;
             var divElement1 = '<div class="customPriceField row"><div class="form-group pos_relative2 customPriceField' + z + '">'
                     + '<label id="titleLabel' + z + '" for="fname" class="col-sm-2 control-label">Units ' + z + ' </label>'
-                    + '<div class="col-sm-2 pos_relative2">'
+                    + '<div class="col-sm-3 pos_relative2">'
                     + '<span  class="abs_text"><b><?php echo $this->lang->line('label_Title'); ?></b></span>'
                     + '<input type="text" name="units[' + len + '][name][en]" class="form-control productTitle" id="title' + z + '"  placeholder="Enter Unit">'
                     + '</div>'
@@ -5243,7 +5243,7 @@ console.log('personalUsageFile');
                     + ' <input type="text" maxlength="8" name="units[' + len + '][price][en]" class="form-control productValue" id="value' + z + '" placeholder="Enter Unit Price" onkeypress="return isNumberKey(event)">'
                     + ' </div>'
                     + ' <?php if($storeType != "1" || $storeType != 1){?>'
-                    + '<div class="col-sm-2 pos_relative2">'                                                   
+                    + '<div class="col-sm-1 pos_relative2">'                                                   
 		            + '<input type="text" maxlength="8" name="units[' + len + '][quantity][en]" class="error-box-class  form-control productTitle" id="quantity0"  placeholder="Enter Stock"  onkeypress="return isNumberKey(event)">'
 	                + '</div>'
                     + '<?php } ?>'

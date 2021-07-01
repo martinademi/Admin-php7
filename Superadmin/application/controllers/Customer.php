@@ -62,7 +62,7 @@ $this->lang->load('header_lang',$language);
         $this->table->set_template($tmpl);
        
         $checkbox=' <input type="checkbox" id="select_all" />';
-        $this->table->set_heading('SL NO.', 'NAME', 'MOBILE', 'EMAIL','CITY','APP VERSION',/*'APPROVED DATE',*/ 'REGISTERED DATE',/* 'REJECTED DATE', */'BAN DATE','REASON','DEVICE ID', 'DEVICE MAKE', 'DEVICE MODEL', 'REGISTRATION DATE','LOCATION','LAST ACTIVE','Action','CREDIT SETTINGS',$checkbox);
+        $this->table->set_heading('SL NO.', 'NAME', 'MOBILE', 'EMAIL','CITY','APP VERSION','APPROVED DATE', 'REGISTERED DATE','REJECTED DATE','BAN DATE','REASON','DEVICE ID', 'DEVICE MAKE', 'DEVICE MODEL', 'REGISTRATION DATE','LOCATION','LAST ACTIVE','Action','CREDIT SETTINGS',$checkbox);
 
 
         $data['pagename'] = "customer/customer";

@@ -2882,9 +2882,8 @@ class Businessmodel extends CI_Model {
         $senddata['orderEmail']=$senddata['OrderEmail'];
         // string changes
         $senddata['storeId']=(string)$BusinessId;
-        $sample= $this->mongo_db->where(array("_id"=> new MongoDb\BSON\ObjectID($this->session->userdata('badmin')['BizId'])))->select(array("commission"=>"commission","commissionType" =>"commissionType"))->find_one('stores');
-        $senddata['commission'] = $sample['commission'];
-        $senddata[ 'commissionType'] = $sample['commissionType'];
+        $senddata['commission']=0;
+        $senddata[ 'commissionType'] = 0;
         $senddata[ 'storeType'] =  $senddata[ 'storeType'];
         $senddata[ 'storeTypeMsg'] =  $senddata[ 'storeTypeMsg'];
         $senddata[ 'addressCompo']=(object)$senddata[ 'addressCompo'];
@@ -2916,7 +2915,7 @@ class Businessmodel extends CI_Model {
             $senddata['storeBillingAddr']= $senddata['billingAddress'][0];
         }
 
-
+      
         unset($senddata['bCountryCode']);
         unset($senddata['businessAddress']);
         unset($senddata['billingAddress']);
@@ -2940,7 +2939,7 @@ class Businessmodel extends CI_Model {
 
         $this->load->library('mongo_db');
         $val = $this->input->post('val');
-        $cursor = $this->mongo_db->where(array("city_ID" => $val,"status" => 1))->get('zones');
+        $cursor = $this->mongo_db->where(array("city_ID" => $val))->get('zones');
         if ($cursor) {
             $entitiesData = array();
             $entityData = [];

@@ -176,7 +176,22 @@ $active = "active";
             }
         });
         console.log("firsst");
-        
+        /*$('#campaigns-datatable').DataTable({
+         
+         "pageLength" : 10,
+         "sPaginationType" : "full_numbers",
+         "aaSorting": [],
+         "bDestroy" : true,
+         "fnInitComplete": function() {
+         $("#gif").fadeOut(1000);
+         },
+         "bScrollCollapse" : true,
+         "bSort" : true,
+         "ajax": {
+         url : "<?php //echo base_url('index.php?/ReferralController/referralCampaignsByStatus/2/0/10');  ?>",  //1 MEANS NEW
+         type : 'POST'
+         },
+         });*/
 
 
         var table = $('#campaigns-datatable');
@@ -306,43 +321,38 @@ $active = "active";
 </script>
 <script type="text/javascript">
     $(document).ready(function () {
-
-    $(".cityDetails").live('click', function(){
+        $(".cityDetails").live('click', function () {
             var cityIds = $(this).attr("city_ids");
             $.ajax({
-            url: "<?php echo APILink ?>admin/cityDetailsByCityIds/" + cityIds,
-            type: 'GET',
-            dataType: 'json',
-            headers: {
-                  language: 'en'
-                },
-            data: { },
-        })
-        .done(function(json) {
-            console.log('details---',json)
-            if (json.data.length > 0 ) {
-                $("#showCityDetailsModal").modal();
-                $("#cityDetailsBody").empty();
-                for (var i = 0; i< json.data.length; i++) {
-                    var cityDetailsData = '<tr>'+
-                                    '<td style="text-align:center">' + (i+1) +'</td>' +
-                                    '<td style="text-align:center">' + json.data[i].cityName+ '</td>' +
-                                    '<td style="text-align:center">' + json.data[i].country+ '</td>' +
-                                    '<td style="text-align:center">' + json.data[i].currencySymbol + '</td>' +
-                                    '</tr>';
-                    $("#cityDetailsBody").append(cityDetailsData);  
-                   
-                }
+                url: "<?php echo APILink ?>" + "admin/cityDetailsByCityIds/" + cityIds,
+                type: 'GET',
+                dataType: 'json',
+
+                data: {},
+            })
+                    .done(function (json) {
+                        if (json.data.length > 0) {
+                            $("#showCityDetailsModal").modal();
+                            $("#cityDetailsBody").empty();
+                            for (var i = 0; i < json.data.length; i++) {
+                                var cityDetailsData = '<tr>' +
+                                        '<td style="text-align:center">' + (i + 1) + '</td>' +
+                                        '<td style="text-align:center">' + json.data[i].city + '</td>' +
+                                        '<td style="text-align:center">' + json.data[i].country + '</td>' +
+                                        '<td style="text-align:center">' + json.data[i].currencySymbol + '</td>' +
+                                        '</tr>';
+                                $("#cityDetailsBody").append(cityDetailsData);
+                            }
 
 
 
-            }else{
+                        } else {
 
-            }
+                        }
 
 
+                    });
         });
-});
 
         $(".newUserDetails").live('click', function () {
             var campaignId = $(this).attr("campaignid");
@@ -350,9 +360,7 @@ $active = "active";
                 url: "<?php echo APILink ?>" + "referralCampaignDetailsById/" + campaignId,
                 type: 'GET',
                 dataType: 'json',
-                headers: {
-                  language: 'en'
-                },
+
                 data: {},
             })
                     .done(function (json) {
@@ -367,27 +375,27 @@ $active = "active";
                             $(".referrerDiscountModalData").empty();
                             var newUserDiscType = '';
                             var refUserDiscType = '';
-                            if (json.data[0].newUserDiscount.customer.discountType == 1) {
+                            if (json.data[0].newUserDiscount.discountType == 1) {
                                 newUserDiscType = json.data[0].currencySymbol;
                             } else {
                                 newUserDiscType = '%';
                             }
-                            if (json.data[0].referrerDiscount.customer.discountType == 1) {
+                            if (json.data[0].referrerDiscount.discountType == 1) {
                                 refUserDiscType = json.data[0].currencySymbol;
                             } else {
                                 refUserDiscType = '%';
                             }
 
                             var newUserDiscountData = '<tr>' +
-                                    '<td style="text-align:center">' + json.data[0].newUserDiscount.customer.rewardTypeName + '</td>' +
-                                    '<td style="text-align:center">' + json.data[0].newUserDiscount.customer.discountTypeName + '</td>' +
-                                    '<td style="text-align:center">' + json.data[0].newUserDiscount.customer.discountAmt + ' ' + newUserDiscType + '</td>' +
+                                    '<td style="text-align:center">' + json.data[0].newUserDiscount.rewardTypeName + '</td>' +
+                                    '<td style="text-align:center">' + json.data[0].newUserDiscount.discountTypeName + '</td>' +
+                                    '<td style="text-align:center">' + json.data[0].newUserDiscount.discountAmt + ' ' + newUserDiscType + '</td>' +
                                     '</tr>';
                             $(".newUserDiscountModalData").append(newUserDiscountData);
                             var referrerDiscounttModalData = '<tr>' +
-                                    '<td style="text-align:center">' + json.data[0].referrerDiscount.customer.rewardTypeName + '</td>' +
-                                    '<td style="text-align:center">' + json.data[0].referrerDiscount.customer.discountTypeName + '</td>' +
-                                    '<td style="text-align:center">' + json.data[0].referrerDiscount.customer.discountAmt + ' ' + refUserDiscType + '</td>' +
+                                    '<td style="text-align:center">' + json.data[0].referrerDiscount.rewardTypeName + '</td>' +
+                                    '<td style="text-align:center">' + json.data[0].referrerDiscount.discountTypeName + '</td>' +
+                                    '<td style="text-align:center">' + json.data[0].referrerDiscount.discountAmt + ' ' + refUserDiscType + '</td>' +
                                     '</tr>';
                             $(".referrerDiscountModalData").append(referrerDiscounttModalData);
 
@@ -405,9 +413,7 @@ $active = "active";
                 url: "<?php echo APILink ?>" + "referralCampaignDetailsById/" + campaignId,
                 type: 'GET',
                 dataType: 'json',
-                headers: {
-                  language: 'en'
-                },
+
                 data: {},
             })
                     .done(function (json) {

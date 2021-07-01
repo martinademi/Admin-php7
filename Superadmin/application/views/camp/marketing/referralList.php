@@ -33,7 +33,7 @@ $(function(){
             if(scheduleId)
             {
             $.ajax({
-                    url: '<?php echo APILink ?>schedule/' + scheduleId +'/'+ businessId,
+                    url: '<?php echo APILINKPROMO ?>schedule/' + scheduleId +'/'+ businessId,
                     type: 'GET'
                   }).done(function(data) {
                        $('#scheduledoc_body').empty();        
@@ -89,7 +89,7 @@ $(function(){
         $(".cityDetails").live('click', function(){
             var cityIds = $(this).attr("city_ids");
             $.ajax({
-            url: "<?php echo APILink ?>" +"admin/cityDetailsByCityIds/" + cityIds,
+            url: "<?php echo APILINKPROMO ?>" +"admin/cityDetailsByCityIds/" + cityIds,
             type: 'GET',
             dataType: 'json',
           

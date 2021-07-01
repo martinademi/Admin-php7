@@ -56,7 +56,7 @@ class Categorymodal extends CI_Model {
             } else {
                 $imageField = '<img src="' . base_url('') . 'pics/user.jpg\';"   width="50px" height="50px" class="imageborder" style="border-radius:50%;">';
             }
-            $count = $this->mongo_db->where(array('categoryId' => new MongoDB\BSON\ObjectID($value['_id']['$oid']),"visibility" =>1))->count('secondCategory');
+            $count = $this->mongo_db->where(array('categoryId' => new MongoDB\BSON\ObjectID($value['_id']['$oid'])))->count('secondCategory');
 //            $count = count($cat);
             $count1 = $this->mongo_db->where(array('categoryId' => $value['_id']['$oid']))->count('metaTags');
             $arr = array();

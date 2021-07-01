@@ -1509,11 +1509,11 @@ $(document).ready(function (){
 
             <div class="pull-right m-t-10 new_button" > <button class="btn btn-danger btn-cons cls111" id="delete_passenger" >Delete</button></div>
 
-            <div class="pull-right m-t-10 new_button" > <button class="btn btn-warning btn-cons cls111" id="inactive" style="display: none;" >Reject</button></div>
+            <div class="pull-right m-t-10 new_button" > <button class="btn btn-warning btn-cons cls111" id="inactive" >Reject</button></div>
             <!--<div class="pull-right m-t-10 new_button"><button class="btn btn-info" id="deviceLogs">Device Logs</button></div>-->
 
-            <div class="pull-right m-t-10 new_button"> <button class="btn btn-success btn-cons cls110" id="active" style="display: none;">Approve</button></a></div>
-            <div class="pull-right m-t-10 new_button"> <button class="btn btn-success btn-cons cls110" id="activeRejected" style="display: none;">Activate</button></a></div>
+            <div class="pull-right m-t-10 new_button"> <button class="btn btn-success btn-cons cls110" id="active">Approve</button></a></div>
+            <div class="pull-right m-t-10 new_button"> <button class="btn btn-success btn-cons cls110" id="activeRejected">Activate</button></a></div>
             <div class="pull-right m-t-10 new_button"> <button class="btn btn-warning btn-cons cls111" id="ban">Ban</button></a></div>
             <!--<div class="pull-right m-t-10 new_button"> <button class="btn btn-primary btn-cons" id="changePassword">Change Password</button></a></div>-->
 
